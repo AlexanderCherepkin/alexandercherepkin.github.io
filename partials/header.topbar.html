@@ -1,0 +1,82 @@
+<div class="topbar"
+     data-topbar
+     data-delay="800"
+     data-expire-days="14"
+     data-push-layout="true"
+     role="region"
+     aria-label="Контактная информация"
+     data-i18n-aria-label="topbar.aria_label">
+  <div class="topbar__inner container" data-topbar-inner>
+    <ul class="topbar__list" role="list">
+      <li>
+        <span aria-hidden="true">📍</span>
+        <span class="visually-hidden" data-i18n="topbar.location_label">Локация:</span>
+        <span data-i18n="topbar.location_value">Владимир и область</span>
+      </li>
+      <li>
+        <a href="mailto:info@prof33.ru"
+           translate="no"
+           rel="nofollow"
+           data-track="topbar_email"
+           aria-label="Написать на e-mail info@prof33.ru"
+           data-i18n-aria-label="topbar.email_aria">
+          <span aria-hidden="true">✉️</span>
+          <span data-i18n="topbar.email_value">info@prof33.ru</span>
+        </a>
+      </li>
+      <li>
+        <a href="tel:+79585106818"
+           translate="no"
+           rel="nofollow"
+           data-track="topbar_phone"
+           aria-label="Позвонить по номеру +7 (958) 510-68-18"
+           data-i18n-aria-label="topbar.phone_aria">
+          <span aria-hidden="true">📞</span>
+          <span data-i18n="topbar.phone_value">+7 (958) 510-68-18</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://wa.me/79585106818"
+           target="_blank"
+           rel="noopener noreferrer nofollow"
+           data-track="topbar_whatsapp"
+           aria-label="Открыть чат WhatsApp"
+           data-i18n="topbar.whatsapp">WhatsApp</a>
+        ·
+        <a href="https://t.me/79585106818"
+           target="_blank"
+           rel="noopener noreferrer nofollow"
+           data-track="topbar_telegram"
+           aria-label="Открыть чат Telegram"
+           data-i18n="topbar.telegram">Telegram</a>
+      </li>
+    </ul>
+
+    <!-- CTA: скролл к #calc, открытие модалки или звонок (см. initTopbarCTA) -->
+    <a class="btn btn--ghost link-btn"
+       href="#calc"
+       data-topbar-cta
+       data-track="topbar_cta"
+       data-target="#calc"
+       data-modal="quiz"
+       data-tel="+79585106818"
+       data-fallback="/zakaz-zamera.html"
+       aria-label="Калькулятор ремонта — открыть"
+       data-i18n="topbar.cta"
+       data-i18n-aria-label="topbar.cta_aria">
+      Калькулятор ремонта
+    </a>
+
+    <!-- Кнопка закрытия плашки -->
+    <button class="topbar__close" type="button" aria-label="Скрыть панель"
+        data-i18n-aria-label="topbar.close_aria" data-track="topbar_close" data-topbar-close>
+  &times; <!-- U+00D7 -->
+</button>
+
+<style>
+  .topbar__close{ font-size:1.4rem !important; color:#0f172a !important; }
+
+</style>
+  </div>
+</div>
+

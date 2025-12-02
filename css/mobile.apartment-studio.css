@@ -1,0 +1,13 @@
+/* Скрываем черточку на всех страницах, кроме главной */
+body:not(.home) .site-header__burger,
+body:not(.home) .nav-toggle,
+body:not(.home) .mobile-menu {
+    display: none !important;
+}
+
+/* Убираем черточку только на главной странице */
+@media (max-width: 767px) {
+    button.site-header__burger.nav-toggle {
+        display: block !important; /* или visibility: visible; */
+    }
+}

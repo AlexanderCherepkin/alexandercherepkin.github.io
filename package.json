@@ -1,0 +1,22 @@
+{
+  "name": "local-ai-hub-website",
+  "private": true,
+  "version": "1.0.0",
+  "engines": { "node": ">=18.17" },
+  "scripts": {
+    "img:build": "node tools/resp-images.js",
+    "prebuild": "npm run img:build",
+    "build:html": "node build.mjs html",
+    "build:css": "node build.mjs css",
+    "build:js": "node build.mjs js",
+    "build": "node build.mjs all"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^6.0.0",
+    "esbuild": "^0.24.0",
+    "globby": "^14.0.2",
+    "fs-extra": "^11.2.0",
+    "html-minifier-terser": "^7.2.0",
+    "sharp": "^0.33.3"
+  }
+}

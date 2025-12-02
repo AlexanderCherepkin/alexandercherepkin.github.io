@@ -1,0 +1,143 @@
+<section class="seo" id="seo-text" aria-labelledby="seoTitle">
+  <div class="container">
+    <header class="seo__head">
+      <h2 class="seo__title" id="seoTitle" data-i18n="seo.title">
+        Ремонт квартир и коттеджей во Владимире — «ПрофРемонт»
+      </h2>
+    </header>
+
+    <!-- Варианты:
+         1) Только автоскрытие: data-autohide="true"
+         2) Только фикс-высота:  data-fixed-height="28rem"
+         3) Оба варианта разом:  data-autohide="true" data-fixed-height="28rem"
+    -->
+    <div class="seo__box js-seo"
+         data-collapsed="true"
+         data-at-end="false"
+         data-autohide="true"
+         data-fixed-height="28rem">
+      <div class="seo__content"
+           id="seoContent"
+           tabindex="0"
+           role="region"
+           aria-label="SEO-описание компании">
+        <p data-i18n="seo.p1">
+          Компания «ПрофРемонт» берёт на себя всё, что связано с ремонтом квартир, коттеджей и офисов во Владимире — от первого звонка до финальной уборки. Мы работаем по принципу «под ключ»: бесплатно приедем на замер, составим смету, зафиксируем сроки и стоимость в официальном договоре. А чтобы вы не переживали за ход работ, каждую неделю отправляем фото- и видеоотчёты — даже если вы находитесь в другом городе, всё будет под контролем.
+        </p>
+        <p data-i18n="seo.p2">
+          Нужен капитальный ремонт? Делаете косметику? Всё включено: сносим и возводим перегородки, делаем черновые и чистовые работы, выравниваем стены и заливаем стяжку, подключаем электрику и сантехнику, укладываем плитку и полы, ставим двери и монтируем потолки, красим стены и клеим обои. Мы даже подбираем и закупаем материалы — вам не нужно бегать по магазинам. Работаете с дизайнером? Отлично. Нет проекта? Составим техническое задание и подскажем, как сэкономить без потери качества.
+        </p>
+        <p data-i18n="seo.p3">
+          Все расходы — прозрачны. Вы получаете детальную смету и личный кабинет для контроля. Оплата — только по факту выполненных работ, с подписанием всех нужных актов (КС-2/КС-3). Мы уверены в своих услугах, поэтому даём гарантию до 24&nbsp;месяцев. С 2015 года собрали команду проверенных мастеров, наладили логистику и чёткие процессы — даже в сезон не выбиваемся из сроков.
+        </p>
+        <p data-i18n="seo.p4">
+          Организацию тоже берём на себя: покупаем, привозим, вывозим. Мусор уберём, порядок наведём. Работы ведутся аккуратно, особенно если речь идёт о жилых помещениях — чистота и безопасность на объекте всегда в приоритете.
+        </p>
+        <p data-i18n="seo.p5">
+          И если вам нужен надёжный подрядчик во Владимире, который не тянет время и делает ремонт без сюрпризов — давайте знакомиться. Ориентировочную стоимость и сроки назовём всего за пару минут. Просто напишите или позвоните.
+        </p>
+      </div>
+
+      <div class="seo__more">
+        <button class="seo__toggle"
+                type="button"
+                data-seo-toggle
+                aria-expanded="false"
+                aria-controls="seoContent"
+                data-i18n="seo.more"
+                data-i18n-alt="seo.less">
+          Читать полностью
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <noscript>
+    <style>
+      .seo__content{max-height:none!important;overflow:visible!important}
+      .seo__more{display:none!important}
+    </style>
+  </noscript>
+</section>
+
+<!-- локальные стили для блока -->
+<style>
+  .seo__box{position:relative}
+  .seo__content{
+    overflow:hidden;
+    transition:max-height .35s ease;
+  }
+  /* Маска-градиент в свёрнутом состоянии */
+  .seo__box[data-collapsed="true"]::after{
+    content:"";
+    position:absolute; inset:auto 0 0 0; height:6rem; pointer-events:none;
+    background:linear-gradient(to bottom, rgba(255,255,255,0), var(--seo-mask-bg, #fff));
+  }
+  html[data-theme="dark"] .seo__box[data-collapsed="true"]::after{
+    --seo-mask-bg:#0b0f1a;
+  }
+  .seo__more{margin-top:1rem}
+  .seo__toggle{appearance:none; border:1px solid var(--line, #e5e7eb); background:transparent; padding:.8rem 1rem; border-radius:.6rem; cursor:pointer}
+  @media (prefers-reduced-motion: reduce){
+    .seo__content{transition:none}
+  }
+</style>
+
+<!-- поведение: автоскрытие + переключатель -->
+<script>
+(function(){
+  const box = document.querySelector('.js-seo');
+  if (!box) return;
+
+  const content = box.querySelector('.seo__content');
+  const btn = box.querySelector('[data-seo-toggle]');
+  const fixed = box.getAttribute('data-fixed-height') || '28rem';
+  const autohide = box.getAttribute('data-autohide') === 'true';
+
+  // Инициализация max-height
+  const setCollapsed = () => { content.style.maxHeight = fixed; box.dataset.collapsed = 'true'; btn.setAttribute('aria-expanded','false'); setBtnLabel(true); };
+  const setExpanded  = () => { content.style.maxHeight = content.scrollHeight + 'px'; box.dataset.collapsed = 'false'; btn.setAttribute('aria-expanded','true'); setBtnLabel(false); };
+
+  function setBtnLabel(isCollapsed){
+    // Если есть i18n-атрибуты — меняем только текст кнопки (без ключей)
+    const moreText = 'Читать полностью';
+    const lessText = 'Свернуть';
+    btn.textContent = isCollapsed ? (btn.dataset.i18n ? moreText : moreText) : (btn.dataset.i18nAlt ? lessText : lessText);
+  }
+
+  // Автоскрытие при инициализации (если текст выше фиксированной высоты)
+  if (autohide){
+    // Сначала ставим явную высоту, чтобы избежать CLS
+    setCollapsed();
+    // Если контента мало — убираем кнопку и маску
+    requestAnimationFrame(() => {
+      const needsCollapse = content.scrollHeight > content.clientHeight + 4;
+      if (!needsCollapse){
+        box.removeAttribute('data-collapsed');
+        btn.parentElement.style.display = 'none';
+        content.style.maxHeight = 'none';
+        box.dataset.atEnd = 'true';
+      }
+    });
+  } else {
+    // Если автоскрытие выключено, но задан fixed-height
+    if (box.hasAttribute('data-fixed-height')) setCollapsed();
+  }
+
+  // Переключатель
+  btn.addEventListener('click', () => {
+    const collapsed = box.dataset.collapsed !== 'false';
+    collapsed ? setExpanded() : setCollapsed();
+  });
+
+  // На ресайз корректируем раскрытую высоту
+  let rafId = null;
+  window.addEventListener('resize', () => {
+    if (box.dataset.collapsed === 'false'){
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => { content.style.maxHeight = content.scrollHeight + 'px'; });
+    }
+  }, { passive:true });
+})();
+</script>
+

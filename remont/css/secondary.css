@@ -1,0 +1,499 @@
+/* === HEADER buttons: как на главной, жёсткая переустановка === */
+
+/* Скрываем бургер-меню на всех страницах, КРОМЕ главной (.page-index) */
+body:not(.page-index) .site-header__burger,
+body:not(.page-index) .nav-toggle,
+body:not(.page-index) .site-header__burger-line {
+    display: none !important;
+}
+header.site-header .header-cta .btn,
+header.site-header nav .btn,
+header.site-header .btn{
+  background: var(--brand, #16a34a) !important;
+  color: #fff !important;
+  border: .1rem solid var(--brand, #16a34a) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  text-decoration: none !important;
+  box-shadow: 0 .3rem 1rem rgba(22,163,74,.18) !important;
+}
+header.site-header .btn--ghost{
+  background: transparent !important;
+  color: var(--brand, #16a34a) !important;
+  border-color: var(--brand, #16a34a) !important;
+  box-shadow: none !important;
+}
+header.site-header .btn:hover{
+  transform: translateY(-.1rem);
+  box-shadow: 0 .6rem 1.6rem rgba(22,163,74,.22) !important;
+}
+header.site-header .btn[disabled],
+header.site-header .btn.is-disabled{
+  opacity:.6 !important;
+  pointer-events:none;
+}
+
+/* На случай глобального «приглушения» всего header: выпиливаем его */
+header.site-header,
+header.site-header *{
+  filter: none !important;
+}
+
+/* Перекрывающие декоративные слои хедера не должны ловить клики */
+.site-header::before,
+.site-header::after,
+.js-site-header::before,
+.js-site-header::after,
+.site-header .header-overlay{
+  pointer-events: none;
+}
+
+/* Кнопка темы поверх и кликабельна */
+#themeToggle,
+[data-theme-toggle]{
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* ===== ТОЛЬКО состояние покоя ===== */
+/* все «полные» (залитые) кнопки */
+.btn:not(.btn--ghost):not(:hover):not(:focus):not(:active){
+  background: var(--logo-green) !important;
+  border-color: var(--logo-green-border) !important;
+  color: #fff !important;
+}
+
+
+
+/* CTA-кнопка (на всякий случай отдельно) */
+.btn-cta-calc:not(:hover):not(:focus):not(:active){
+  background: var(--logo-green) !important;
+  border-color: var(--logo-green-border) !important;
+  color: #fff !important;
+}
+
+/* прозрачная (ghost) — в покое: зелёный текст и обводка; ховер/фокус остаются как сейчас */
+.btn.btn--ghost:not(:hover):not(:focus):not(:active){
+  background: transparent !important;
+  color: var(--logo-green) !important;
+  border-color: var(--logo-green) !important;
+}
+
+/* «Назад к портфолио» — в покое как логотип */
+.link-btn:not(:hover):not(:focus):not(:active),
+.case-nav .btn:not(.btn--ghost):not(:hover):not(:focus):not(:active){
+  background: var(--logo-green) !important;
+  border-color: var(--logo-green-border) !important;
+  color: #fff !important;
+}
+
+/* бейдж на CTA — в покое чуть темнее, чтобы читался */
+.btn-badge{ background: var(--logo-green-border) !important; }
+
+
+/* Заголовки и подзаголовки секций */
+.section-title{
+  font-size: clamp(1.4rem, 2vw + 1rem, 2rem);
+  line-height:1.2;
+  margin:0 0 .8rem;
+  position:relative;
+}
+.section-title::after{
+  content:"";
+  display:block;
+  height:.22rem;
+  width:5.5rem;
+  margin-top:.45rem;
+  border-radius:999rem;
+  background: linear-gradient(90deg, var(--brand-600), color-mix(in oklab, var(--brand-600) 55%, var(--brand-accent)));
+}
+
+/* Выделяем «описание» секции (читается и на светлой) */
+.section-lead{
+  margin:0 0 1.25rem;
+  color:#334155;
+  font-size:1.05rem;
+  line-height:1.55;
+  padding:.6rem .8rem;
+  border-radius:.6rem;
+  background: color-mix(in oklab, #fff 90%, var(--brand-accent) 10%);
+  border: .06rem solid color-mix(in oklab, var(--brand-600) 14%, #fff);
+}
+
+/* Кнопки (унифицировано) */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:.5rem; padding:.7rem 1rem; border-radius:.8rem;
+  font-weight:600; text-decoration:none; border:.08rem solid transparent;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn--primary{ background:var(--brand-600); color:#fff; border-color:var(--brand-600); }
+.btn--primary:hover{ background:var(--brand-500); border-color:var(--brand-500); transform:translateY(-.04rem); box-shadow:0 .35rem 1rem rgba(22,101,52,.22); }
+.btn--ghost{ background:transparent; color:var(--brand-600); border-color:var(--brand-600); }
+.btn--ghost:hover{ background: color-mix(in oklab, var(--brand-600) 8%, #fff); }
+
+/* =========================
+   HERO
+   ========================= */
+.secondary-hero{
+  padding:3.2rem 0 2.4rem;
+  background: linear-gradient(145deg, #f8fff3 0%, #fff 60%);
+}
+.secondary-hero .container{
+  display:grid; grid-template-columns:1.2fr .8fr; gap:2rem; align-items:center;
+}
+.secondary-hero__title{ font-size:clamp(1.8rem, 2.6vw + 1rem, 2.6rem); margin:0 0 .8rem; }
+.secondary-hero__lead{ font-size:1.3rem; }
+.secondary-hero__cta{ display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap; }
+.secondary-hero__badges{
+  margin:1rem 0 0; display:flex; gap:.6rem; flex-wrap:wrap; padding:0; list-style:none;
+}
+.secondary-hero__badges li{
+  font-size:1rem;
+  background: color-mix(in oklab, var(--brand-accent) 16%, #fff);
+  border:.06rem solid color-mix(in oklab, var(--brand-600) 20%, #fff);
+  padding:.4rem .6rem; border-radius:999rem;
+}
+.secondary-hero__media img{ width:100%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow); }
+
+/* =========================
+   BEFORE/AFTER
+   ========================= */
+.before-after{ padding:var(--section-pad) 0; }
+.ba{
+  position:relative; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow);
+  aspect-ratio:16/9; background:#000;
+}
+.ba__img{ position:absolute; inset:0; }
+.ba__img img{ width:100%; height:100%; object-fit:cover; }
+.ba__img--after{ clip-path: inset(0 0 0 50%); }
+.ba__divider{
+  position:absolute; inset:0 auto 0 calc(50% - .06rem);
+  width:.12rem; background:rgba(255,255,255,.9);
+  box-shadow:0 0 0 .12rem rgba(0,0,0,.15); pointer-events:none;
+}
+.ba__handle{
+  position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+  width:2rem; height:2rem; border-radius:50%;
+  background:#fff; border:.12rem solid var(--brand-600);
+  box-shadow:0 0 0 .2rem rgba(22,101,52,.2); cursor:ew-resize;
+}
+.ba__handle:focus{ outline:.16rem solid var(--ring); outline-offset:.08rem; }
+.ba__range{
+  position:absolute; inset:auto 0 0 0; width:100%; appearance:none; height:.3rem; background:rgba(255,255,255,.5);
+}
+.ba__range::-webkit-slider-thumb{
+  -webkit-appearance:none; width:1.2rem; height:1.2rem; border-radius:50%;
+  background:#fff; border:.12rem solid var(--brand-600); box-shadow:0 0 0 .2rem rgba(22,101,52,.2);
+}
+.ba__label{
+  position:absolute; top:.6rem; padding:.3rem .6rem; border-radius:.6rem;
+  font-weight:600; color:#0f172a; background:rgba(255,255,255,.9);
+}
+.ba__label--l{ left:.6rem; } .ba__label--r{ right:.6rem; }
+
+/* =========================
+   SCOPE (карточки работ)
+   ========================= */
+.scope{ padding:var(--section-pad) 0; }
+.scope__grid{ display:grid; gap:var(--gap); grid-template-columns:repeat(4, 1fr); }
+.scope__card{
+  background:#fff; border:.06rem solid #e5e7eb; border-radius:var(--radius); padding:1rem;
+  box-shadow:0 .06rem .3rem rgba(0,0,0,.05);
+}
+.scope__card h3{ margin:0 0 .6rem; font-size:1.05rem; color:#0f172a; }
+.scope__card ul{ margin:0; padding-left:1.2rem; }
+.scope__card li{ margin:.3rem 0; }
+
+/* =========================
+   PRICES (добавил стили карточек)
+   ========================= */
+.prices{ padding:var(--section-pad) 0; }
+.prices__grid{ display:grid; gap:var(--gap); grid-template-columns:repeat(3, 1fr); }
+.price-card{
+  background:#fff; border:.06rem solid #e5e7eb; border-radius:var(--radius);
+  padding:1rem; box-shadow:0 .06rem .3rem rgba(0,0,0,.05);
+  display:grid; gap:.6rem; align-content:start;
+}
+.price-card__title{ margin:0; font-size:1.1rem; font-weight:700; }
+.price-card__price{ margin:.1rem 0 .4rem; font:800 1.35rem/1.2 system-ui; color:var(--brand-600); }
+.price-card__list{ margin:0 0 .6rem; padding-left:1.1rem; color:#475569; }
+
+/* =========================
+   TIMELINE
+   ========================= */
+.timeline{ padding:var(--section-pad) 0; }
+.timeline__list{ counter-reset:tl; list-style:none; padding:0; margin:0 0 1rem; }
+.timeline__list>li{ counter-increment:tl; margin:.5rem 0; position:relative; padding-left:2.2rem; }
+.timeline__list>li::before{
+  content:counter(tl);
+  position:absolute; left:0; top:.15rem; width:1.6rem; height:1.6rem;
+  border-radius:50%; background:var(--brand-600); color:#fff; display:grid; place-items:center; font-weight:700;
+}
+.tl-badge{
+  display:inline-block; margin-right:.4rem; padding:.2rem .5rem; border-radius:.6rem;
+  background: color-mix(in oklab, var(--brand-accent) 18%, #fff);
+  border:.06rem solid color-mix(in oklab, var(--brand-600) 20%, #fff);
+}
+.timeline__bar{ height:.4rem; background:#e5e7eb; border-radius:999rem; overflow:hidden; }
+.timeline__bar>span{ display:block; height:100%; width:var(--progress, 0%); background:linear-gradient(90deg, var(--brand-600), var(--brand-400)); }
+
+/* =========================
+   GALLERY
+   ========================= */
+.case-gallery{ padding:var(--section-pad) 0; }
+.gallery{ display:grid; gap:var(--gap); grid-template-columns:repeat(3, 1fr); }
+.gallery__item{
+  background:#fff; border:.06rem solid #e5e7eb; border-radius:var(--radius); overflow:hidden;
+  box-shadow:0 .06rem .3rem rgba(0,0,0,.05);
+}
+.gallery__item img{ width:100%; height:auto; display:block; cursor:zoom-in; }
+.gallery__item figcaption{ padding:.6rem .8rem; font-size:1.05rem; color:#475569; font-weight: 700;}
+
+/* =========================
+   CTA
+   ========================= */
+.cta{ padding:var(--section-pad) 0; background:linear-gradient(145deg, #f6fff0, #fff); }
+.cta__grid{ display:grid; gap:1.2rem; grid-template-columns:1.1fr .9fr; align-items:center; }
+.cta__text h2{ margin:0 0 .6rem; font-size:clamp(1.4rem, 1.4vw + 1rem, 1.8rem); }
+.cta__actions{ display:flex; gap:.8rem; margin-top:.6rem; }
+.cta__media img{ width:100%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow); }
+
+/* =========================
+   SECONDARY — новые блоки
+   ========================= */
+
+/* BENEFITS */
+.benefits{ padding:var(--section-pad) 0; }
+.benefits__grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--gap); }
+.benefit{
+  background:#fff; border:.06rem solid #e5e7eb; border-radius:var(--radius); padding:1rem;
+  box-shadow:0 .06rem .3rem rgba(0,0,0,.05);
+}
+.benefit h3{ margin:0 0 .4rem; font-size:1.05rem; color:var(--brand-600); }
+.benefit p{ margin:0; color:#475569; }
+
+/* LAYOUTS */
+.layouts{ padding:var(--section-pad) 0; }
+.layouts__grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:var(--gap); }
+.layout{
+  background:#fff; border:.06rem solid #e5e7eb; border-radius:var(--radius); padding:1rem;
+  box-shadow:0 .06rem .3rem rgba(0,0,0,.05);
+}
+.layout h3{ margin:0 0 .6rem; font-size:1.05rem; color:var(--brand-600); }
+.layout ul{ margin:0; padding-left:1.2rem; }
+.layout li{ margin:.3rem 0; }
+
+/* DOCS (шаги + вертикальная линия) */
+.docs{ padding:var(--section-pad) 0; }
+.docs__steps{ list-style:none; padding:0; margin:0 0 1rem; counter-reset:step; position:relative; }
+.docs__steps>li{
+  counter-increment:step; position:relative; padding-left:2.4rem; margin:.6rem 0;
+}
+.docs__steps>li::before{
+  content:counter(step);
+  position:absolute; left:0; top:.1rem; width:1.8rem; height:1.8rem;
+  border-radius:50%; background:var(--brand-600); color:#fff; display:grid; place-items:center; font-weight:700;
+}
+.docs__steps::after{
+  content:""; position:absolute; left:.9rem; top:.9rem; bottom:.6rem; width:.12rem;
+  background: color-mix(in oklab, var(--brand-600) 18%, #e5e7eb);
+  border-radius:999rem;
+}
+.docs__cta{ margin-top:1rem; }
+
+/* ESTIMATE (аккуратная «таблица») */
+.estimate{ padding:var(--section-pad) 0; }
+.estimate__table{
+  border:.06rem solid #e5e7eb; border-radius:var(--radius); overflow:hidden; background:#fff;
+}
+.est{
+  display:grid;
+  grid-template-columns: minmax(12rem,1.2fr) minmax(16rem,2fr) minmax(8rem,1fr);
+  gap:.6rem;
+  padding:.7rem .9rem;
+  align-items:center;
+  border-top:.06rem solid #eef2f7;
+}
+.est:first-child{ border-top:0; }
+.est--head{
+  background: color-mix(in oklab, var(--brand-600) 10%, #fff);
+  font-weight:700;
+}
+.est:nth-child(odd):not(.est--head){ background: color-mix(in oklab, #fff 96%, #0b0d10 4%); }
+.est > *:nth-child(1){ color:#0f172a; }
+.est > *:nth-child(2){ color:#475569; }
+.est > *:nth-child(3){ text-align:right; white-space:nowrap; font-variant-numeric: tabular-nums; }
+
+/* HOW */
+.how{ padding:var(--section-pad) 0; }
+.how__grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:var(--gap); }
+.how__item{
+  background:#fff; border:.06rem solid #e5e7eb; border-radius:var(--radius); padding:1rem;
+  box-shadow:0 .06rem .3rem rgba(0,0,0,.05);
+}
+.how__item h3{ margin:0 0 .4rem; font-size:1.05rem; color:var(--brand-600); }
+.how__item p{ margin:0; color:#475569; }
+
+/* GUARANTEES */
+.guarantees{ padding:var(--section-pad) 0; }
+.guarantees__grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:var(--gap); }
+.guarantee{
+  background:#fff; border:.06rem solid #e5e7eb; border-radius:var(--radius); padding:1rem;
+  box-shadow:0 .06rem .3rem rgba(0,0,0,.05);
+}
+.guarantee h3{ margin:0 0 .4rem; font-size:1.05rem; color:var(--brand-600); }
+.guarantee p{ margin:0; color:#475569; }
+
+/* REVIEWS */
+.reviews{ padding:var(--section-pad) 0; }
+.reviews__list{ display:grid; grid-template-columns:repeat(2, 1fr); gap:var(--gap); }
+.review{
+  margin:0; background:#fff; border:.06rem solid #e5e7eb; border-radius:var(--radius);
+  padding:1rem 1.2rem; box-shadow:0 .06rem .3rem rgba(0,0,0,.05);
+}
+.review p{ margin:0 0 .6rem; color:#0f172a; }
+.review footer{ color:#64748b; }
+
+/* =========================
+   Back-to-top
+   ========================= */
+.to-top{
+  position:fixed; right:1rem; bottom:1rem; z-index:50;
+  width:2.6rem; height:2.6rem; border-radius:50%;
+  display:grid; place-items:center;
+  background:var(--brand-600); color:#fff; border:.08rem solid var(--brand-600);
+  box-shadow:var(--shadow);
+  opacity:0; visibility:hidden; transform:translateY(.6rem);
+  transition:opacity .2s ease, transform .2s ease, visibility .2s;
+}
+.to-top.is-visible{ opacity:1; visibility:visible; transform:translateY(0); }
+.to-top:focus{ outline:.16rem solid var(--ring); outline-offset:.08rem; }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width:60rem){
+  .secondary-hero .container{ grid-template-columns:1fr; }
+  .scope__grid{ grid-template-columns:repeat(2, 1fr); }
+  .prices__grid{ grid-template-columns:1fr; }
+  .gallery{ grid-template-columns:repeat(2, 1fr); }
+  .cta__grid{ grid-template-columns:1fr; }
+
+  .benefits__grid{ grid-template-columns:repeat(2, 1fr); }
+  .layouts__grid{ grid-template-columns:repeat(2, 1fr); }
+  .how__grid{ grid-template-columns:repeat(2, 1fr); }
+  .guarantees__grid{ grid-template-columns:repeat(2, 1fr); }
+  .reviews__list{ grid-template-columns:1fr; }
+
+  .est{ grid-template-columns: 1fr; }
+  .est > *:nth-child(3){ text-align:left; }
+}
+@media (max-width:36rem){
+  .gallery{ grid-template-columns:1fr; }
+  .scope__grid{ grid-template-columns:1fr; }
+  .benefits__grid,
+  .layouts__grid,
+  .how__grid,
+  .guarantees__grid{ grid-template-columns:1fr; }
+}
+
+
+/* === Back-to-top: фиксированная, единая версия (финал) === */
+.to-top{
+  position: fixed;
+  right: 10rem;
+  bottom: .8rem;
+  z-index: 2147483647;           /* поверх всего */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.2rem;
+  height: 4.2rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--brand, #16a34a);
+  color: #fff;
+  box-shadow: 0 .3rem 1rem rgba(0,0,0,.15);
+  cursor: pointer;
+
+  /* скрытие без display:none — визуально */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+/* показать */
+.to-top.is-on{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* совместимость со старым кодом */
+.to-top.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
+
+/* a11y */
+.to-top:focus-visible{
+  outline: none;
+  box-shadow: var(--ring, 0 0 0 .14rem rgba(22,163,74,.35));
+}
+
+
+section {margin-bottom: 3rem;}
+
+/* ==== BENEFITS: принудительно вернуть секцию и карточки в общий поток ==== */
+
+/* Секция — свой формат потока (BFC), чтобы ничего не протекало и не выпирало */
+.benefits{
+  display: flow-root;     /* чистит любые float-соседи и изоляция потока */
+  position: relative;
+  z-index: 1;
+  padding-block: 3.2rem;
+  margin: 0;              /* на случай, если где-то «клюёт» отриц. margin */
+}
+
+/* Контейнер — как у остальных секций (подгони max-width под проект, если другой) */
+.benefits > .container{
+  box-sizing: border-box;
+  max-width: 112rem;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.6rem;
+}
+
+/* Грид строго внутри benefits */
+.benefits .benefits__grid{
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+  align-items: stretch;
+  contain: layout paint;  /* локализуем влияние трансформов/анимаций */
+}
+
+/* Мобильные переломы */
+@media (max-width: 64rem){
+  .benefits .benefits__grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 40rem){
+  .benefits .benefits__grid{ grid-template-columns: 1fr; }
+}
+
+/* Карточка — снимаем возможные глобальные стили, из-за которых она «выпадает» */
+.benefits .benefit{
+  position: static !important;   /* на случай global .benefit { position:absolute } */
+  float: none !important;        /* убираем любые float */
+  width: auto !important;        /* если где-то задана фикс. ширина */
+  min-height: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  background: #fff;
+  border: .08rem solid rgba(2,6,23,.06);
+  border-radius: 1.2rem;
+  padding: 1.2rem 1.4rem;

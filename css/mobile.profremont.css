@@ -1,0 +1,403 @@
+/* ======================================================
+   ПрофРемонт — мобильный / адаптивный слой
+   Работает для всех страниц с общим header/footer.
+   ====================================================== */
+
+
+/* ------------------------------------------------------
+   0. Полностью отключаем переключатель темы
+   ------------------------------------------------------ */
+
+.theme-toggle,
+.theme-switch,
+.theme-switcher,
+#theme-toggle,
+[data-theme-toggle],
+[data-role="theme-toggle"],
+.site-header [data-theme="switch"] {
+  display: none !important;
+}
+
+
+/* ------------------------------------------------------
+   1. Общий мобильный / планшетный слой до 768px
+      (320–360, 375–414, 600–768)
+   ------------------------------------------------------ */
+
+@media (max-width: 76.8rem) {
+
+  /* Контейнер и секции */
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 1.6rem;
+  }
+
+  .section {
+    padding-block: 3.2rem;
+  }
+
+
+  /* ---------- HEADER + NAV ---------- */
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    inset-inline: 0;
+    z-index: 40;
+  }
+
+  .header-row {
+    grid-template-columns: auto auto;
+    column-gap: 1.2rem;
+    align-items: center;
+  }
+
+  /* Прячем десктопное меню, включаем бургер */
+
+  .site-header__nav {
+    display: none;
+  }
+
+  .nav-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  /* Бургер из трёх линий */
+
+  .nav-toggle .site-header__burger-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 0.18rem;
+    border-radius: 999px;
+    background-color: var(--ink-strong, #0b1120);
+    transition: transform 0.25s ease;
+  }
+
+  .nav-toggle .site-header__burger-line:nth-child(1) {
+    top: 0.9rem;
+  }
+
+  .nav-toggle .site-header__burger-line:nth-child(2) {
+    top: 1.5rem;
+  }
+
+  .nav-toggle .site-header__burger-line:nth-child(3) {
+    top: 2.1rem;
+  }
+
+
+  /* ---------- ВЫПАДАЮЩЕЕ МОБИЛЬНОЕ МЕНЮ (основной список) ---------- */
+
+  .site-header__mobile {
+    display: block;
+    width: 100%;
+    border-top: 0.1rem solid var(--line);
+    background: var(--bg-2);
+    padding: 1.2rem 1.6rem 1.8rem;
+  }
+
+  .site-header__mobile[hidden] {
+    display: none;
+  }
+
+  .site-header__mobile-nav,
+  .site-header__mobile ul {
+    list-style: none;
+    margin: 0 0 1.2rem;
+    padding: 0;
+    display: grid;
+    row-gap: 0.2rem;
+  }
+
+  .site-header__mobile li {
+    margin-block: 0.1rem;
+  }
+
+  /* ВСЕ пункты меню — одинаковый шрифт и насыщенность */
+
+  .site-header__mobile a,
+  .site-header__mobile .site-header__link,
+  .site-header__mobile .site-header__link--muted,
+  .site-header__mobile .mega-btn {
+    display: block;
+    padding: 0.6rem 0.4rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ink-strong, #0b1120) !important;
+    text-decoration: none !important;
+    border: 0 !important;
+    opacity: 1 !important;
+    position: relative;
+  }
+
+  /* Убираем любые подчёркивания/линии из desktop-версии */
+
+  .site-header__mobile a::after,
+  .site-header__mobile .site-header__link::after,
+  .site-header__mobile .site-header__link--muted::after,
+  .site-header__mobile .mega-btn::after {
+    content: none !important;
+  }
+
+  /* Активный пункт: лёгкая плашка без полос под соседями */
+
+  .site-header__mobile .site-header__link[aria-current="page"],
+  .site-header__mobile a[aria-current="page"] {
+    background: #f0fdf4;
+    border-radius: 0.6rem;
+    padding-inline: 0.8rem;
+  }
+
+
+  /* ---------- ПОДМЕНЮ РЕМОНТ / СЕРВИС (mega) НА МОБИЛЕ ---------- */
+
+  .site-header__mobile .has-mega,
+  .site-header__mobile .has-sub {
+    position: static;
+  }
+
+  .site-header__mobile .mega {
+    position: static;                 /* вместо absolute */
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* две колонки; можно поменять на 1fr */
+    gap: 0.4rem 1.2rem;
+    margin-top: 0.4rem;
+    padding: 0.8rem 0.8rem 0.9rem;
+    width: 100%;
+    min-width: 0;
+    background: #ffffff;              /* плотная белая плашка */
+    border-radius: 0.8rem;
+    border: 0.1rem solid var(--line);
+    box-shadow: 0 0.4rem 1.4rem rgba(15, 23, 42, 0.14);
+    z-index: 10;
+  }
+
+  .site-header__mobile .mega-col {
+    min-width: 0;
+  }
+
+  .site-header__mobile .mega a {
+    padding: 0.4rem 0.2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ink-strong, #0b1120) !important;
+    text-decoration: none !important;
+  }
+
+
+  /* ---------- CTA в мобильном меню ---------- */
+
+  .site-header__mobile .header-cta {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .site-header__mobile .header-cta .btn {
+    width: 50%;
+    max-width: 24rem;
+    min-width: 16rem;
+    justify-content: center;
+  }
+
+
+  /* ---------- HERO ---------- */
+
+  .hero.section {
+    padding-top: 4rem;
+    padding-bottom: 3.2rem;
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2.4rem;
+  }
+
+  .hero__media {
+    order: -1;
+    max-inline-size: 100%;
+  }
+
+  .hero__media picture,
+  .hero__media img {
+    border-radius: 1.2rem;
+  }
+
+  .hero__content {
+    min-height: 0;
+  }
+
+  .hero__title {
+    font-size: 2.4rem;
+    line-height: 1.25;
+    text-align: left;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.2rem;
+  }
+
+  .hero__actions .btn,
+  .hero__actions .btn.btn--xl,
+  .hero__actions .btn.btn--ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__benefits {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .hero__benefit {
+    padding-inline: 1rem;
+  }
+
+  .hero__benefit-text {
+    white-space: normal;
+  }
+
+  .hero__benefits-more-wrap {
+    margin-top: 1.2rem;
+  }
+
+  #benefits-more-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+
+  /* ---------- СЕТКИ: услуги / карточки / портфолио ---------- */
+
+  #portfolioGrid,
+  .cards,
+  .srv-grid {
+    grid-template-columns: 1fr;
+    row-gap: 1.6rem;
+  }
+
+  .card {
+    height: auto;
+  }
+
+
+  /* ---------- ТАБЛИЦЫ ---------- */
+
+  .table-wrap {
+    margin-inline: -1.6rem;
+    padding-inline: 1.6rem;
+    overflow-x: auto;
+  }
+
+  .table {
+    font-size: 1.4rem;
+    min-width: 48rem;
+  }
+
+
+  /* ---------- ФОРМЫ ---------- */
+
+  .form {
+    padding: 1.6rem 1.4rem;
+    gap: 1rem;
+  }
+
+  .form label {
+    font-size: 1.5rem;
+  }
+
+  .form input,
+  .form select,
+  .form textarea {
+    font-size: 1.5rem;
+  }
+
+
+  /* ---------- FOOTER ---------- */
+
+  .foot-grid {
+    grid-template-columns: 1fr;
+    row-gap: 2.4rem;
+  }
+
+  .site-footer .foot-brand {
+    font-size: 1.8rem;
+  }
+
+
+  /* ---------- Кнопка «Наверх» ---------- */
+
+  .to-top {
+    inline-size: 3.2rem;
+    block-size: 3.2rem;
+    right: 1.2rem;
+    bottom: 1.2rem;
+  }
+
+
+  /* ---------- Topbar ---------- */
+
+  #promoTopbar,
+  .topbar {
+    display: none !important;
+  }
+
+
+  /* Мелкая донастройка ссылок в хедере */
+
+  .site-header a,
+  .main-nav a {
+    padding-block: 0.6rem;
+  }
+
+  .section.section--tight {
+    padding-block: 2.4rem;
+  }
+}
+
+
+/* ------------------------------------------------------
+   2. Самые маленькие смартфоны: 320–360px
+   ------------------------------------------------------ */
+
+@media (max-width: 36rem) {
+
+  body {
+    font-size: 1.7rem;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.7rem;
+  }
+}

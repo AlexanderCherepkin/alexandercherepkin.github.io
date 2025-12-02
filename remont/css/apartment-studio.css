@@ -1,0 +1,530 @@
+/* ===== /remont/css/apartment-studio.css — Ремонт квартиры-студии ===== */
+
+/* Фолбэк-токены (если brand/palette.css ещё не успел загрузиться) */
+:root{
+  --brand-700: #14532d;
+  --brand-600: #166534;
+  --brand-500: #1a7a3e;
+  --brand-400: #2da14e;
+  --brand-accent: #70d009;
+
+  --ink: #0f172a;
+  --muted: #6b7280;
+
+  --surface: #ffffff;
+  --surface-2: #f7faf9;
+  --surface-d: #0b1220;
+  --text-on-dark: #e5e7eb;
+
+  --radius: 1.2rem;
+  --shadow: 0 .24rem 1.2rem rgba(2,6,23,.12);
+  --ring: color-mix(in oklab, var(--brand-600) 30%, #fff);
+}
+
+/* Скрываем бургер-меню на всех страницах, КРОМЕ главной (.page-index) */
+body:not(.page-index) .site-header__burger,
+body:not(.page-index) .nav-toggle,
+body:not(.page-index) .site-header__burger-line {
+    display: none !important;
+}
+
+/* Лэйаут страницы кейса/услуги */
+main.case-page{ padding: 1.2rem 0; }
+.case{ display:block; }
+
+/* Заголовки секций — студийный акцент (тонкая линия + пилюля) */
+.case-section-title{
+  position: relative;
+  margin: 1.2rem 0 .9rem;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: 700;
+}
+.case-section-title::after{
+  content:"";
+  display:block;
+  height: .22rem;
+  width: 6.4rem;
+  margin-top: .4rem;
+  border-radius: 999rem;
+  background:
+    linear-gradient(90deg,
+      color-mix(in oklab, var(--brand-600) 92%, #000),
+      var(--brand-accent)
+    );
+  box-shadow: 0 .12rem .5rem rgba(22,101,52,.25);
+}
+
+/* Двухколоночный блок: текст + галерея */
+.case-two-col{
+  display:grid;
+  gap: 1.6rem;
+}
+@media (min-width: 56rem){
+  .case-two-col{ grid-template-columns: 1.2fr .8fr; }
+}
+
+h1.case-title {
+    font-size: 3rem;
+}
+
+.case-desc p{ margin: .6rem 0; color: color-mix(in oklab, var(--ink) 92%, #000); }
+.case-desc ul{ padding-left: 1.2rem; margin: .6rem 0; }
+.case-desc li{ margin: .3rem 0; }
+
+/* Мета-блок (факты в шапке) */
+.case-meta{ margin-top: .8rem; display:grid; gap: .6rem; justify-content: space-around;}
+@media (min-width: 48rem){
+  .case-meta{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+.case-meta__row{ margin: .2rem 0; }
+.case-meta__row strong{ color: var(--brand-600); font-weight: 700; }
+.case-meta__muted{ opacity: .85; }
+
+/* KPI для студии — лёгкий «glass» и мягкая подсветка */
+.case-kpi{
+  display:grid; gap: .8rem;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  margin: .8rem 0 1.2rem;
+}
+@media (min-width: 48rem){
+  .case-kpi{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+}
+.kpi{
+  position: relative;
+  padding: 1.1rem 1.2rem;
+  border-radius: var(--radius);
+  color: #0b1220;
+  background: linear-gradient(180deg, #ffffff 40%, #7ac589 100%);
+  border: .08rem solid color-mix(in oklab, var(--brand-600) 18%, transparent);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.kpi::before{
+  content:""; position:absolute; inset:0;
+  background: radial-gradient(60% 45% at 85% 0%, rgba(112,208,9,.18), transparent 60%);
+  pointer-events:none; mix-blend-mode: screen;
+}
+.kpi strong{ font-size: 1.2rem; display:block; color: var(--brand-700); }
+.kpi small{ display:block; margin-top: .2rem; color: color-mix(in oklab, var(--ink) 80%, #000); }
+
+/* Галерея: аккуратные рамки */
+.case-gallery .case-grid{
+  display:grid; gap: .6rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 44rem){
+  .case-gallery .case-grid{ grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 64rem){
+  .case-gallery .case-grid{ grid-template-columns: 1fr; }
+}
+.case-gallery img{
+  border-radius: .8rem;
+  outline: .1rem solid color-mix(in oklab, var(--brand-600) 22%, transparent);
+  display:block; width:100%; height:auto;
+}
+.lightbox__caption{ margin-top: .4rem; color: var(--muted); }
+
+/* Этапы работ — компактные карточки с бейджем шага */
+.case-timeline{
+  display:grid; gap: .8rem; margin-top: .8rem;
+  counter-reset: step;
+}
+.case-timeline .step{
+  position: relative;
+  background: #fff;
+  border: .08rem solid color-mix(in oklab, var(--brand-600) 18%, transparent);
+  box-shadow: var(--shadow);
+  border-radius: 1rem;
+  padding: 1rem 1.2rem 1rem 3.2rem;
+  color: color-mix(in oklab, var(--ink) 92%, #000);
+}
+.case-timeline .step::before{
+  counter-increment: step;
+  content: counter(step);
+  position:absolute; left: .9rem; top: 50%; transform: translateY(-50%);
+  width: 1.8rem; height: 1.8rem; border-radius: 50%;
+  display:grid; place-items:center;
+  background: color-mix(in oklab, var(--brand-600) 92%, #000);
+  color:#fff; font: 700 .95rem/1 Manrope, system-ui;
+  box-shadow: 0 .2rem .6rem rgba(22,101,52,.28);
+}
+
+/* Материалы (колонки с бренд-маркерами) */
+.material-list{
+  columns: 1; column-gap: 2rem; margin-top: .6rem;
+}
+@media (min-width: 56rem){ .material-list{ columns: 2; } }
+.material-list li{
+  break-inside: avoid; list-style: none; position: relative;
+  padding-left: 1.4rem; margin: .4rem 0;
+}
+.material-list li::before{
+  content:""; position:absolute; left:0; top:.6rem;
+  width: .66rem; height: .66rem; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--brand-accent), var(--brand-600));
+  box-shadow: 0 0 0 .1rem color-mix(in oklab, var(--brand-600) 22%, transparent);
+}
+
+/* Пакеты/цены — сетка из карточек */
+.prices-grid{
+  display:grid; gap: .8rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 56rem){
+  .prices-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+.price-card{
+  background:#fff; border-radius: 1rem; padding: 1rem 1.1rem;
+  border: .08rem solid color-mix(in oklab, var(--brand-600) 16%, transparent);
+  box-shadow: var(--shadow);
+}
+.price-card--accent{
+  border-color: color-mix(in oklab, var(--brand-600) 30%, transparent);
+  box-shadow: 0 .35rem 1.2rem rgba(22,101,52,.18);
+}
+.price-card__title{
+  margin: .2rem 0 .5rem; font: 700 1.1rem/1.2 Manrope, system-ui;
+  color: color-mix(in oklab, var(--ink) 96%, #000);
+}
+.price-card__list{ padding-left: 1.1rem; margin: .5rem 0 .6rem; }
+.price-card__list li{ margin: .3rem 0; }
+.price-card__note{ color: var(--muted); }
+
+/* Слайдер «сшитые кадры» — минимал, без конфликтов */
+.slides{
+  position:relative; border-radius: 1rem; overflow: clip;
+  box-shadow: 0 .5rem 2rem rgba(0,0,0,.1); background: #0a0a0a; isolation:isolate;
+}
+.slides__viewport{ position:relative; width:100%; aspect-ratio: 16/9; }
+.slide{
+  position:absolute; inset:0; opacity:0; transform:scale(.985);
+  transition: opacity .5s ease, transform .6s ease;
+  display:grid; place-items:end; background:#111;
+}
+.slide.is-active{ opacity:1; transform:scale(1); }
+.slide>img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.slide__caption{
+  position:relative; width:max(60%,20rem); margin:0 1rem 1rem;
+  padding:.7rem 1rem; border-radius:.75rem;
+  background: color-mix(in oklch, black 40%, transparent);
+  backdrop-filter: blur(6px); color:#fff;
+  font:500 1rem/1.3 Manrope,system-ui;
+  box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.25);
+}
+.slides__nav{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:9999;
+  width:2.5rem; height:2.5rem; border:0; border-radius:50%;
+  background: var(--brand-600); color:#fff; display:grid; place-items:center; cursor:pointer; opacity:.9;
+  pointer-events: auto;
+}
+.slides__nav--prev{ left:.75rem; } .slides__nav--next{ right:.75rem; }
+.slides__dots{
+  position:absolute; left:50%; bottom:.75rem; transform:translateX(-50%);
+  display:flex; gap:.5rem; z-index:9999;
+  pointer-events: auto;
+}
+.dot{
+  width:.625rem; height:.625rem; border-radius:999rem; border:0;
+  background: color-mix(in oklch, white 60%, transparent); opacity:.6; cursor:pointer;
+}
+.dot.is-active{
+  width:1.5rem; opacity:1; background: var(--brand-accent);
+  transition: width .25s ease;
+}
+
+/* HUD/видео-ощущение */
+.slides::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 60%, rgba(0,0,0,.18) 100%);
+}
+
+/* Декоративные слои без событий */
+.slides__film,
+.slides__sheen,
+.slides__hud,
+.slides__bar {
+  pointer-events: none;
+}
+
+/* FAQ — светлые карточки с зелёной реакцией на open */
+.faq details{
+  background:#fff; color: var(--ink);
+  border-radius: 1rem; padding: .8rem 1rem;
+  border: .1rem solid color-mix(in oklab, var(--brand-600) 18%, transparent);
+  transition: border-color .2s ease, background .2s ease;
+}
+.faq details + details{ margin-top: .8rem; }
+.faq details[open]{
+  border-color: color-mix(in oklab, var(--brand-600) 45%, transparent);
+  background: linear-gradient(180deg, #ffffff, #f9fdf8);
+}
+.faq summary{ cursor: pointer; }
+
+/* CTA — высокая контрастность текста + риппл-совместимость */
+.case-cta--bottom{ text-align:center; margin-top: 1.6rem; }
+
+.btn-cta-calc{
+  --cta-bg: linear-gradient(90deg, #70d009 0%, #5ac207 100%);
+  --cta-bg-hover: linear-gradient(90deg, #78db0a 0%, #64cb0a 100%);
+  --cta-text: #ffffff;
+  --cta-ring: color-mix(in oklch, #70d009 40%, white 0%);
+  position: relative;
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .9rem 1.2rem .8rem 1.2rem;
+  border-radius: 999rem;
+  background: var(--cta-bg); color: var(--cta-text);
+  font: 600 1rem/1 Manrope, system-ui; text-decoration: none;
+  box-shadow: 0 .2rem .8rem rgba(22,101,52,.25), inset 0 .05rem .05rem rgba(255,255,255,.25);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  isolation: isolate; overflow: hidden;
+}
+.btn-cta-calc:hover{ background: var(--cta-bg-hover); transform: translateY(-.06rem); }
+.btn-cta-calc:active{ transform: translateY(.02rem); }
+.btn-cta-calc:focus-visible{
+  outline: .2rem solid transparent;
+  box-shadow: 0 .2rem 1rem rgba(22,101,52,.35), 0 0 0 .18rem var(--cta-ring);
+}
+.btn-cta__meta{
+  opacity:.9; font-weight:500; font-size:.85rem;
+  padding:.15rem .6rem; border-radius:999rem;
+  background: color-mix(in oklch, #166534 20%, transparent);
+}
+@media (max-width: 40rem){ .btn-cta__meta{ display:none; } }
+.btn-cta__icon{ flex:0 0 auto; opacity:.95; transition: transform .2s ease; }
+.btn-cta-calc:hover .btn-cta__icon{ transform: translateX(.2rem); }
+.btn-cta-calc::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.25) 45%, transparent 60%);
+  transform: translateX(-120%); border-radius: inherit; pointer-events:none;
+}
+.btn-cta-calc:hover::after{ animation: sheen 1.1s ease; }
+@keyframes sheen{ to{ transform: translateX(120%); } }
+
+.btn-badge{
+  position:absolute; left: -.1rem; top: .1rem;
+  background: var(--brand-600); color:#fff;
+  font: 700 .75rem/1 Manrope; padding:.25rem .5rem;
+  border-radius:.5rem; box-shadow: 0 .15rem .4rem rgba(0,0,0,.2);
+}
+
+/* Вспомогательная «ghost» */
+.btn.btn--ghost{
+  border: .1rem solid color-mix(in oklab, var(--brand-600) 38%, #fff);
+  color: var(--brand-700); background: transparent;
+  border-radius: 999rem; padding: .7rem 1rem; font-weight:600;
+}
+.btn.btn--ghost:hover{
+  background: color-mix(in oklab, var(--brand-accent) 12%, #fff);
+}
+
+/* Навигационные ссылки внизу */
+.case-nav .link-btn{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding: .6rem .9rem; border-radius: 999rem;
+  border: .1rem solid color-mix(in oklab, var(--brand-600) 18%, #fff);
+}
+
+/* Lightbox (минимальный набор, совместим с разметкой) */
+:root{
+  --lb-bg: rgba(2,6,23,.75);
+  --lb-ring: color-mix(in oklab, var(--brand-600,#166534) 50%, #fff);
+}
+.lightbox{ position:fixed; inset:0; z-index:1500; display:grid; place-items:center; }
+.lightbox[hidden]{ display:none !important; }
+.lightbox__backdrop{ position:absolute; inset:0; background: var(--lb-bg); backdrop-filter: blur(.2rem); }
+.lightbox__frame{
+  position:relative; max-width:92vw; max-height:92dvh; display:grid; place-items:center;
+  outline:.16rem solid var(--lb-ring); border-radius:1rem; box-shadow:0 .8rem 2rem rgba(0,0,0,.4);
+  overflow:hidden; background:#0b1220; animation: lb-in .18s ease-out;
+}
+@keyframes lb-in{ from{ transform: scale(.98); opacity:.85 } to{ transform: scale(1); opacity:1 } }
+.lightbox__img{ max-width:100%; max-height:92dvh; display:block; }
+.lightbox__close, .lightbox__nav{
+  position:absolute; z-index:2; display:grid; place-items:center;
+  width:3.2rem; height:3.2rem; border-radius:.8rem;
+  background: rgba(255,255,255,.12); color:#fff;
+  border:.1rem solid rgba(255,255,255,.2); cursor:pointer;
+}
+.lightbox__close{ top:.6rem; right:.6rem; }
+.lightbox__nav{ top: 50%; transform: translateY(-50%); }
+
+/* Доступность/утилиты */
+.visually-hidden{
+  position:absolute !important; width:1px; height:1px; margin:-1px; padding:0; border:0;
+  overflow:hidden; clip:rect(0 0 0 0); clip-path: inset(50%);
+}
+
+/* Стабильный скролл */
+html{ scrollbar-gutter: stable both-edges; }
+body.scroll-lock{ overflow:hidden; overscroll-behavior:none; }
+
+/* Результирующие пункты (список преимуществ) */
+.result-benefits{
+  margin: .8rem 0 1.2rem;
+  padding-left: 1.2rem;
+  list-style: none;
+}
+.result-benefits li{
+  position: relative;
+  margin: .4rem 0;
+  padding-left: 1.2rem;
+  color: color-mix(in oklab, var(--ink) 90%, #000);
+}
+.result-benefits li::before{
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--brand-600);
+  font-weight: 700;
+}
+
+/* Кнопка "Наверх" */
+/* ===== Кнопка "Наверх" ===== */
+.to-top {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 10000; /* ← Увеличен с 999 до 10000 */
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--brand-600);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 0.4rem 1rem rgba(22, 101, 52, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s ease;
+  pointer-events: auto !important; /* ← Явно включаем клики */
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.to-top:hover {
+  background: var(--brand-700);
+  box-shadow: 0 0.5rem 1.2rem rgba(22, 101, 52, 0.45);
+}
+
+.to-top:active {
+  transform: translateY(0.1rem);
+}
+
+.to-top:focus-visible {
+  outline: 0.2rem solid var(--ring);
+  outline-offset: 0.2rem;
+}
+/* Изображения галереи */
+.case-gallery img{ cursor: zoom-in; }
+.slides__viewport img{ display:block; width:100%; height:auto; }
+
+/* ==== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ==== */
+
+/* Мобильная версия KPI-блока */
+@media (max-width: 768px) {
+  .case-kpi {
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+    padding: 0 .625rem;
+  }
+
+  .kpi {
+    min-height: 6.25rem;
+    padding: .75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .kpi strong {
+    font-size: 1rem;
+    margin-bottom: .25rem;
+  }
+
+  .kpi small {
+    font-size: .75rem;
+    line-height: 1.3;
+  }
+
+  /* Кнопка "Наверх" на мобильных */
+  .to-top {
+    right: 1rem;
+    bottom: 1rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.3rem;
+  }
+}
+
+/* ==== ТЁМНАЯ ТЕМА ==== */
+@media (prefers-color-scheme: dark){
+  .kpi{
+    color: var(--text-on-dark);
+    background: linear-gradient(180deg, #0f172a 20%, #0b1220 100%);
+    border-color: color-mix(in oklab, var(--brand-600) 26%, transparent);
+  }
+  .kpi strong{ color: var(--brand-accent); }
+  .kpi small{ color: color-mix(in oklab, var(--text-on-dark) 85%, #94a3b8); }
+  
+  .case-gallery img{ outline-color: color-mix(in oklab, var(--brand-600) 28%, transparent); }
+  .price-card{ background:#0f172a; color:#e5e7eb; }
+  .price-card__note{ color: color-mix(in oklab, #e5e7eb 70%, #94a3b8); }
+  .faq details{ background:#0f172a; color:#e5e7eb; }
+  .faq details[open]{ background: linear-gradient(180deg, #0f172a, #0b1220); }
+  .case-timeline .step{ background:#0f172a; color:#e5e7eb; }
+  .case-nav .link-btn{ border-color: color-mix(in oklab, var(--brand-600) 32%, #0b1220); color:#e5e7eb; }
+  
+  .to-top {
+    background: var(--brand-500);
+    box-shadow: 0 0.4rem 1rem rgba(112, 208, 9, 0.3);
+  }
+  .to-top:hover {
+    background: var(--brand-600);
+  }
+}
+
+/* ==== HOVER-ЭФФЕКТЫ (ТОЛЬКО ДЛЯ DESKTOP) ==== */
+@media (hover:hover){
+  .slides__nav:hover,
+  .lightbox__nav:hover{
+    opacity: .9;
+  }
+  .lightbox__close:hover{
+    opacity: 1;
+  }
+  .slides__dots .dot:hover{
+    opacity: .8;
+  }
+}
+
+@media (max-width: 768px) {
+  .case-kpi-mobile {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    justify-content: space-between !important;
+    padding: 0 !important;
+  }
+  
+  .case-kpi-mobile .kpi {
+    width: calc(50% - 10px) !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .case-kpi .kpi * {
+  font-size: 75% !important;
+  }
+}

@@ -1,0 +1,66 @@
+<section class="hero" id="hero" aria-labelledby="heroTitle">
+  <div class="hero__inner container">
+    <div class="hero__content">
+      <h1 class="hero__title" id="heroTitle" data-i18n="hero.title">
+        Ремонт квартир, офисов и коттеджей во Владимире с «ПрофРемонтом»
+      </h1>
+
+      <p class="hero__subtitle" data-i18n="hero.subtitle">
+        Как договоримся — так и сделаем: от косметики до дизайнерского ремонта. Чёткие сроки, смета и договор.
+      </p>
+
+      <div class="hero__actions" aria-label="Основные действия" data-i18n-aria-label="hero.actions_aria">
+        <button class="btn btn--xl"
+                type="button"
+                data-modal-open="quiz"
+                data-track="hero_cta_calc"
+                data-ripple
+                aria-label="Открыть квиз-расчёт стоимости"
+                data-i18n="hero.cta_calc"
+                data-i18n-aria-label="hero.cta_calc_aria">
+          Узнать стоимость
+        </button>
+        <a class="btn btn--ghost btn--xl link-btn"
+           href="#portfolio"
+           data-track="hero_cta_portfolio"
+           data-ripple
+           aria-label="Посмотреть выполненные работы"
+           data-i18n="hero.cta_portfolio"
+           data-i18n-aria-label="hero.cta_portfolio_aria">
+          Смотреть работы
+        </a>
+      </div>
+
+      <ul class="hero__bullets" role="list" aria-label="Преимущества" data-i18n-aria-label="hero.bullets_aria">
+        <li class="hero__badge">
+          <span class="hero__tick" aria-hidden="true"></span>
+          <span data-i18n="hero.bullets.guarantee">Гарантия по договору</span>
+        </li>
+        <li class="hero__badge">
+          <span class="hero__tick" aria-hidden="true"></span>
+          <span data-i18n="hero.bullets.fixed_estimate">Фиксированная смета</span>
+        </li>
+        <li class="hero__badge">
+          <span class="hero__tick" aria-hidden="true"></span>
+          <span data-i18n="hero.bullets.photo_weekly">Фото-отчёт каждую неделю</span>
+        </li>
+        <li class="hero__badge">
+          <span class="hero__tick" aria-hidden="true"></span>
+          <span data-i18n="hero.bullets.own_tools">Свой инструмент и мастера</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero__media">
+      <!-- LCP-изображение: фиксированные размеры + fetchpriority для стабильного LCP -->
+      <img src="/img/worker.webp"
+           width="420" height="560"
+           alt="Мастер «ПрофРемонт» с планшетом"
+           data-i18n-alt="hero.img_alt"
+           loading="eager"
+           decoding="async"
+           fetchpriority="high"
+           sizes="(max-width: 768px) 50vw, 420px">
+    </div>
+  </div>
+</section>

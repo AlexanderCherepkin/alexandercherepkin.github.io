@@ -1,0 +1,100 @@
+/* === SEO Text (ПрофРемонт) — FINAL === */
+.seo{ padding:4rem 1.6rem; background:#fff; }
+.seo .container{ margin:0 auto; max-width:100rem; }
+.seo__head{ margin:0 0 1.2rem; text-align:left; }
+.seo__title{ margin:0; color:var(--ink,#0f172a); font-size:var(--fs-h2,2.4rem); }
+
+.seo__box{
+  position:relative;
+  border:.12rem solid color-mix(in oklab, var(--brand,#16a34a) 20%, #e5e7eb);
+  border-radius:1.6rem;
+  background:
+    radial-gradient(60rem 26rem at 100% -10%, color-mix(in oklab, var(--brand,#16a34a) 8%, #fff) 0%, transparent 60%),
+    #fff;
+  box-shadow:0 .8rem 2.4rem rgba(2,6,23,.06);
+  padding:1.6rem;
+}
+
+/* Коллапс + внутренний вертикальный скролл */
+.seo__box .seo__content{
+  position:relative;
+  color:var(--ink,#0f172a);
+  font-size:1.4rem;
+  line-height:1.65;
+  --seo-collapsed-max:var(--seo-fixed-height,clamp(16rem,42vh,40rem));
+  max-height:var(--seo-collapsed-max) !important;
+  overflow-y:auto !important;
+  overflow-x:clip !important;
+  scrollbar-gutter:stable both-edges;
+  scroll-behavior:smooth;
+  transition:max-height .3s ease;
+  padding-bottom:.8rem;
+  outline:0;
+}
+
+/* Вуаль: только при коллапсе и пока не доскроллено */
+.seo__box[data-collapsed="true"][data-at-end="false"] .seo__content::after{
+  content:"";
+  position:sticky; bottom:0;
+  display:block; height:5.6rem; margin-top:-5.6rem;
+  background:linear-gradient(to bottom, rgba(255,255,255,0), #fff 70%);
+  pointer-events:none;
+}
+
+/* Раскрытое состояние — ограничение убираем */
+.seo__box[data-collapsed="false"] .seo__content{
+  max-height:none !important;
+  overflow:visible !important;
+}
+
+/* Кнопка */
+.seo__more{ display:flex; align-items:center; justify-content:center; margin-top:.8rem; }
+.seo__toggle{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:3.6rem; padding:0 1.6rem;
+  border:.1rem solid var(--brand,#16a34a);
+  border-radius:.8rem;
+  background:color-mix(in oklab, var(--brand,#16a34a) 10%, #fff);
+  color:var(--brand,#16a34a);
+  cursor:pointer; font-size:1.4rem; font-weight:600;
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.seo__toggle:hover{ transform:translateY(-.1rem); box-shadow:0 .4rem 1.2rem rgba(22,163,74,.2); }
+
+/* Автоскрытие кнопки при доскролле */
+.seo__box[data-autohide="true"][data-at-end="true"] .seo__more{ display:none; }
+
+/* Узкие скроллбары */
+.seo__content::-webkit-scrollbar{ width:.8rem; }
+.seo__content::-webkit-scrollbar-thumb{
+  background:color-mix(in oklab, var(--brand,#16a34a) 25%, #cbd5e1);
+  border-radius:1rem;
+}
+.seo__content::-webkit-scrollbar-track{ background:#f8fafc; border-radius:1rem; }
+
+/* Тёмная тема */
+html[data-theme="dark"] .seo{ background:oklch(.19 .03 145); }
+html[data-theme="dark"] .seo__box{
+  border-color:oklch(.32 .03 145);
+  background:oklch(.23 .02 145);
+  box-shadow:0 .8rem 2.4rem rgba(0,0,0,.35);
+}
+html[data-theme="dark"] .seo__box[data-collapsed="true"][data-at-end="false"] .seo__content::after{
+  background:linear-gradient(to bottom, rgba(15,23,42,0), oklch(.23 .02 145) 70%);
+}
+html[data-theme="dark"] .seo__toggle{
+  border-color:oklch(.32 .03 145);
+  background:color-mix(in oklab, var(--brand,#16a34a) 12%, oklch(.23 .02 145));
+  color:oklch(.82 .13 145);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .seo__box .seo__content{ transition:none; scroll-behavior:auto; }
+}
+
+/* SEO-блок — совместимо с js-хуком data-open-label / data-close-label */
+.seo__toggle[data-open-label][data-close-label]{ position:relative; }
+.seo__toggle[data-open-label][data-close-label][aria-expanded="true"]::after{ content:attr(data-close-label); }
+.seo__toggle[data-open-label][data-close-label][aria-expanded="false"]::after{ content:attr(data-open-label); }
+.seo__toggle[data-open-label][data-close-label]{ color:transparent; }
+.seo__toggle[data-open-label][data-close-label]::after{ color:var(--brand,#16a34a); }

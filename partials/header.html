@@ -1,0 +1,387 @@
+<!-- Обновлённый Хедер (чат — только на главной) -->
+<header class="site-header js-site-header" data-sticky>
+  <div class="site-header__inner container header-row">
+    <!-- Логотип/бренд -->
+    <a class="brand" href="/" aria-label="ПрофРемонт Владимир">
+      <!-- ИЗМЕНЕНИЕ: добавлен aspect-ratio для предотвращения CLS -->
+      <img
+        class="brand-logo"
+        src="/png/brand1.png"
+        srcset="/png/brand1.png 1x, /png/brand1@2x.png 2x"
+        width="160" height="160"
+        alt="ПрофРемонт Владимир"
+        style="aspect-ratio:1/1"
+        loading="eager"
+        decoding="async">
+    </a>
+
+    <!-- Основная навигация -->
+    <nav class="site-header__nav main-nav" aria-label="Основная навигация">
+      <ul class="site-header__menu" id="nav-list">
+        <li><a href="/" class="site-header__link" data-home>Главная</a></li>
+
+        <!-- Ремонт (mega) -->
+        <li class="has-mega has-sub">
+          <button class="mega-btn" aria-haspopup="true" aria-expanded="false" aria-controls="mega-repair-desktop">Ремонт</button>
+          <div id="mega-repair-desktop" class="mega" role="group" aria-label="Раздел «Ремонт»" hidden>
+            <div class="mega-col">
+              <a href="/remont/html/apartment-studio.html">Ремонт квартиры-студии</a>
+              <a href="/remont/html/one-room.html">Однокомнатной</a>
+              <a href="/remont/html/two-room.html">Двухкомнатной</a>
+              <a href="/remont/html/three-room.html">Трёхкомнатной</a>
+            </div>
+            <div class="mega-col">
+              <a href="/remont/html/cosmetic.html">Косметический</a>
+              <a href="/remont/html/capital.html">Капитальный</a>
+              <a href="/remont/html/design.html">Дизайнерский</a>
+              <a href="/remont/html/new-build.html">Новостройка</a>
+              <a href="/remont/html/secondary.html">Вторичное жильё</a>
+            </div>
+          </div>
+        </li>
+
+        <!-- Сервис (mega) -->
+        <li class="has-mega has-sub">
+          <button class="mega-btn" aria-haspopup="true" aria-expanded="false" aria-controls="mega-service-desktop">Сервис</button>
+          <div id="mega-service-desktop" class="mega" role="group" aria-label="Навигация: виды работ и направления ремонта" hidden>
+            <div class="mega-col">
+              <a href="/directions/html/loggia.html">Лоджия комфорт-класса</a>
+              <a href="/directions/html/electrical.html">Электромонтаж</a>
+              <a href="/directions/html/plumbing.html">Сантехника</a>
+            </div>
+            <div class="mega-col">
+              <a href="/directions/html/whitebox.html">Отделка WhiteBox</a>
+              <a href="/directions/html/bathroom.html">Ремонт ванной</a>
+              <a href="/directions/html/kitchen.html">Ремонт кухни</a>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="/#portfolioGrid" class="site-header__link">Портфолио</a></li>
+
+        <!-- Чат проекта — показываем только на главной -->
+        <li class="menu__item" data-only="index">
+          <a class="site-header__link no-underline"
+             href="/pages/chat.html"
+             data-chat-link
+             data-i18n="nav.chat"
+             target="_blank">
+            Чат&nbsp;проекта
+          </a>
+        </li>
+
+        <li><a href="/#contacts" class="site-header__link">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <!-- CTA-кнопки в шапке -->
+    <div class="site-header__cta header-cta">
+      <button class="btn" type="button" data-modal-open="quiz">Квиз-расчёт</button>
+      <a class="btn link-btn" href="tel:+79585106818">Позвонить</a>
+    </div>
+
+    <!-- Кнопка-бургер -->
+    <button class="site-header__burger nav-toggle" type="button"
+            aria-controls="mobileMenu" aria-expanded="false" aria-label="Открыть меню">
+      <span class="site-header__burger-line" aria-hidden="true"></span>
+      <span class="site-header__burger-line" aria-hidden="true"></span>
+      <span class="site-header__burger-line" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <!-- Мобильное меню -->
+  <div id="mobileMenu" class="site-header__mobile" hidden>
+    <nav aria-label="Мобильное меню">
+      <ul class="site-header__mobile-menu">
+        <li><a href="/" class="site-header__link" data-home>Главная</a></li>
+
+        <!-- Ремонт (mega) -->
+        <li class="has-mega has-sub">
+          <button class="mega-btn" aria-haspopup="true" aria-expanded="false" aria-controls="mega-repair-mobile">Ремонт</button>
+          <div id="mega-repair-mobile" class="mega" role="group" aria-label="Раздел «Ремонт»" hidden>
+            <div class="mega-col">
+              <a href="/remont/html/apartment-studio.html">Ремонт квартиры-студии</a>
+              <a href="/remont/html/one-room.html">Однокомнатной</a>
+              <a href="/remont/html/two-room.html">Двухкомнатной</a>
+              <a href="/remont/html/three-room.html">Трёхкомнатной</a>
+            </div>
+            <div class="mega-col">
+              <a href="/remont/html/cosmetic.html">Косметический</a>
+              <a href="/remont/html/capital.html">Капитальный</a>
+              <a href="/remont/html/design.html">Дизайнерский</a>
+              <a href="/remont/html/new-build.html">Новостройка</a>
+              <a href="/remont/html/secondary.html">Вторичное жильё</a>
+            </div>
+          </div>
+        </li>
+
+        <!-- Сервис (mega) -->
+        <li class="has-mega has-sub">
+          <button class="mega-btn" aria-haspopup="true" aria-expanded="false" aria-controls="mega-service-mobile">Сервис</button>
+          <div id="mega-service-mobile" class="mega" role="group" aria-label="Навигация: виды работ и направления ремонта" hidden>
+            <div class="mega-col">
+              <a href="/directions/html/loggia.html">Лоджия комфорт-класса</a>
+              <a href="/directions/html/electrical.html">Электромонтаж</a>
+              <a href="/directions/html/plumbing.html">Сантехника</a>
+            </div>
+            <div class="mega-col">
+              <a href="/directions/html/whitebox.html">Отделка WhiteBox</a>
+              <a href="/directions/html/bathroom.html">Ремонт ванной</a>
+              <a href="/directions/html/kitchen.html">Ремонт кухни</a>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="/#portfolioGrid" class="site-header__link">Портфолио</a></li>
+
+        <!-- Чат проекта — только на главной -->
+        <li class="menu__item" data-only="index">
+          <a class="site-header__link no-underline"
+             href="/pages/chat.html"
+             data-chat-link
+             data-i18n="nav.chat"
+             target="_blank">
+            Чат&nbsp;проекта
+          </a>
+        </li>
+
+        <li><a href="/#contacts" class="site-header__link">Контакты</a></li>
+      </ul>
+
+      <div class="site-header__mobile-cta">
+        <a class="btn btn--ghost" href="tel:+79585106818">Позвонить</a>
+        <button class="btn" type="button" data-modal-open="quiz">Квиз-расчёт</button>
+        <!-- Оставляем элемент, но полностью скрываем его через CSS -->
+        <img id="themeToggle" class="img-pointer" src="/png/sun-moon.png" alt="Сменить тему" title="Сменить тему" data-theme-toggle>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Локальный стиль для шапки и бургер-меню -->
+<style>
+/* Убираем подчёркивание для «Чат проекта» */
+.site-header__link.no-underline,
+.site-header__link.no-underline:hover,
+.site-header__link.no-underline:focus,
+.site-header__link.no-underline[aria-current="page"] {
+  text-decoration: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+.site-header__link.no-underline::before,
+.site-header__link.no-underline::after {
+  content: none !important;
+}
+
+/* Полностью прячем переключатель темы на всех разрешениях */
+[data-theme-toggle] {
+  display: none !important;
+}
+
+/* 🔒 Фикс дёргания контента по горизонтали */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: clip; /* обрезаем всё, что чуть шире вьюпорта */
+}
+
+/* Фоллбек для старых браузеров без overflow: clip */
+@supports not (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* Резервирование места для header — предотвращение CLS */
+.site-header {
+  min-height: 64px; /* мобильная высота */
+}
+@media (min-width: 768px) {
+  .site-header {
+    min-height: 72px; /* десктопная высота */
+  }
+}
+
+/* Стабильный логотип */
+.brand-logo {
+  aspect-ratio: 1/1;
+  width: 160px;
+  height: 160px;
+  max-width: 100%;
+  object-fit: contain;
+}
+@media (min-width: 768px) {
+  .brand-logo {
+    height: 128px;
+  }
+}
+
+/* === Адаптивное поведение бургер-меню === */
+@media (max-width: 767px) {
+  /* Скрываем десктоп-навигацию, показываем кнопку-бургер */
+  .site-header__nav {
+    display: none;
+  }
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+  .site-header__burger-line {
+    display: block;
+    width: 1.8rem;
+    height: 0.15rem;
+    background-color: var(--ink-strong);
+    margin: 0.3rem 0;
+    transition: transform 0.3s ease;
+  }
+  /* Мобильное меню по умолчанию будет hidden (скрыт атрибутом hidden) */
+  .site-header__mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  /* На планшетах и десктопах прячем кнопку-бургер и мобайл-меню */
+  .nav-toggle {
+    display: none;
+  }
+  .site-header__mobile {
+    display: none !important;
+  }
+  .site-header__nav {
+    display: block;
+  }
+}
+</style>
+
+
+<!-- Скрипты навигации и мегаменю -->
+<script>
+/* Навигация: бургер + мегаменю (десктоп/мобилка) */
+(function () {
+  const qs  = (s, r=document) => r.querySelector(s);
+  const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+  const burger = qs('.nav-toggle');
+  const mobile = qs('#mobileMenu');
+  if (burger && mobile) {
+    const toggleMobile = (force) => {
+      const exp = burger.getAttribute('aria-expanded') === 'true';
+      const next = (typeof force === 'boolean') ? force : !exp;
+      burger.setAttribute('aria-expanded', String(next));
+      burger.setAttribute('aria-label', next ? 'Закрыть меню' : 'Открыть меню');
+      mobile.toggleAttribute('hidden', !next);
+      if (next) {
+        const focusable = mobile.querySelector('button, a');
+        if (focusable) focusable.focus();
+      } else {
+        burger.focus();
+      }
+    };
+    burger.addEventListener('click', () => toggleMobile());
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') toggleMobile(false);
+    });
+    window.addEventListener('resize', () => {
+      if (burger.getAttribute('aria-expanded') === 'true') toggleMobile(false);
+    });
+  }
+
+  const buttons = qsa('.mega-btn');
+  const closeAll = () => {
+    buttons.forEach((b) => {
+      const id = b.getAttribute('aria-controls');
+      const p = id && document.getElementById(id);
+      if (p && !p.hidden) {
+        b.setAttribute('aria-expanded','false');
+        p.hidden = true;
+      }
+    });
+  };
+  buttons.forEach((btn) => {
+    const id = btn.getAttribute('aria-controls');
+    const panel = id ? document.getElementById(id) : null;
+    if (!panel) return;
+    btn.addEventListener('click', (e) => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      if (!open) closeAll();
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.hidden = open;
+      e.stopPropagation();
+    });
+    panel.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        btn.setAttribute('aria-expanded','false');
+        panel.hidden = true;
+        btn.focus();
+      }
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.mega') && !e.target.closest('.mega-btn')) closeAll();
+  });
+
+  const home = document.querySelector('link[rel="home"]')?.href || '/';
+  qsa('a[data-home], .header-brand').forEach(a => a.setAttribute('href', home));
+})();
+</script>
+
+<script>
+/* Показ «Чат проекта» только на главной */
+(function () {
+  var onIndex = /^(\/|\/index\.html)$/.test(location.pathname);
+  document.querySelectorAll('[data-only="index"]').forEach(function (el) {
+    if (!onIndex) el.remove();
+  });
+})();
+</script>
+
+<script>
+/* Подставляем ?lang= к ссылкам чата (desktop + mobile) и делаем жёсткую навигацию */
+(function () {
+  try {
+    const raw  = (localStorage.getItem('lang') || document.documentElement.lang || (navigator.language || 'ru')).toLowerCase();
+    const lang = raw.startsWith('ru') ? 'ru' : 'en';
+
+    document.querySelectorAll('a[data-chat-link]').forEach(a => {
+      const hrefAttr = a.getAttribute('href') || '/pages/chat.html';
+      const u = new URL(hrefAttr, location.origin);
+      if (!u.searchParams.get('lang')) u.searchParams.set('lang', lang);
+      a.href = u.pathname + '?' + u.searchParams.toString();
+      a.setAttribute('data-hard', '1');
+      a.setAttribute('rel', 'noopener');
+      a.setAttribute('target', '_blank');
+    });
+  } catch (e) {}
+})();
+</script>
+
+<script>
+/* Guard для SPA: пропускаем .html, внешние, якоря и data-hard */
+(function () {
+  function isExternal(href){ return /^https?:\/\//i.test(href) || href.startsWith('mailto:') || href.startsWith('tel:'); }
+  function isAnchor(href){ return href.startsWith('#') || href.startsWith('/#'); }
+  function isHtml(href){ return /\.html(?:[?#].*)?$/i.test(href); }
+  document.addEventListener('click', function (e) {
+    const a = e.target && e.target.closest && e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    const hard = a.hasAttribute('data-hard') || a.target === '_blank';
+    if (isExternal(href) || isAnchor(href) || isHtml(href) || hard) {
+      e.stopImmediatePropagation();
+      return; // обычная навигация браузера
+    }
+  }, true);
+})();
+</script>

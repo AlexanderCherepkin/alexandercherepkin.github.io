@@ -1,0 +1,305 @@
+<section class="services" id="services" aria-labelledby="servicesTitle">
+  <div class="container">
+    <header class="services__head">
+      <h2 class="services__title" id="servicesTitle">Наши услуги</h2>
+      <p class="services__lead">
+        Подберём формат ремонта под задачу и бюджет. Нажмите на тип — увидите состав работ и цену «от».
+      </p>
+    </header>
+
+    <!-- ТАБЫ -->
+    <div class="tabs js-services-tabs" data-analytics-scope="services_tabs">
+      <div class="tabs__list-wrap">
+        <div class="tabs__list" role="tablist" aria-label="Типы услуг" aria-orientation="horizontal">
+          <!-- Кнопки-табов 1–6 -->
+          <button class="tabs__tab is-active"
+                  role="tab"
+                  id="tab-cosmetic"
+                  aria-controls="panel-cosmetic"
+                  aria-selected="true"
+                  data-panel="#panel-cosmetic"
+                  tabindex="0">
+            Косметический
+          </button>
+          <button class="tabs__tab"
+                  role="tab"
+                  id="tab-capital"
+                  aria-controls="panel-capital"
+                  aria-selected="false"
+                  data-panel="#panel-capital"
+                  tabindex="-1">
+            Капитальный
+          </button>
+          <button class="tabs__tab"
+                  role="tab"
+                  id="tab-design"
+                  aria-controls="panel-design"
+                  aria-selected="false"
+                  data-panel="#panel-design"
+                  tabindex="-1">
+            Дизайнерский
+          </button>
+          <button class="tabs__tab"
+                  role="tab"
+                  id="tab-bath"
+                  aria-controls="panel-bath"
+                  aria-selected="false"
+                  data-panel="#panel-bath"
+                  tabindex="-1">
+            Ванная
+          </button>
+          <button class="tabs__tab"
+                  role="tab"
+                  id="tab-electric"
+                  aria-controls="panel-electric"
+                  aria-selected="false"
+                  data-panel="#panel-electric"
+                  tabindex="-1">
+            Электромонтаж
+          </button>
+          <button class="tabs__tab"
+                  role="tab"
+                  id="tab-plumbing"
+                  aria-controls="panel-plumbing"
+                  aria-selected="false"
+                  data-panel="#panel-plumbing"
+                  tabindex="-1">
+            Сантехника
+          </button>
+        </div>
+      </div>
+
+      <!-- ПАНЕЛИ -->
+      <div class="tabs__panels">
+        <!-- 1 -->
+        <section id="panel-cosmetic" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tab-cosmetic">
+          <div class="services__grid">
+            <picture>
+                <source type="image/webp" srcset="/webp/cosmetick.webp" />
+              <source type="image/avif" srcset="/webp/cosmetick.avif" />
+              
+              <img
+                class="services__img"
+                src="/jpg/cosmetick.jpg"
+                alt="Косметический ремонт — пример"
+                width="640" height="320"
+                loading="lazy" decoding="async"
+                sizes="(max-width: 768px) 100vw, 640px">
+            </picture>
+            <div class="services__content">
+              <h3 class="services__h3" id="h3-cosmetic">Косметический ремонт</h3>
+              <p class="services__desc">Обновим покрытие стен/потолков, заменим плинтусы, розетки, свет. Чисто и быстро, с минимальным вмешательством в инженерку.</p>
+              <ul class="services__list">
+                <li>Шпатлёвка, покраска/обои, частичная замена напольных покрытий</li>
+                <li>Замена розеток/выключателей, светильников</li>
+                <li>Базовая уборка и вынос мусора</li>
+              </ul>
+              <div class="services__cta">
+                <div class="services__price"><span>Цена от</span> <strong>2 900 ₽/м²</strong></div>
+                <button class="btn" type="button" data-modal-open="quiz">Узнать стоимость</button>
+                <a class="btn btn--ghost link-btn" href="/remont/html/cosmetic.html" target="_blank" rel="noopener">Подробнее</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2 -->
+        <section id="panel-capital" class="tabs__panel" role="tabpanel" aria-labelledby="tab-capital" hidden>
+          <div class="services__grid">
+            <picture>
+              <source type="image/avif" srcset="/webp/capital-1.avif" />
+              <source type="image/webp" srcset="/webp/capital-1.webp" />
+              <img
+                class="services__img"
+                src="/jpg/capital-1.jpg"
+                alt="Капитальный ремонт — пример"
+                width="640" height="320"
+                loading="lazy" decoding="async"
+                sizes="(max-width: 768px) 100vw, 640px">
+            </picture>
+            <div class="services__content">
+              <h3 class="services__h3" id="h3-capital">Капитальный ремонт</h3>
+              <p class="services__desc">Демонтаж, новые стяжки и штукатурки, электрика/сантехника по проекту, полная чистовая. Поэтапная приёмка и фото-отчёты.</p>
+              <ul class="services__list">
+                <li>Демонтаж, вывоз мусора, черновые</li>
+                <li>Полная замена электрики и водоснабжения</li>
+                <li>Чистовые покрытия и пусконаладка</li>
+              </ul>
+              <div class="services__cta">
+                <div class="services__price"><span>Цена от</span> <strong>6 900 ₽/м²</strong></div>
+                <button class="btn" type="button" data-modal-open="quiz">Узнать стоимость</button>
+                <a class="btn btn--ghost link-btn" href="/remont/html/capital.html" target="_blank" rel="noopener">Подробнее</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3 -->
+        <section id="panel-design" class="tabs__panel" role="tabpanel" aria-labelledby="tab-design" hidden>
+          <div class="services__grid">
+            <picture>
+              <source type="image/avif" srcset="/webp/design-1.avif" />
+              <source type="image/webp" srcset="/webp/design-1.webp" />
+              <img
+                class="services__img"
+                src="/jpg/design-1.jpg"
+                alt="Дизайнерский ремонт — пример"
+                width="640" height="320"
+                loading="lazy" decoding="async"
+                sizes="(max-width: 768px) 100vw, 640px">
+            </picture>
+            <div class="services__content">
+              <h3 class="services__h3" id="h3-design">Дизайнерский ремонт</h3>
+              <p class="services__desc">Дизайн-проект, 3D-визуализации, комплектация материалами/мебелью, сложные техники отделки. Авторский надзор.</p>
+              <ul class="services__list">
+                <li>Полный дизайн-проект и ведомости отделки</li>
+                <li>Комплектация, согласования, надзор</li>
+                <li>Премиальные материалы и финиши</li>
+              </ul>
+              <div class="services__cta">
+                <div class="services__price"><span>Цена от</span> <strong>11 900 ₽/м²</strong></div>
+                <button class="btn" type="button" data-modal-open="quiz">Узнать стоимость</button>
+                <a class="btn btn--ghost link-btn" href="/remont/html/design.html" target="_blank" rel="noopener">Подробнее</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4 -->
+        <section id="panel-bath" class="tabs__panel" role="tabpanel" aria-labelledby="tab-bath" hidden>
+          <div class="services__grid">
+            <picture>
+              <source type="image/avif" srcset="/webp/bath-01.avif" />
+              <source type="image/webp" srcset="/webp/bath-01.webp" />
+              <img
+                class="services__img"
+                src="/jpg/bath-01.jpg"
+                alt="Ремонт ванной — пример"
+                width="640" height="320"
+                loading="lazy" decoding="async"
+                sizes="(max-width: 768px) 100vw, 640px">
+            </picture>
+            <div class="services__content">
+              <h3 class="services__h3" id="h3-bath">Ванная комната</h3>
+              <p class="services__desc">Мы берём на себя полный цикл работ по обновлению ванной комнаты: от продуманной перепланировки до установки последнего крючка для полотенца. Работы выполняются чисто, аккуратно и строго по СНиП и актуальным нормам — без компромиссов по безопасности и качеству.</p>
+              <div class="services__cta">
+                <div class="services__price"><span>Цена от</span> <strong>95 000 ₽</strong></div>
+                <button class="btn" type="button" data-modal-open="quiz">Узнать стоимость</button>
+                <a class="btn btn--ghost link-btn" href="/directions/html/bathroom.html" target="_blank" rel="noopener">Подробнее</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5 -->
+        <section id="panel-electric" class="tabs__panel" role="tabpanel" aria-labelledby="tab-electric" hidden>
+          <div class="services__grid">
+            <picture>
+              <source type="image/avif" srcset="/webp/electric-1.avif" />
+              <source type="image/webp" srcset="/webp/electric-1.webp" />
+              <img
+                class="services__img"
+                src="/jpg/electric-1.jpg"
+                alt="Электромонтаж — пример"
+                width="640" height="320"
+                loading="lazy" decoding="async"
+                sizes="(max-width: 768px) 100vw, 640px">
+            </picture>
+            <div class="services__content">
+              <h3 class="services__h3" id="h3-electric">Электромонтаж</h3>
+              <p class="services__desc">Берём на себя полный комплекс электромонтажных работ: от ввода и щита до тонкой настройки «умного дома». Работаем строго по утверждённому проекту и ПУЭ, с соблюдением нагрузок, селективности и требований пожарной безопасности.</p>
+              <div class="services__cta">
+                <div class="services__price"><span>Цена от</span> <strong>1 200 ₽/точка</strong></div>
+                <button class="btn" type="button" data-modal-open="quiz">Узнать стоимость</button>
+                <a class="btn btn--ghost link-btn" href="/directions/html/electrical.html" target="_blank" rel="noopener">Подробнее</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6 -->
+        <section id="panel-plumbing" class="tabs__panel" role="tabpanel" aria-labelledby="tab-plumbing" hidden>
+          <div class="services__grid">
+            <picture>
+              <source type="image/avif" srcset="/webp/plumbing-1.avif" />
+              <source type="image/webp" srcset="/webp/plumbing-1.webp" />
+              <img
+                class="services__img"
+                src="/jpg/plumbing-1.jpg"
+                alt="Сантехника — пример"
+                width="640" height="320"
+                loading="lazy" decoding="async"
+                sizes="(max-width: 768px) 100vw, 640px">
+            </picture>
+            <div class="services__content">
+              <h3 class="services__h3" id="h3-plumbing">Сантехника</h3>
+              <p class="services__desc">Выполняем полный комплекс сантехнических работ: заменим стояки и разводку, установим инсталляции, соберём коллекторный узел, подберём и смонтируем фильтры. Завершим опломбировкой приборов учёта и пусконаладкой — всё чисто, аккуратно и по требованиям управляющей компании и действующих СП.</p>
+              <div class="services__cta">
+                <div class="services__price"><span>Цена от</span> <strong>1 800 ₽/точка</strong></div>
+                <button class="btn" type="button" data-modal-open="quiz">Узнать стоимость</button>
+                <a class="btn btn--ghost link-btn" href="/directions/html/plumbing.html" target="_blank" rel="noopener">Подробнее</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Services tabs: a11y-поведение, клавиатура, синхронизация ARIA */
+(function(){
+  const root = document.querySelector('.js-services-tabs');
+  if(!root) return;
+
+  const tabs    = Array.from(root.querySelectorAll('[role="tab"]'));
+  const panels  = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+
+  function getPanel(tab){
+    const id = tab.getAttribute('aria-controls');
+    return id ? root.querySelector('#' + id) : null;
+  }
+
+  function activate(tab){
+    tabs.forEach(t => {
+      const selected = t === tab;
+      t.classList.toggle('is-active', selected);
+      t.setAttribute('aria-selected', String(selected));
+      t.setAttribute('tabindex', selected ? '0' : '-1');
+      const p = getPanel(t);
+      if (p){
+        p.classList.toggle('is-active', selected);
+        p.toggleAttribute('hidden', !selected);
+      }
+    });
+    tab.focus({ preventScroll: true });
+  }
+
+  // Инициализация (ровно один активный)
+  activate(tabs.find(t => t.classList.contains('is-active')) || tabs[0]);
+
+  // Клик по табу
+  tabs.forEach(t => t.addEventListener('click', () => activate(t)));
+
+  // Клавиатура: ← → ↑ ↓, Home/End
+  const keyNav = (e, i) => {
+    let to = null;
+    switch(e.key){
+      case 'ArrowRight':
+      case 'ArrowDown': to = tabs[(i + 1) % tabs.length]; break;
+      case 'ArrowLeft':
+      case 'ArrowUp':   to = tabs[(i - 1 + tabs.length) % tabs.length]; break;
+      case 'Home':      to = tabs[0]; break;
+      case 'End':       to = tabs[tabs.length - 1]; break;
+      default: return;
+    }
+    e.preventDefault();
+    activate(to);
+  };
+  tabs.forEach((t, i) => t.addEventListener('keydown', e => keyNav(e, i)));
+})();
+</script>
+
+

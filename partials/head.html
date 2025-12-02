@@ -1,0 +1,127 @@
+<!-- ===== /partials/head.html ===== -->
+
+<!-- Preconnect + Google Fonts (с &amp;) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+<!-- 🔗 Project styles -->
+<link rel="stylesheet" href="/css/skeleton.css"><!-- ⬅️ уже добавлено -->
+<link rel="stylesheet" href="/css/neu.css"><!-- ⬅️ добавлено -->
+<link rel="stylesheet" href="/css/subscribe.css"><!-- ⬅️ добавлено -->
+
+
+<!-- Иконки и PWA -->
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#166534">
+
+<meta name="msapplication-TileColor" content="#166534">
+<meta id="theme-color" name="theme-color" content="#ffffff">
+
+<!-- Базовое SEO -->
+<meta name="description" content="Ремонт квартир, коттеджей и офисов во Владимире под ключ: смета, сроки и стоимость по договору, еженедельные фото- и видеоотчёты. «ПрофРемонт» с 2015 года.">
+<!--<link id="canonical" rel="canonical" href="https://profremont.local-ai-hub.website/">-->
+<link rel="alternate" hreflang="ru-RU" href="https://profremont.local-ai-hub.website/">
+<link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ПрофРемонт Владимир">
+<meta property="og:title" content="ПрофРемонт — ремонт квартир и коттеджей во Владимире">
+<meta property="og:description" content="Под ключ: смета, сроки и стоимость по договору. Отчёты каждую неделю.">
+<meta property="og:url" content="https://profremont.local-ai-hub.website/">
+<meta property="og:image" content="https://profremont.local-ai-hub.website/icons/android-chrome-512x512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ПрофРемонт — ремонт квартир и коттеджей во Владимире">
+<meta name="twitter:description" content="Под ключ: смета, сроки и стоимость по договору. Отчёты каждую неделю.">
+<meta name="twitter:image" content="https://profremont.local-ai-hub.website/icons/android-chrome-512x512.png">
+
+<!-- Небольшой no-flash для темы + актуальный theme-color -->
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    var metaTC = document.getElementById('theme-color');
+    if (t === 'dark'){
+      document.documentElement.setAttribute('data-theme','dark');
+      if (metaTC) metaTC.content = '#0b1220';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      if (metaTC) metaTC.content = '#ffffff';
+    }
+  }catch(e){}
+})();
+</script>
+
+<!-- Динамический canonical (origin + pathname), без query/hash -->
+<script>
+(function(){
+  try{
+    var url = location.origin + location.pathname;
+    var c = document.getElementById('canonical');
+    if(!c){
+      c = document.createElement('link');
+      c.id='canonical';
+      c.rel='canonical';
+      document.head.appendChild(c);
+    }
+    c.href = url;
+
+    var og = document.querySelector('meta[property="og:url"]');
+    if (og) og.setAttribute('content', url);
+
+    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function(l){
+      if (l.hreflang === 'ru-RU' || l.hreflang === 'x-default'){ l.href = url; }
+    });
+  }catch(e){}
+})();
+</script>
+
+<!-- 🔗 hreflang en-US (origin+pathname + ?lang=en), без дубликатов -->
+<script>
+(function(){
+  try{
+    var base = location.origin + location.pathname;
+    var enHref = base + '?lang=en';
+    var en = document.querySelector('link[rel="alternate"][hreflang="en-US"]');
+    if (!en){
+      en = document.createElement('link');
+      en.rel = 'alternate';
+      en.hreflang = 'en-US';
+      document.head.appendChild(en);
+    }
+    en.href = enHref;
+  }catch(e){}
+})();
+</script>
+
+<!-- Schema.org: HomeAndConstructionBusiness (без координат, с areaServed) -->
+<script type="application/ld+json">…</script>
+
+<!-- ✅ i18n ядро -->
+<script defer src="/js/language.js"></script>
+
+<!-- ✅ чат (ленивая загрузка Crisp по клику) -->
+<script defer src="/js/chat.js"></script>
+
+<!-- ✅ подписка -->
+<script defer src="/js/subscribe.js"></script><!-- ⬅️ добавлено -->
+
+<!-- Безопасный автозапуск перевода, если словари уже загружены -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  try{
+    if (typeof window.autotagI18n === 'function') window.autotagI18n(document);
+    if (typeof applyTranslations === 'function' && window.i18nDict && window.currentLang){
+      applyTranslations(window.currentLang, window.i18nDict);
+    }
+  }catch(e){}
+});
+</script>

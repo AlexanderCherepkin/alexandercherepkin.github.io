@@ -1,0 +1,343 @@
+/* ================================
+   ПрофРемонт — Страница кейса (финал)
+   Приоритет отдан "нижнему" коду.
+   ================================ */
+
+/* Токены (фолбэк) */
+:root{
+  --brand:#16a34a;      /* зелёный бренд */
+  --brand-2:#15803d;    /* тёмно-зелёный */
+  --accent:#84cc16;     /* лаймовый акцент */
+
+  --ink:#0f172a;        /* базовый текст */
+  --text:#0f172a;
+  --muted:#6b7280;      /* вторичный текст */
+  --line:#e5e7eb;       /* линии/бордеры */
+  --bg:#ffffff;
+  --bg-2:#f7faf9;
+
+  --ring:0 0 0 .14rem rgba(22,163,74,.35); /* focus ring */
+  --radius:1.2rem;
+  --shadow:0 .6rem 2rem rgba(2,6,23,.08);
+
+  /* REST-палитра (логотип) — могут быть неиспользованы, оставлены как токены */
+  --brand-rest:#70d009;
+  --brand-rest-border:#5fbe08;
+}
+
+/* Тёмная тема (если активна) */
+html[data-theme="dark"]{
+  --ink:#e5e7eb; --text:#e5e7eb; --muted:#9ca3af;
+  --bg:#0b1020; --bg-2:#0f172a; --line:#25324a;
+  --shadow:0 .6rem 2rem rgba(0,0,0,.45);
+}
+
+/* Базовые утилиты */
+.container{ max-width:120rem; margin-inline:auto; padding-inline:1.6rem; }
+.case-page{ padding-block:2.4rem 4.8rem; }
+
+/* ЛОГОТИП В ШАПКЕ */
+.header-brand{ display:inline-flex; align-items:center; }
+.site-header .header-brand img{
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  opacity:1 !important;
+  background:transparent !important;
+}
+html[data-theme="dark"] .site-header .header-brand img{
+  content:url("/png/brand1.png");
+}
+
+/* Базовая обвязка страницы кейса */
+main.case-page{
+  padding:2rem 0 4rem;
+  container-type:inline-size;
+}
+.case{ display:block; color:var(--text); }
+
+/* Заголовок */
+.case-head{ margin-block:1rem 2rem; }
+.case-title{
+  font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  font-weight:700; line-height:1.2;
+  font-size:clamp(2.2rem,1.4rem + 2vw,3rem);
+  letter-spacing:-.015em; color:var(--ink); margin:0 0 1rem;
+}
+
+/* Метаданные кейса (последняя версия с карточками) */
+.case-meta{
+  display:grid;
+  gap:1.2rem;
+  margin:1.2rem 0 0;
+  padding:1.2rem 1.4rem;
+  border-radius:.8rem;
+  background:color-mix(in oklab, #16a34a 10%, #ffffff 92%);
+  outline:.08rem solid color-mix(in oklab, #16a34a 18%, #ffffff 82%);
+}
+.case-meta--3{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+.case-meta__col{
+  background:#fff; border-radius:.8rem; padding:1rem 1.2rem;
+  box-shadow:0 .08rem .24rem rgba(0,0,0,.05);
+  text-align:center;
+}
+.case-meta__row{ font-size:1.3rem; line-height:1.4; }
+.case-meta__row + .case-meta__row{ margin-top:.6rem; }
+.case-meta__muted{ opacity:.8; }
+
+@media (max-width:64rem){ .case-meta--3{ grid-template-columns:1fr 1fr; } }
+@media (max-width:40rem){ .case-meta--3{ grid-template-columns:1fr; } .case-meta{ padding:1rem; } }
+
+/* Текстовые разделы */
+.case-body{ display:grid; gap:2.4rem; margin-top:2rem; }
+.case-section-title{
+  font-size:clamp(1.6rem,1.4rem + .6vw,2rem);
+  font-weight:700; margin:1.6rem 0 1rem; color:var(--ink);
+}
+.case-desc p, .case-desc li{ font-size:1.5rem; line-height:1.7; color:var(--text); }
+.case-desc ul{ padding-left:1.4rem; }
+.case-body .case-desc ul li{ position:relative; padding-left:1.2rem; }
+.case-body .case-desc ul li::marker{ color:var(--brand); }
+
+/* Галерея (последняя версия с контейнер-запросами) */
+.case-gallery{ margin-top:.4rem; }
+.case-grid{
+  --size:30rem;
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  gap:1.2rem;
+}
+@container (max-width:42rem){ .case-grid{ grid-template-columns:1fr; } }
+@container (min-width:42.01rem) and (max-width:72rem){ .case-grid{ grid-template-columns:repeat(2,1fr); } }
+@container (min-width:72.01rem){ .case-grid{ grid-template-columns:repeat(3,1fr); } }
+
+.case-grid img{
+  width:100%; height:auto; aspect-ratio:3/2; display:block; object-fit:cover;
+  border-radius:var(--radius); background:var(--bg-2);
+  border:.1rem solid var(--line); box-shadow:var(--shadow);
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  will-change:transform;
+}
+.case-grid img:is(:hover,:focus-visible){
+  transform:translateY(-.2rem);
+  box-shadow:0 .8rem 2.4rem rgba(2,6,23,.12);
+  border-color:color-mix(in oklch, var(--brand), white 20%);
+  outline:none;
+}
+.lightbox__caption{ margin-top:.8rem; font-size:1.3rem; color:var(--muted); }
+
+/* Ленивая отрисовка длинных блоков */
+.case-grid, .case-desc{ content-visibility:auto; contain-intrinsic-size:600px; }
+
+/* CTA секция (базовая компоновка) */
+.case-cta{
+  display:flex; flex-wrap:wrap; gap:1rem; margin-top:.6rem;
+  justify-content:center;
+}
+
+/* Кнопки в CTA — локальные правила (финальные) */
+.case-cta .btn{
+  --btn-bg:var(--brand);
+  --btn-bg-hover:var(--brand-2);
+  --btn-fg:#fff;
+  appearance:none;
+  display:inline-flex; align-items:center; justify-content:center; gap:.8rem;
+  border:.1rem solid var(--brand-2);
+  background:var(--btn-bg);
+  color:var(--btn-fg) !important;
+  padding:1.1rem 1.6rem;
+  border-radius:calc(var(--radius) - .2rem);
+  font-weight:600; font-size:1.5rem; line-height:1.1;
+  text-decoration:none;
+  transition:transform .12s ease, background-color .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.case-cta .btn:hover{ background:var(--btn-bg-hover); transform:translateY(-.1rem); }
+.case-cta .btn:focus-visible{ outline:none; box-shadow:var(--ring); }
+
+/* Вторичная (прозрачная) кнопка */
+.case-cta .btn--ghost{
+  background:transparent;
+  color:var(--brand) !important;
+  border-color:var(--brand);
+}
+.case-cta .btn--ghost:hover{
+  background:color-mix(in oklch, var(--brand) 12%, white);
+  color:#fff !important;
+  border-color:var(--brand-2);
+}
+
+/* Ссылка-кнопка «Назад к портфолио» (исправлено) */
+.link-btn{
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-weight:600; font-size:1.5rem;
+  color:#fff; background:var(--brand);
+  border:.1rem solid var(--brand-2);
+  border-radius:calc(var(--radius) - .2rem);
+  padding:.9rem 1.4rem; text-decoration:none !important;
+  transition:background-color .18s ease, color .18s ease,
+             transform .12s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.link-btn::before{ content:"↩"; line-height:1; }
+.link-btn:hover{
+  background:var(--brand-2);
+  color:#fff;
+  border-color:var(--brand-2);
+  transform:translateY(-.1rem);
+}
+.link-btn:focus-visible{ outline:none; box-shadow:var(--ring); }
+
+/* Доступность */
+.case-cta .btn, .link-btn{ text-decoration:none; }
+@media (max-width:640px){
+  .case-meta{ grid-template-columns:1fr; gap:.6rem; padding:1rem 1.2rem; }
+  .case-cta .btn, .link-btn{ width:100%; justify-content:center; }
+}
+@media (prefers-reduced-motion:reduce){
+  .case-grid img, .case-cta .btn, .link-btn{ transition:none !important; }
+}
+
+/* Печать */
+@media print{
+  .case-cta, nav.case-nav, header[data-include], footer[data-include]{ display:none !important; }
+  .case-grid img{ page-break-inside:avoid; border:none; box-shadow:none; }
+  main.case-page{ padding:0; }
+}
+
+/* Иконки в кнопках наследуют цвет */
+.case-page .btn svg{ fill:currentColor !important; stroke:currentColor !important; }
+.case-page .btn img.icon-white{ filter:brightness(0) invert(1); }
+
+/* ---- Финальные «жёсткие» размеры нижних кнопок (как просили) ---- */
+.case-cta.case-cta--bottom{ display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
+
+/* 1) Главная зелёная CTA (вмещает бейдж/таймер) */
+.case-cta--bottom a.btn.btn-cta-calc{
+  font-size:1.5rem !important; line-height:1.1 !important;
+  padding:18px 24px 16px !important; border-radius:16px !important;
+  min-height:52px !important; padding-left:30px !important;
+}
+.case-cta--bottom .btn-cta__icon{ width:22px !important; height:22px !important; }
+.case-cta--bottom .btn-badge{
+  top:1px !important; left:-1px !important;
+  font-size:.8rem !important; padding:4px 10px !important; border-radius:10px !important;
+}
+.case-cta--bottom .btn-cta__meta,
+.case-cta--bottom .btn-cta__timer{
+  font-size:15px !important; padding:.25rem .6rem !important;
+}
+
+/* 2) «Узнать стоимость по 9 вопросам» (обводка) */
+.case-cta--bottom .btn.btn--ghost{
+  font-size:1.5rem !important; line-height:1.15 !important;
+  padding:16px 20px !important; border-radius:14px !important;
+  border-width:2px !important; min-height:50px !important;
+}
+
+/* 3) «Назад к портфолио» */
+.case-nav .link-btn, .case-nav .btn{
+  font-size:17px !important; line-height:1.15 !important;
+  padding:15px 20px !important; border-radius:14px !important;
+  min-height:48px !important;
+}
+
+/* Мобильная коррекция, чтобы ничего не ломалось */
+@media (max-width:480px){
+  .case-cta--bottom a.btn.btn-cta-calc{
+    font-size:17px !important; padding:16px 18px 14px !important; min-height:48px !important;
+    padding-left:26px !important;
+  }
+  .case-cta--bottom .btn-cta__meta{ display:none !important; }
+  .case-cta--bottom .btn.btn--ghost{
+    font-size:16.5px !important; padding:14px 18px !important; min-height:46px !important;
+  }
+  .case-nav .link-btn, .case-nav .btn{
+    font-size:16.5px !important; padding:14px 18px !important; min-height:46px !important;
+  }
+}
+
+/* Мелочи */
+img[loading="lazy"]{ content-visibility:auto; contain-intrinsic-size:auto 30rem; }
+
+/* Центрируем кнопку "Назад к портфолио" */
+.case-nav{
+  display:flex;
+  justify-content:center;
+  width:100%;
+  margin-top:1.5rem;
+}
+
+/* На десктопе кнопка не растягивается на всю ширину */
+@media (min-width:641px){
+  .case-nav .link-btn,
+  .case-nav .btn{
+    width:auto;
+  }
+}
+
+/* фирменный лаймовый (как в лого) для REST-состояния */
+:root{
+  --logo-green:#70d009;          /* фон кнопки в покое */
+  --logo-green-border:#5fbe08;   /* бордер в покое */
+}
+
+/* ===== ТОЛЬКО состояние покоя (нижний приоритет — оставляем) ===== */
+/* все «полные» (залитые) кнопки */
+.btn:not(.btn--ghost):not(:hover):not(:focus):not(:active){
+  background:var(--logo-green) !important;
+  border-color:var(--logo-green-border) !important;
+  color:#fff !important;
+}
+
+/* CTA-кнопка (на всякий случай отдельно) */
+.btn-cta-calc:not(:hover):not(:focus):not(:active){
+  background:var(--logo-green) !important;
+  border-color:var(--logo-green-border) !important;
+  color:#fff !important;
+}
+
+/* прозрачная (ghost) — в покое: зелёный текст и обводка; ховер/фокус остаются как сейчас */
+.btn.btn--ghost:not(:hover):not(:focus):not(:active){
+  background:transparent !important;
+  color:var(--logo-green) !important;
+  border-color:var(--logo-green) !important;
+}
+
+/* «Назад к портфолио» — в покое как логотип */
+.link-btn:not(:hover):not(:focus):not(:active),
+.case-nav .btn:not(.btn--ghost):not(:hover):not(:focus):not(:active){
+  background:var(--logo-green) !important;
+  border-color:var(--logo-green-border) !important;
+  color:#fff !important;
+}
+
+/* бейдж на CTA — в покое чуть темнее, чтобы читался */
+.btn-badge{ background:var(--logo-green-border) !important; }
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-group--full {
+  grid-column: 1 / -1;
+}
+
+.form-hint {
+  font-size: 0.875rem;
+  color: var(--muted, #666);
+  margin-top: 0.25rem;
+}
+
+.quiz__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .quiz__grid {
+    grid-template-columns: 1fr;
+  }
+}

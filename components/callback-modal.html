@@ -1,0 +1,67 @@
+<div class="modal" id="callback-modal" role="dialog" aria-modal="true"
+     aria-labelledby="callbackTitle" aria-describedby="callbackDesc" hidden
+     data-analytics-scope="callback_modal">
+  <div class="modal__backdrop" data-close data-modal-close tabindex="-1" aria-hidden="true"></div>
+
+  <div class="modal__dialog" role="document" tabindex="-1">
+    <button class="modal__close" type="button" aria-label="Закрыть" data-i18n-aria-label="aria.label.close" data-close data-modal-close>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="modal__close-icon" width="24" height="24">
+        <path fill="currentColor" d="M18.3 5.7a1 1 0 00-1.4-1.4L12 9.17 7.1 4.3A1 1 0 105.7 5.7L10.6 10.6 5.7 15.5a1 1 0 101.4 1.4L12 12l4.9 4.9a1 1 0 001.4-1.4L13.4 10.6 18.3 5.7z"></path>
+      </svg>
+    </button>
+
+    <header class="modal__header">
+      <h2 class="modal__title" id="callbackTitle" data-i18n="callback.title">Обратный звонок</h2>
+      <p class="modal__subtitle" id="callbackDesc" data-i18n="callback.subtitle">Оставьте контакты — перезвоним и проконсультируем.</p>
+    </header>
+
+    <form class="modal__body" id="callbackForm" action="/api/callback" method="post" novalidate
+          aria-describedby="callbackDesc formStatus">
+
+      <!-- Honeypot -->
+      <div class="hp-field" aria-hidden="true">
+        <label class="visually-hidden" for="cb-company" data-i18n="callback.form.hp.company_label">Компания</label>
+        <input type="text" id="cb-company" name="company" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- CSRF -->
+      <input type="hidden" name="csrf_seed" value="">
+
+      <label class="field" for="cb-name">
+        <span class="field__label" data-i18n="callback.form.name_label">Имя</span>
+        <input class="field__input" id="cb-name" type="text" name="name"
+               placeholder="Как к вам обращаться" data-i18n-placeholder="callback.form.name_placeholder"
+               autocomplete="name" required>
+      </label>
+
+      <label class="field" for="cb-phone">
+        <span class="field__label" data-i18n="callback.form.phone_label">Телефон</span>
+        <input class="field__input" id="cb-phone" type="tel" name="phone" inputmode="tel"
+               placeholder="+7 (958) 510-68-18" data-i18n-placeholder="callback.form.phone_placeholder"
+               autocomplete="tel" pattern="^[+0-9\\s()-]{7,}$" required>
+      </label>
+
+      <label class="field" for="cb-comment">
+        <span class="field__label" data-i18n="callback.form.comment_label">Комментарий</span>
+        <textarea class="field__input" id="cb-comment" name="comment" rows="3"
+                  placeholder="Удобное время, адрес, метраж…" data-i18n-placeholder="callback.form.comment_placeholder"
+                  autocomplete="off"></textarea>
+      </label>
+
+      <div class="modal__actions">
+        <button class="btn" type="submit" data-i18n="callback.form.submit">Жду звонка</button>
+        <button class="btn btn--ghost" type="button" data-close data-modal-close data-i18n="callback.form.cancel">Отмена</button>
+      </div>
+
+      <!-- Статус формы -->
+      <output id="formStatus" class="form-status" role="status" aria-live="polite" hidden></output>
+    </form>
+
+    <footer class="modal__footer">
+      <a class="link-btn" href="tel:+79585106818" data-i18n="callback.footer.call">Позвонить сейчас</a>
+      <a class="link-btn" href="https://t.me/79585106818" target="_blank" rel="noopener noreferrer"
+         data-i18n="callback.footer.telegram">Написать в Telegram</a>
+    </footer>
+  </div>
+</div>
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Переключение темы — демо</title>
+
+  <!-- Цвет статус-бара/адресной строки: обновляется скриптом -->
+  <meta id="theme-color" name="theme-color" content="#ffffff" />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- РАННИЙ no-flash: применяем сохранённую тему до первой отрисовки -->
+  <script>
+  try{
+    var t = localStorage.getItem('theme');
+    if (t === 'dark') {
+      document.documentElement.setAttribute('data-theme','dark');
+      var m = document.getElementById('theme-color');
+      if (m) m.content = '#0b1220';
+    }
+  }catch(e){}
+  </script>
+
+  <style>
+    /* Светлая тема — базовые переменные */
+    :root{
+      --ink:#0f172a; --text:#0f172a; --texts:#fff; --muted:#6b7280;
+      --brand:#16a34a; --brand-2:#15803d; --accent:#84cc16;
+      --bg:#ffffff; --bg-2:#f7faf9; --line:#e5e7eb;
+      --ring:0 0 0 .14rem rgba(22,163,74,.35);
+      --shadow:0 .6rem 2rem rgba(0,0,0,.08);
+    }
+    /* Тёмная тема — при html[data-theme="dark"] */
+    html[data-theme="dark"]{
+      --ink:#e5e7eb; --text:#e5e7eb; --muted:#94a3b8;
+      --brand:#22c55e; --brand-2:#16a34a; --accent:#a3e635;
+      --bg:#0b1220; --bg-2:#0f172a; --line:#233046;
+      --ring:0 0 0 .14rem rgba(34,197,94,.45);
+      --shadow:0 .6rem 2rem rgba(0,0,0,.35);
+    }
+
+    /* Базовая типографика/фон */
+    html{font-size:62.5%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font:400 1.6rem/1.6 system-ui,-apple-system,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      color-scheme: light dark; /* системные контролы под тему */
+      padding:2rem;
+    }
+    .no-js .js-only{display:none !important}
+
+    /* Тогглер темы (кнопка) */
+    .theme-toggle{
+      background:none;border:0;padding:0;cursor:pointer;
+      width:9rem;height:9rem;display:inline-grid;place-items:center;
+      border-radius:.8rem;
+    }
+    .theme-toggle:focus-visible{outline:none;box-shadow:var(--ring)}
+    .theme-toggle img{display:block;width:9rem;height:9rem}
+
+    /* Декоративное */
+    h1{font-size:2.4rem;margin:1.6rem 0 .8rem}
+    p{margin:0 0 2.4rem}
+  </style>
+
+  <!-- Инжект частичного head (шрифты, OG, каноникал и т.п.), не блокируем рендер -->
+  <script src="/js/inject-layout.js" data-head="/partials/head.html" defer></script>
+</head>
+<body>
+  <!-- Тогглер темы: доступный, управляется клавиатурой -->
+  <button id="themeToggle"
+          type="button"
+          class="theme-toggle"
+          aria-pressed="false"
+          aria-label="Сменить тему"
+          title="Сменить тему">
+    <img src="/png/sun-moon.png" alt="" width="90" height="90" />
+  </button>
+
+  <h1>Пример переключения темы</h1>
+  <p>Нажмите на иконку выше, чтобы переключать светлую и тёмную тему.</p>
+
+  <script>
+  (function(){
+    // Убираем класс .no-js
+    document.documentElement.classList.remove('no-js');
+
+    const THEME_KEY = 'theme';
+    const root = document.documentElement;
+    const btn  = document.getElementById('themeToggle');
+    const metaTheme = document.getElementById('theme-color');
+
+    const applyTheme = (mode) => {
+      if (mode === 'dark'){
+        root.setAttribute('data-theme','dark');
+        if (btn) btn.setAttribute('aria-pressed','true');
+        if (metaTheme) metaTheme.content = '#0b1220';
+      } else {
+        root.removeAttribute('data-theme'); // light по умолчанию
+        if (btn) btn.setAttribute('aria-pressed','false');
+        if (metaTheme) metaTheme.content = '#ffffff';
+      }
+    };
+
+    const getStored = () => {
+      try { return localStorage.getItem(THEME_KEY) || ''; } catch { return ''; }
+    };
+    const setStored = (mode) => {
+      try {
+        if (!mode || mode === 'light') localStorage.removeItem(THEME_KEY);
+        else localStorage.setItem(THEME_KEY, mode);
+      } catch {}
+    };
+
+    // 1) Инициализация: приоритет — сохранённая тема, иначе системная
+    const saved = getStored();
+    if (saved){
+      applyTheme(saved);
+    } else if (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches){
+      applyTheme('dark');
+    } else {
+      applyTheme('light');
+    }
+
+    // 2) Тоггл по клику/клавише
+    const toggle = () => {
+      const isDark = root.hasAttribute('data-theme');
+      const next = isDark ? 'light' : 'dark';
+      applyTheme(next);
+      setStored(next);
+    };
+    if (btn){
+      btn.addEventListener('click', toggle);
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    }
+
+    // 3) Реакция на изменение системной темы (если пользователь не переопределял)
+    if (window.matchMedia){
+      const mq = matchMedia('(prefers-color-scheme: dark)');
+      mq.addEventListener?.('change', (e) => {
+        if (!getStored()){ applyTheme(e.matches ? 'dark' : 'light'); }
+      });
+    }
+
+    // 4) Синхронизация между вкладками
+    window.addEventListener('storage', (e) => {
+      if (e.key === THEME_KEY){
+        const val = e.newValue || 'light';
+        applyTheme(val);
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
+

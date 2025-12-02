@@ -1,0 +1,236 @@
+<section class="callback" id="callback" aria-labelledby="callbackSectionTitle">
+  <div class="container">
+    <header class="callback__head">
+      <h2 class="callback__title" id="callbackSectionTitle" data-i18n="callback.title">Обратный звонок</h2>
+      <p class="callback__lead" data-i18n="callback.lead">Выберите свой подарок и скидку — перезвоним в ближайшее время</p>
+    </header>
+
+    <form class="callback__form" id="callbackFormMain" novalidate data-endpoint="/api/callback">
+      <!-- Honeypot (антиспам) -->
+      <div style="position:absolute;left:-100rem;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+        <label>Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <!-- Подарки -->
+      <fieldset class="callback__group" aria-labelledby="giftLegend">
+        <legend class="callback__legend" id="giftLegend" data-i18n="callback.gift.legend">Подарок на выбор</legend>
+        <div class="callback__options">
+          <label class="option">
+            <input class="option__control" type="radio" name="gift" value="Скидка на материалы 5%" required>
+            <span class="option__label" data-i18n="callback.gift.materials5">Скидка на материалы 5%</span>
+          </label>
+          <label class="option">
+            <input class="option__control" type="radio" name="gift" value="Бесплатный выезд и замер">
+            <span class="option__label" data-i18n="callback.gift.free_visit">Бесплатный выезд и замер</span>
+          </label>
+          <label class="option">
+            <input class="option__control" type="radio" name="gift" value="Скидка 3% на работы">
+            <span class="option__label" data-i18n="callback.gift.work3">Скидка 3% на работы</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- Скидка -->
+      <fieldset class="callback__group" aria-labelledby="discountLegend">
+        <legend class="callback__legend" id="discountLegend" data-i18n="callback.discount.legend">Дополнительная скидка</legend>
+        <div class="callback__options callback__options--chips">
+          <label class="chip">
+            <input class="chip__control" type="radio" name="discount" value="0%" required>
+            <span class="chip__label">0%</span>
+          </label>
+          <label class="chip">
+            <input class="chip__control" type="radio" name="discount" value="3%">
+            <span class="chip__label">3%</span>
+          </label>
+          <label class="chip">
+            <input class="chip__control" type="radio" name="discount" value="5%">
+            <span class="chip__label">5%</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- Контакты -->
+      <div class="callback__grid">
+        <label class="field">
+          <span class="field__label" data-i18n="callback.fields.name.label">Имя*</span>
+          <input
+            class="field__input"
+            type="text"
+            name="name"
+            placeholder="Как к вам обращаться"
+            data-i18n-placeholder="callback.fields.name.placeholder"
+            autocomplete="name"
+            minlength="2"
+            required
+            aria-describedby="err-name">
+          <small class="field__error" id="err-name" hidden data-i18n="callback.errors.name">Укажите имя (от 2 символов)</small>
+        </label>
+
+        <label class="field">
+          <span class="field__label" data-i18n="callback.fields.phone.label">Телефон*</span>
+          <input
+            class="field__input"
+            type="tel"
+            name="phone"
+            inputmode="tel"
+            placeholder="+7 XXX XXX-XX-XX"
+            data-i18n-placeholder="callback.fields.phone.placeholder"
+            pattern="^\+?\d[\d\s()\-]{9,}$"
+            autocomplete="tel"
+            required
+            aria-describedby="err-phone">
+          <small class="field__error" id="err-phone" hidden data-i18n="callback.errors.phone">Введите корректный телефон</small>
+        </label>
+
+        <label class="field field--full">
+          <span class="field__label" data-i18n="callback.fields.comment.label">Комментарий</span>
+          <textarea
+            class="field__input"
+            name="comment"
+            rows="3"
+            placeholder="Удобное время, адрес, метраж…"
+            data-i18n-placeholder="callback.fields.comment.placeholder"
+            aria-describedby="err-comment"></textarea>
+          <small class="field__error" id="err-comment" hidden></small>
+        </label>
+      </div>
+
+      <!-- Действия -->
+      <div class="callback__actions">
+        <!-- Кнопка отправки формы -->
+        <button class="btn btn--order" type="submit" data-i18n-aria-label="callback.actions.request_call.aria" aria-label="Отправить заявку на обратный звонок">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1.2 1.2 0 011.33-.32c1.16.43 2.4.66 3.68.66a1.2 1.2 0 011.18 1.18v3.34a1.2 1.2 0 01-1.18 1.18A18 18 0 013 6.18 1.2 1.2 0 014.18 5h3.34A1.2 1.2 0 018.7 6.18c0 1.28.23 2.52.66 3.68.17.44.07.94-.27 1.29l-2.47 2.46z"/>
+          </svg>
+          <span class="btn__text" data-i18n="callback.actions.request_call">Жду звонка</span>
+        </button>
+
+        <!-- Звонок сейчас -->
+        <a class="btn btn--ghost"
+           href="tel:+79585106818"
+           data-i18n="callback.actions.call_now"
+           aria-label="Позвонить по номеру +7 958 510-68-18">Позвонить сейчас</a>
+
+        <!-- Открыть квиз (привёл к вашему стандарту data-modal-open="quiz") -->
+        <button class="btn btn--ghost" type="button" data-modal-open="quiz" data-i18n="callback.actions.quiz">Пройти квиз</button>
+      </div>
+
+      <p class="callback__policy">
+        <span data-i18n="callback.policy.text">Нажимая «Жду звонка», вы соглашаетесь с</span>
+        <a class="link-btn" href="/privacy/police.html#contacts" data-i18n="callback.policy.link" target="_blank">политикой конфиденциальности</a>.
+      </p>
+
+      <!-- Вспомогательный вывод -->
+      <output class="callback__note js-callback-note" role="status" aria-live="polite" hidden></output>
+    </form>
+  </div>
+</section>
+
+<script type="module">
+/* callback.form.js – лёгкая валидация + отправка */
+(() => {
+  const form = document.getElementById('callbackFormMain');
+  if (!form) return;
+  const endpoint = form.dataset.endpoint || '/api/callback';
+  const note = form.querySelector('.js-callback-note');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  const setError = (input, msgEl, msg) => {
+    if (!msgEl) return;
+    input.setAttribute('aria-invalid', 'true');
+    msgEl.textContent = msg || msgEl.textContent;
+    msgEl.hidden = false;
+  };
+  const clearError = (input, msgEl) => {
+    input.removeAttribute('aria-invalid');
+    if (msgEl) msgEl.hidden = true;
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // поля
+    const gift = form.querySelector('input[name="gift"]:checked');
+    const discount = form.querySelector('input[name="discount"]:checked');
+    const name = form.elements.namedItem('name');
+    const phone = form.elements.namedItem('phone');
+    const comment = form.elements.namedItem('comment');
+
+    // сброс ошибок
+    clearError(name, document.getElementById('err-name'));
+    clearError(phone, document.getElementById('err-phone'));
+
+    let ok = true;
+
+    if (!gift) ok = false; // подсказки под радио по желанию
+    if (!discount) ok = false;
+
+    if (!name.value || name.value.trim().length < 2) {
+      ok = false;
+      setError(name, document.getElementById('err-name'), 'Укажите имя (от 2 символов)');
+    }
+    const phoneValid = new RegExp(/^\\+?\\d[\\d\\s()\\-]{9,}$/).test(phone.value.trim());
+    if (!phoneValid) {
+      ok = false;
+      setError(phone, document.getElementById('err-phone'), 'Введите корректный телефон');
+    }
+
+    if (!ok) return;
+
+    // сбор данных
+    const hp = form.elements.namedItem('company')?.value; // honeypot
+    const utm = Object.fromEntries(new URLSearchParams(location.search).entries());
+    const payload = {
+      gift: gift?.value || null,
+      discount: discount?.value || null,
+      name: name.value.trim(),
+      phone: phone.value.trim(),
+      comment: comment?.value?.trim() || '',
+      page: location.href,
+      title: document.title,
+      utm,
+      ts: new Date().toISOString(),
+      hp
+    };
+
+    // UI: загрузка
+    submitBtn.disabled = true;
+    submitBtn.dataset.loading = 'true';
+
+    try {
+      // если honeypot заполнен — не отправляем
+      if (hp) throw new Error('Spam detected');
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload),
+        credentials: 'same-origin'
+      });
+
+      const okRes = res.ok;
+      // нотификация
+      if (note) {
+        note.hidden = false;
+        note.textContent = okRes
+          ? 'Спасибо! Заявка отправлена, мы перезвоним в ближайшее время.'
+          : 'Не удалось отправить. Попробуйте позвонить нам по номеру +7 958 510-68-18.';
+      }
+
+      if (okRes) {
+        form.reset();
+      }
+    } catch (err) {
+      if (note) {
+        note.hidden = false;
+        note.textContent = 'Сбой соединения. Позвоните нам: +7 958 510-68-18.';
+      }
+    } finally {
+      submitBtn.disabled = false;
+      delete submitBtn.dataset.loading;
+    }
+  });
+})();
+</script>
+
+

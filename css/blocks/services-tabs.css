@@ -1,0 +1,117 @@
+/* ====== Services Tabs (ПрофРемонт) — FINAL ====== */
+
+/* ---------- Секция ---------- */
+.services {
+  --sticky-offset: 5.6rem;               /* под реальную высоту фикс-хедера */
+  --gap: clamp(1.2rem, 1.5vw, 2.4rem);
+  background: var(--bg-soft, #eef8ef);
+  padding: 2.4rem 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+.services__head { margin: 0 0 1.6rem; }
+.services__title { margin: 0 0 .6rem; font-size: var(--fs-h2, 2.4rem); line-height: 1.2; color: var(--ink, #0f172a); }
+.services__lead { margin: 0; color: #475569; }
+
+/* Глобальные брейки для файла */
+:root {
+  --bp-sm: 36rem;  /* ~576 */
+  --bp-md: 48rem;  /* ~768 */
+  --bp-lg: 64rem;  /* ~1024 */
+}
+
+/* ---------- Tabs bar ---------- */
+.tabs {
+  border: .1rem solid var(--line, #dbe3d9);
+  border-radius: 1.2rem;
+  background: var(--surface-1, #fff);
+  /* доп. поведение на узких экранах */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+.tabs__list-wrap {
+  position: static; top: auto; z-index: 1;
+  overflow-x: auto; overflow-y: hidden;
+  background: var(--bg-soft, transparent);
+  border-bottom: .1rem solid var(--line, #dbe3d9);
+}
+/* sticky только на <= 40rem */
+@media (max-width: 40rem) {
+  .tabs__list-wrap { position: sticky; top: var(--sticky-offset); z-index: 5; }
+}
+.tabs__list {
+  display: grid;
+  grid-auto-flow: column;
+  gap: .6rem;
+  padding: .6rem;
+  min-width: max-content;
+  scrollbar-width: thin;
+}
+
+.tabs__tab {
+  appearance: none; margin: 0; padding: .9rem 1.3rem;
+  border: .08rem solid #d1e7d7; border-radius: 999rem;
+  background: #fff; color: #0f172a;
+  font-size: 1.6rem; font-weight: 700; letter-spacing: .01em;
+  cursor: pointer;
+  transition: border-color .12s ease, background-color .12s ease, color .12s ease, box-shadow .12s ease;
+  /* свойства прокрутки/снэпа для узких экранов */
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  min-inline-size: 10rem;
+}
+.tabs__tab:hover { border-color: var(--brand-500, #22c55e); }
+.tabs__tab:focus-visible { outline: .18rem solid var(--brand-600, #16a34a); outline-offset: .08rem; }
+.tabs__tab.is-active { background: #e8f6ed; border-color: var(--brand-600, #16a34a); color: #0b3b23; }
+
+/* ---------- Panels ---------- */
+.tabs__panels { padding: 1.2rem; overflow-anchor: none; }
+.tabs__panel {
+  background: #fff; border: .08rem solid #d1e7d7; border-radius: 1.2rem;
+  padding: 1.2rem; margin-bottom: 1rem;
+  scroll-margin-top: var(--sticky-offset);
+}
+.tabs__panel[hidden] { display: none !important; }
+
+/* ---------- Контент панели ---------- */
+.services__grid {
+  display: grid;
+  grid-template-columns: minmax(0, clamp(10rem, 52vw, 52rem)) 2fr;
+  gap: var(--gap);
+  align-items: stretch;                  /* одинаковая высота колонок */
+}
+
+/* Список карточек услуг: 1 → 2 → 3 (mobile-first) */
+.services__desc {
+    margin-bottom: 2.2rem;
+}
+.services__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+ul.services__list {
+    margin-bottom: 2.2rem;
+}
+
+.services__price,span{
+    margin-bottom: 2.2rem;
+}
+@media (min-width: var(--bp-sm)) {
+  .services__list { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: var(--bp-lg)) {
+  .services__list { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Медиа внутри услуг — без растягивания и с сохранением пропорций */
+.services .services__img,
+.services .services__media img,
+.tabs__panel .services__img {
+  max-inline-size: 100%;
+  block-size: auto;
+  display: block;
+  object-fit: cover;
+}

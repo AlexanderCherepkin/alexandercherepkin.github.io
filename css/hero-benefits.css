@@ -1,0 +1,135 @@
+/* HERO: преимущества */
+.hero__benefits{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(22rem,1fr));
+  gap:1.2rem;
+  margin-top:1.6rem;
+  padding:1.2rem;
+  border-radius:1.2rem;
+  background:var(--bg-2, #f7faf9);
+  box-shadow:var(--shadow, 0 .6rem 2rem rgba(2,6,23,.08));
+  contain:content;
+}
+
+.hero__benefit{
+  display:flex;
+  align-items:flex-start;
+  gap:.8rem;
+  padding:1rem 1.2rem;
+  border-radius:.8rem;
+  background:var(--bg, #fff);
+  min-height:4.2rem;
+  scroll-snap-align:start;
+}
+
+/* a11y: мягкая подсветка при фокусе внутри */
+.hero__benefit:focus-within{
+  box-shadow:var(--ring, 0 0 0 .14rem rgba(22,163,74,.35));
+}
+
+.hero__benefit-icon{
+  flex:none;
+  width:2.4rem;
+  height:2.4rem;
+  display:inline-grid;
+  place-items:center;
+  color:var(--brand, #16a34a);
+}
+
+.hero__benefit-text{
+  font-size:1.4rem;
+  line-height:1.4;
+  color:var(--text, #0f172a);
+}
+
+/* Mobile: горизонтальная лента */
+@media (max-width:48rem){
+  .hero__benefits{
+    grid-auto-flow:column;
+    grid-auto-columns:80%;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:1rem;
+  }
+  .hero__benefit{ min-width:auto; }
+}
+
+/* Тёмная тема */
+html[data-theme="dark"] .hero__benefits{ background:rgba(148,163,184,.12); }
+html[data-theme="dark"] .hero__benefit{ background:rgba(2,6,23,.6); }
+html[data-theme="dark"] .hero__benefit-text{ color:var(--ink,#e5e7eb); }
+
+
+/* === Hero: «воздух» для преимуществ и кнопки «Ещё/Скрыть» === */
+
+/* Отступ от кнопок CTA до первого ряда преимуществ */
+.hero .hero__actions{ margin-block-end: 1.2rem; }
+
+/* Блок с базовыми преимуществами — равномерные поля */
+.hero .hero__benefits{
+  gap: .8rem 1rem;
+  margin-block: 1rem;            /* сверху и снизу по 1rem */
+}
+
+/* Обертка кнопки «Ещё преимущества» — всегда даём нижний воздух */
+.hero .hero__benefits-more-wrap{
+  margin-block: 1rem 1.5rem;     /* ключевой отступ под кнопкой */
+}
+
+/* Сама кнопка — комфортная высота/поля, большой hit-area */
+#benefits-more-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  min-block-size: 3rem;
+  padding: .5rem 1rem;
+}
+
+/* Когда список раскрыт — добавляем зазор между кнопкой и дополнительными плитками */
+#benefits-more:not([hidden]){ margin-block-start: .9rem; }
+
+/* Дополнительные плитки: те же промежутки, что и у базового списка */
+.hero .hero__benefits--more{ gap: .8rem 1rem; }
+
+/* Мобильный тюнинг — чуть компактнее, но воздух сохраняем */
+@media (max-width: 48rem){
+  .hero .hero__actions{ margin-block-end: 1rem; }
+  .hero .hero__benefits{ margin-block: .8rem; }
+  .hero .hero__benefits-more-wrap{ margin-block: .8rem 1.2rem; }
+  #benefits-more:not([hidden]){ margin-block-start: .7rem; }
+}
+
+/* Плавное раскрытие дополнительных преимуществ */
+.hero__benefits--more {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hero__benefits--more[hidden] {
+  display: none !important;
+}
+
+.hero__benefits--more:not([hidden]) {
+  animation: fadeInSlide 0.8s ease forwards;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-0.8rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Кнопка "Ещё преимущества" */
+#benefits-more-btn {
+  transition: background-color 0.2s ease;
+}
+
+#benefits-more-btn:hover {
+  background: var(--surface-3);
+}

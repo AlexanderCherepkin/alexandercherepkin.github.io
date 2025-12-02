@@ -1,0 +1,261 @@
+/* === Callback (ПрофРемонт) — FINAL === */
+
+/* Мостик совместимости: старые ID работают вместе с классами */
+.callback__title, #callbackTitle {}
+.callback__form,  #callbackForm, #callbackFormMain {}
+
+/* Секция */
+.callback{
+  position:relative;
+  padding:4rem 1.6rem;
+  background:
+    radial-gradient(80rem 40rem at 100% -20%, color-mix(in oklab, var(--brand,#16a34a) 10%, #fff) 0%, transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f7faf9 100%);
+}
+.callback .container{ margin:0 auto; max-width:100rem; }
+
+/* Шапка */
+.callback__head{ margin:0 0 2rem; text-align:center; }
+.callback__title{ margin:0 0 .4rem; color:var(--ink,#0f172a); font-size:var(--fs-h2,2.4rem); }
+.callback__lead{ margin:0; color:var(--muted,#6b7280); }
+
+/* Карта формы */
+.callback__form{
+  display:grid;
+  gap:1.6rem;
+  padding:2rem;
+  border:.12rem solid color-mix(in oklab, var(--brand,#16a34a) 20%, #e5e7eb);
+  border-radius:1.6rem;
+  background:#fff;
+  box-shadow:0 .8rem 2.4rem rgba(2,6,23,.08);
+}
+
+/* === Группы === */
+.callback__group{ margin:0; padding:0; border:0; }
+.callback__legend{
+  margin:0 0 .8rem;
+  color:color-mix(in oklab, var(--brand,#16a34a) 75%, #0f172a);
+  font-size:1.3rem; letter-spacing:.06em; text-transform:uppercase;
+}
+
+/* === Опции (радио/карточки) === */
+.callback__options{
+  display:grid; grid-template-columns:1fr; gap:.8rem;
+}
+@media (min-width:48rem){
+  .callback__options{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+.option{
+  display:grid; grid-template-columns:auto 1fr; align-items:center; gap:.8rem;
+  padding:1.2rem; border:.12rem solid #e5e7eb; border-radius:.8rem; background:#fff;
+  transition:border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.option__control{ inline-size:1.4rem; block-size:1.4rem; accent-color:var(--brand,#16a34a); }
+.option__label{ color:var(--ink,#0f172a); font-size:1.4rem; }
+.option:has(.option__control:checked){
+  border-color:color-mix(in oklab, var(--brand,#16a34a) 50%, #cbd5e1);
+  background:color-mix(in oklab, #fff 94%, var(--brand,#16a34a) 6%);
+  box-shadow:0 .4rem 1.2rem rgba(22,163,74,.2);
+}
+.option:focus-within{ outline:0; box-shadow:0 0 0 .2rem color-mix(in oklab, var(--brand,#16a34a) 25%, transparent); }
+
+/* === Чипы скидок === */
+.callback__options--chips{
+  display:flex; flex-wrap:wrap; gap:.8rem;
+}
+.chip{
+  display:inline-grid; grid-auto-flow:column; align-items:center; gap:.6rem;
+  padding:.6rem 1.2rem; border:.12rem solid #e5e7eb; border-radius:2rem; background:#fff;
+  transition:border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.chip__control{ inline-size:1.2rem; block-size:1.2rem; accent-color:var(--brand,#16a34a); }
+.chip__label{ color:var(--ink,#0f172a); font-size:1.3rem; }
+.chip:has(.chip__control:checked){
+  border-color:color-mix(in oklab, var(--brand,#16a34a) 50%, #cbd5e1);
+  background:color-mix(in oklab, #fff 92%, var(--brand,#16a34a) 8%);
+  box-shadow:0 .4rem 1.2rem rgba(22,163,74,.2);
+}
+.chip:focus-within{ outline:0; box-shadow:0 0 0 .2rem color-mix(in oklab, var(--brand,#16a34a) 25%, transparent); }
+
+/* === Поля === */
+.callback__grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin:.8rem 0 1.2rem;
+}
+@media (max-width:48rem){ .callback__grid{ grid-template-columns:1fr; } }
+.field{ display:grid; gap:.4rem; }
+.field--full{ grid-column:1 / -1; }
+.field__label{ color:var(--muted,#6b7280); font-size:1.3rem; }
+.field__input{
+  inline-size:100%; padding:.9rem 1.2rem; border:.12rem solid #e5e7eb; border-radius:.8rem;
+  background:#fff; color:var(--ink,#0f172a); font-size:1.4rem; outline:0;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.field__input:focus{ border-color:color-mix(in oklab, var(--brand,#16a34a) 45%, #cbd5e1); }
+.field__input:focus-visible{ box-shadow:0 0 0 .2rem rgba(22,163,74,.18); }
+
+/* === Действия === */
+.callback__actions{
+  display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:.4rem;
+}
+@media (max-width:48rem){ .callback__actions{ grid-template-columns:1fr; } }
+
+/* Кнопки — локально внутри .callback, чтобы не ломать глобальные */
+.callback .btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:3.6rem; padding:0 1.6rem; border:0; border-radius:.8rem;
+  font-size:1.4rem; font-weight:600; cursor:pointer; text-decoration:none;
+  background:var(--brand,#16a34a); color:#fff;
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.callback .btn:hover{ transform:translateY(-.1rem); box-shadow:0 .4rem 1.2rem rgba(22,163,74,.25); }
+.callback .btn:focus-visible{ outline:0; box-shadow:0 0 0 .2rem rgba(22,163,74,.28); }
+.callback .btn.btn--ghost{ background:transparent; border:.1rem solid var(--brand,#16a34a); color:var(--brand,#16a34a); }
+.callback .btn.btn--ghost:hover{ background:color-mix(in oklab, var(--brand,#16a34a) 10%, #fff); }
+.callback .btn.btn--ghost:focus-visible{ box-shadow:0 0 0 .2rem rgba(22,163,74,.28); }
+
+/* Политика/примечания */
+.callback__policy{ margin:1.2rem 0 0; color:var(--muted,#6b7280); font-size:1.2rem; }
+.callback__note{ display:block; margin-top:1.2rem; font-size:1.3rem; }
+
+/* === Тёмная тема === */
+html[data-theme="dark"] .callback{ background:oklch(.19 .03 145); }
+html[data-theme="dark"] .callback__form{ border-color:oklch(.32 .03 145); background:oklch(.23 .02 145); }
+html[data-theme="dark"] .option,
+html[data-theme="dark"] .chip,
+html[data-theme="dark"] .field__input{
+  border-color:oklch(.30 .02 145);
+  background:oklch(.20 .02 145);
+  color:#e5e7eb;
+}
+
+/* === Motion preferences === */
+@media (prefers-reduced-motion:reduce){
+  .option, .chip, .field__input, .callback .btn{ transition:none; }
+}
+
+/* === Touch улучшение === */
+@media (pointer:coarse){
+  .callback .btn{ -webkit-tap-highlight-color:rgba(22,163,74,.25); }
+}
+
+/* === Toast (utility) === */
+.toast-stack{ position:fixed; inset:auto 1rem 1rem auto; z-index:9999; display:grid; gap:.6rem; }
+.toast{
+  min-width:24rem; max-width:34rem; padding:.9rem 1.1rem; border-radius:.8rem;
+  font:500 1.4rem/1.4 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:#0b1a10; background:#fff; border:1px solid #cfe5b9; box-shadow:0 .6rem 1.6rem rgba(20,40,15,.12);
+  display:grid; grid-template-columns:1fr auto; align-items:center; gap:.8rem; opacity:0; transform:translateY(.4rem);
+  transition:opacity .18s ease, transform .18s ease;
+}
+.toast.show{ opacity:1; transform:none; }
+.toast__icon{ inline-size:1.2rem; block-size:1.2rem; border-radius:50%; }
+.toast--ok .toast__icon{ background:#16a34a; }
+.toast--err{ border-color:#f2c2c2; }
+.toast--err .toast__icon{ background:#ef4444; }
+.toast__close{ border:0; background:transparent; font:inherit; cursor:pointer; opacity:.6; }
+.toast__close:hover{ opacity:1; }
+
+/* === Callback modal — footer & quick actions (FINAL) === */
+
+/* Воздух под формой и перед футером */
+.modal__actions{
+  display:flex; flex-wrap:wrap; gap:1rem;
+  margin-top:1.2rem;     /* от полей формы */
+  margin-bottom:1rem;    /* перед футером */
+}
+.modal__footer{
+  display:flex; flex-wrap:wrap; align-items:center; gap:.8rem 1rem;
+  margin-top:1.2rem; padding-top:1.2rem;
+  border-top:.1rem solid var(--line,#e5e7eb);
+}
+
+/* Базовый стиль «быстрых контактов» */
+.modal__footer .link-btn,
+.modal__footer .cta-link{
+  --py:.8rem; --px:1.2rem; --r:.8rem;
+  display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+  padding:var(--py) var(--px);
+  border-radius:var(--r);
+  border:.1rem solid currentColor;
+  font-weight:700; line-height:1; text-decoration:none;
+  transition:transform .12s ease, background-color .12s ease, color .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+.modal__footer .link-btn:focus-visible,
+.modal__footer .cta-link:focus-visible{
+  outline:0; box-shadow:var(--ring,0 0 0 .14rem rgba(22,163,74,.35));
+  transform:translateY(-.05rem);
+}
+
+/* Телефон — зелёная «пилюля» */
+.modal__footer a[href^="tel:"],
+.modal__footer .cta--tel{
+  --tel:var(--brand,#16a34a);
+  --telH:color-mix(in oklab, var(--brand,#16a34a) 85%, black);
+  color:#fff; background:var(--tel); border-color:var(--tel);
+}
+.modal__footer a[href^="tel:"]:hover,
+.modal__footer .cta--tel:hover{ background:var(--telH); border-color:var(--telH); }
+/* Иконка телефона через mask */
+.modal__footer a[href^="tel:"]::before,
+.modal__footer .cta--tel::before{
+  content:""; width:1.2rem; height:1.2rem; background:currentColor;
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23000' viewBox='0 0 24 24'><path d='M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1.2 1.2 0 011.33-.32c1.16.43 2.4.66 3.68.66a1.2 1.2 0 011.18 1.18v3.34a1.2 1.2 0 01-1.18 1.18A18 18 0 013 6.18 1.2 1.2 0 014.18 5h3.34A1.2 1.2 0 018.7 6.18c0 1.28.23 2.52.66 3.68.17.44.07.94-.27 1.29l-2.47 2.46z'/></svg>") no-repeat center / contain;
+          mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23000' viewBox='0 0 24 24'><path d='M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1.2 1.2 0 011.33-.32c1.16.43 2.4.66 3.68.66a1.2 1.2 0 011.18 1.18v3.34a1.2 1.2 0 01-1.18 1.18A18 18 0 013 6.18 1.2 1.2 0 014.18 5h3.34A1.2 1.2 0 018.7 6.18c0 1.28.23 2.52.66 3.68.17.44.07.94-.27 1.29l-2.47 2.46z'/></svg>") no-repeat center / contain;
+}
+
+/* Telegram — аккуратная «пустая» синяя */
+.modal__footer a[href*="t.me"],
+.modal__footer a[href*="telegram.me"],
+.modal__footer .cta--tg{
+  --tg:#229ED9; --tgH:color-mix(in oklab, #229ED9 85%, black);
+  color:var(--tg); background:transparent; border-color:var(--tg);
+}
+.modal__footer a[href*="t.me"]:hover,
+.modal__footer a[href*="telegram.me"]:hover,
+.modal__footer .cta--tg:hover{ color:#fff; background:var(--tg); border-color:var(--tgH); }
+/* Иконка Telegram через mask */
+.modal__footer a[href*="t.me"]::before,
+.modal__footer a[href*="telegram.me"]::before,
+.modal__footer .cta--tg::before{
+  content:""; width:1.2rem; height:1.2rem; background:currentColor;
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23000'><path d='M9.04 15.27l-.37 5.3c.53 0 .76-.22 1.03-.48l2.48-2.37 5.14 3.77c.94.52 1.63.25 1.87-.87l3.39-15.92c.31-1.46-.53-2.03-1.64-1.68L1.6 9.06c-1.44.45-1.42 1.4-.26 1.77l5.34 1.67 12.4-7.83c.58-.35 1.11-.16.67.23L9.04 15.27z'/></svg>") no-repeat center / contain;
+          mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23000'><path d='M9.04 15.27l-.37 5.3c.53 0 .76-.22 1.03-.48l2.48-2.37 5.14 3.77c.94.52 1.63.25 1.87-.87l3.39-15.92c.31-1.46-.53-2.03-1.64-1.68L1.6 9.06c-1.44.45-1.42 1.4-.26 1.77l5.34 1.67 12.4-7.83c.58-.35 1.11-.16.67.23L9.04 15.27z'/></svg>") no-repeat center / contain;
+}
+
+/* «Отмена» — тише, не спорит с CTA */
+.modal__actions .btn.btn--ghost{
+  border:.1rem solid var(--line,#e5e7eb);
+  color:var(--ink,#0f172a);
+}
+.modal__actions .btn.btn--ghost:hover{
+  background:color-mix(in oklab, var(--ink,#0f172a) 4%, #fff);
+  border-color:color-mix(in oklab, var(--ink,#0f172a) 10%, var(--line,#e5e7eb));
+}
+
+/* Адаптив быстрых контактов */
+@media (max-width:36rem){
+  .modal__footer{ justify-content:space-between; }
+  .modal__footer .link-btn, .modal__footer .cta-link{
+    flex:1 1 calc(50% - .6rem); text-align:center;
+  }
+}
+
+/* Тёмная тема для футера модалки */
+html[data-theme="dark"] .modal__footer{ border-top-color:#233046; }
+html[data-theme="dark"] .modal__actions .btn.btn--ghost{
+  background:oklch(.23 .02 145); border-color:#233046; color:var(--ink,#e5e7eb);
+}
+html[data-theme="dark"] .modal__actions .btn.btn--ghost:hover{ background:oklch(.26 .03 145); }
+html[data-theme="dark"] .modal__footer a[href^="tel:"],
+html[data-theme="dark"] .modal__footer .cta--tel{ --tel:#22c55e; --telH:#16a34a; }
+html[data-theme="dark"] .modal__footer a[href*="t.me"],
+html[data-theme="dark"] .modal__footer a[href*="telegram.me"],
+html[data-theme="dark"] .modal__footer .cta--tg{
+  color:#8bd3f2; border-color:#1b87b9;
+}
+html[data-theme="dark"] .modal__footer a[href*="t.me"]:hover,
+html[data-theme="dark"] .modal__footer a[href*="telegram.me"]:hover,
+html[data-theme="dark"] .modal__footer .cta--tg:hover{
+  color:#0b1220; background:#229ED9; border-color:#1b87b9;
+}
+

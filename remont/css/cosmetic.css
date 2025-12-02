@@ -1,0 +1,564 @@
+/* ===== Case page — брендовая стилизация (ПрофРемонт) ===== */
+:root{
+  /* Брендовые токены (фолбэки, если palette.css ещё не прогружен) */
+  --brand-600: #166534; /* основной зелёный */
+  --brand-500: #1a7a3e;
+  --brand-400: #2da14e;
+  --brand-accent: #70d009; /* светлый акцент */
+  --surface-d: #0f172a;     /* тёмный фон карточек */
+  --surface-d-2:#0b1220;    /* ещё темнее для слоёв */
+  --text-on-dark: #e5e7eb;
+  --ring: color-mix(in oklab, var(--brand-600) 28%, #ffffff);
+  --shadow: 0 .16rem .8rem rgba(0,0,0,.25);
+}
+
+/* Скрываем бургер-меню на всех страницах, КРОМЕ главной (.page-index) */
+body:not(.page-index) .site-header__burger,
+body:not(.page-index) .nav-toggle,
+body:not(.page-index) .site-header__burger-line {
+    display: none !important;
+}
+
+main.case-page{
+  padding: 1.2rem 0;
+}
+
+/* Заголовки секций с бренд-акцентом */
+.case-section-title{
+  position: relative;
+  margin: 1.2rem 0 .8rem;
+  padding-block: .2rem;
+  line-height: 1.2;
+}
+.case-section-title::after{
+  content:"";
+  display:block;
+  height: .24rem;
+  width: 6rem;
+  margin-top: .4rem;
+  border-radius: 999rem;
+  background:
+    linear-gradient(90deg,
+      var(--brand-600), color-mix(in oklab, var(--brand-600) 55%, var(--brand-accent))
+    );
+}
+
+/* Двухколоночный блок: описание + галерея */
+.case-two-col{
+  display: grid;
+  gap: 1.6rem;
+}
+@media (min-width: 56rem){
+  .case-two-col{ grid-template-columns: 1.2fr .8fr; }
+}
+
+/* KPI-чипы */
+.case-kpi{
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  margin: .8rem 0 1.2rem;
+}
+@media (min-width: 48rem){
+  .case-kpi{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+}
+.kpi{
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+  color: var(--text-on-dark);
+  background:
+    radial-gradient(80rem 40rem at 110% -20%,
+      color-mix(in oklab, var(--brand-accent) 18%, var(--surface-d)) 0%,
+      transparent 55%),
+    var(--surface-d);
+  outline: .12rem solid color-mix(in oklab, var(--brand-600) 26%, transparent);
+  box-shadow: var(--shadow);
+}
+.kpi strong{ font-size: 1.2rem; display:block; }
+.kpi small{ display:block; opacity:.88; margin-top: .2rem; }
+
+/* Таймлайн по дням */
+.case-timeline{
+  counter-reset: day;
+  display: grid;
+  gap: 1rem;
+  margin-top: .8rem;
+}
+.case-timeline .step{
+  position: relative;
+  color: var(--text-on-dark);
+  background: var(--surface-d);
+  border-radius: 1rem;
+  padding: 1rem 1.2rem 1rem 1.4rem;
+  box-shadow: var(--shadow);
+  border-inline-start: .24rem solid var(--brand-600);
+}
+.case-timeline .step::before{
+  counter-increment: day;
+  content: "День " counter(day) " — ";
+  font-weight: 700;
+  color: var(--brand-accent);
+}
+
+/* Материалы (две колонки, бренд-маркеры) */
+.material-list{
+  columns: 1;
+  column-gap: 2rem;
+  margin-top: .6rem;
+}
+@media (min-width: 56rem){
+  .material-list{ columns: 2; }
+}
+.material-list li{
+  break-inside: avoid;
+  list-style: none;
+  position: relative;
+  padding-left: 1.4rem;
+  margin: .4rem 0;
+}
+.material-list li::before{
+  content:"";
+  position: absolute;
+  left: 0; top: .6rem;
+  width: .7rem; height: .7rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--brand-accent), var(--brand-600));
+  box-shadow: 0 0 0 .12rem color-mix(in oklab, var(--brand-600) 25%, transparent);
+}
+
+/* Галерея и видео — аккуратные рамки в цвет бренда */
+.case-gallery .case-grid img{
+  border-radius: .8rem;
+  outline: .12rem solid color-mix(in oklab, var(--brand-600) 22%, transparent);
+}
+.video-wrap{
+  aspect-ratio: 16/9;
+  background: var(--surface-d-2);
+  border-radius: 1rem;
+  overflow: hidden;
+  outline: .14rem solid color-mix(in oklab, var(--brand-600) 28%, transparent);
+  box-shadow: 0 .4rem 1.2rem rgba(0,0,0,.35);
+}
+.video-wrap video{ width: 100%; height: 100%; display:block; }
+
+/* FAQ */
+.faq details{
+  background: var(--surface-d);
+  color: var(--text-on-dark);
+  border-radius: 1rem;
+  padding: .8rem 1rem;
+  border: .1rem solid color-mix(in oklab, var(--brand-600) 18%, transparent);
+  transition: border-color .2s ease;
+}
+.faq details + details{ margin-top: .8rem; }
+.faq details[open]{ border-color: color-mix(in oklab, var(--brand-600) 45%, transparent); }
+.faq summary{ cursor: pointer; }
+
+/* CTA (сохранение ваших .btn, только акцентируем в кейсе) */
+.case-cta--bottom{
+  text-align: center;
+  margin-top: 1.6rem;
+}
+.case-cta__btn{
+  background: linear-gradient(180deg, var(--brand-600), color-mix(in oklab, var(--brand-600) 70%, #000));
+  color: #fff;
+  border: .1rem solid color-mix(in oklab, var(--brand-600) 50%, #000);
+  box-shadow: 0 .4rem .9rem rgba(22,101,52,.35);
+}
+.case-cta__btn:hover{
+  filter: brightness(1.05);
+}
+.btn.btn--ghost{
+  border-color: color-mix(in oklab, var(--brand-600) 45%, #fff);
+  color: var(--brand-600);
+}
+.btn.btn--ghost:hover{
+  background: color-mix(in oklab, var(--brand-accent) 12%, #fff);
+}
+
+/* Мета-блок (факты) — выравнивание и акцентные подписи */
+.case-meta{
+  margin-top: .8rem;
+}
+.case-meta__row strong{
+  color: var(--brand-600);
+  font-weight: 700;
+}
+.case-meta__muted{
+  opacity: .85;
+}
+
+/* Тёмная/светлая адаптация на всякий случай */
+@media (prefers-color-scheme: light){
+  .kpi,
+  .case-timeline .step,
+  .faq details{ color: #0b1220; background: #ffffff; }
+  .video-wrap{ background: #f6f8fb; }
+  .material-list li::before{ box-shadow: 0 0 0 .12rem color-mix(in oklab, var(--brand-600) 18%, #ffffff); }
+}
+
+.content { font-size: 1.25rem; line-height: 1.55; } /* ~20px / ~31px */
+
+
+
+
+/* ==== Lightbox (поверх сайта) ==== */
+:root{
+  --lb-bg: rgba(2,6,23,.75);
+  --lb-ring: color-mix(in oklab, var(--brand-600,#166534) 50%, #fff);
+}
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 1500;
+  display: grid; place-items: center;
+}
+.lightbox[hidden]{ display:none !important; }
+
+.lightbox__backdrop{
+  position: absolute; inset: 0;
+  background: var(--lb-bg);
+  backdrop-filter: blur(.2rem);
+}
+
+.lightbox__frame{
+  position: relative;
+  max-width: 92vw; max-height: 92dvh;
+  display: grid; place-items: center;
+  outline: .16rem solid var(--lb-ring);
+  border-radius: 1rem;
+  box-shadow: 0 .8rem 2rem rgba(0,0,0,.4);
+  overflow: hidden;
+  background: #0b1220;
+  animation: lb-in .18s ease-out;
+}
+@keyframes lb-in{ from{ transform: scale(.98); opacity:.85 } to{ transform: scale(1); opacity:1 } }
+
+.lightbox__img{
+  max-width: 100%; max-height: 92dvh;
+  display:block;
+}
+
+.lightbox__close,
+.lightbox__nav{
+  position: absolute; z-index: 2;
+  display: grid; place-items:center;
+  width: 3.4rem; height: 3.4rem;
+  border-radius: .8rem;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border: .1rem solid rgba(255,255,255,.2);
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease;
+}
+
+/* Ховер — только лёгкий подъём кнопки */
+.lightbox__close:hover,
+.lightbox__nav:hover{
+  background: rgba(255,255,255,.2);
+  transform: translateY(-.06rem); /* оставляем только подъём */
+}
+
+.lightbox__close{ top: .6rem; right: .6rem; }
+
+.lightbox__nav{
+  position: absolute;
+  top: 50%;
+  width: 3.4rem; height: 3.4rem; /* одинаковый размер */
+}
+
+.lightbox__prev{ left: 1rem; }
+.lightbox__next{ right: 1rem; }
+
+.lightbox__svg{
+  width: 2rem; height: 2rem;
+  pointer-events: none;
+  /* ВАЖНО: никаких transform здесь */
+}
+
+
+.case-gallery img[data-full]{
+  cursor: zoom-in;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.case-gallery img[data-full]:hover{
+  transform: translateY(-.08rem);
+  box-shadow: 0 .4rem 1rem rgba(0,0,0,.18);
+}
+
+/* стабильный скролл, чтобы не дёргало страницу */
+html{ scrollbar-gutter: stable both-edges; }
+body.scroll-lock{ overflow:hidden; overscroll-behavior:none; }
+
+.case-page .param-block p,
+.case-page .kpi-block p { font-size: 1.3rem; }
+.case-page .kpi-value { font-size: 1.4rem; font-weight: bold; }
+
+.video-container { position: relative; aspect-ratio: 16/9;
+                   background: #0b1220; border-radius: 8px; overflow: hidden; }
+.video-container iframe, .video-container video {
+  position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+}
+
+/* Slides (минимально-достаточно) */
+.slides{position:relative;border-radius:1rem;overflow:clip;box-shadow:0 .5rem 2rem rgba(0,0,0,.1);background:#0a0a0a;isolation:isolate}
+.slides__viewport{position:relative;width:100%;aspect-ratio:16/9}
+.slide{position:absolute;inset:0;opacity:0;transform:scale(.98);transition:opacity .5s ease,transform .6s ease;display:grid;place-items:end;background:#111}
+.slide.is-active{opacity:1;transform:scale(1)}
+.slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slide__caption{position:relative;width:max(60%,20rem);margin:0 1rem 1rem;padding:.75rem 1rem;border-radius:.75rem;background:color-mix(in oklch,white 10%,transparent);backdrop-filter:blur(6px);color:#fff;font:500 1rem/1.3 Manrope,system-ui;box-shadow:0 .5rem 1.5rem rgba(0,0,0,.25)}
+.slides__nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:2.5rem;height:2.5rem;border:0;border-radius:50%;background:#166534;color:#fff;display:grid;place-items:center;cursor:pointer;opacity:.9}
+.slides__nav:hover{opacity:1}
+.slides__nav--prev{left:.75rem}.slides__nav--next{right:.75rem}
+.slides__dots{position:absolute;left:50%;bottom:.75rem;transform:translateX(-50%);display:flex;gap:.5rem;z-index:2}
+.dot{width:.625rem;height:.625rem;border-radius:999rem;border:0;background:color-mix(in oklch,white 50%,transparent);opacity:.6;cursor:pointer}
+.dot.is-active{width:1.5rem;opacity:1;background:#70d009;transition:width .25s ease}
+@media (prefers-color-scheme: dark){.slide__caption{background:color-mix(in oklch,black 40%,transparent);color:#f5f5f5}}
+
+
+/* --- Video-like presence for stitched slides --- */
+.slides {
+  --hud-color: #fff;
+  --bar-bg: color-mix(in oklch, #ffffff 25%, transparent);
+  --bar-fg: #70d009; /* фирменный акцент */
+  --bar-h: .25rem;
+}
+
+/* лёгкая виньетка */
+.slides::after{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  background: radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.28) 100%);
+  mix-blend-mode:multiply;
+}
+
+/* HUD "REC" */
+.slides__hud{
+  position:absolute; top:.5rem; left:.75rem; z-index:3;
+  display:flex; align-items:center; gap:.5rem;
+  padding:.25rem .5rem; border-radius:.5rem;
+  color:var(--hud-color); font:600 .875rem/1 Manrope,system-ui;
+  background: color-mix(in oklch, black 35%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.hud__rec-dot{
+  width:.5rem; height:.5rem; border-radius:50%;
+  background:#ff3b30; box-shadow:0 0 .5rem rgba(255,59,48,.9);
+  animation: recPulse 1.2s ease-in-out infinite;
+}
+@keyframes recPulse{
+  0%,100%{ transform:scale(1); opacity:1 }
+  50%{ transform:scale(1.25); opacity:.6 }
+}
+
+/* Прогресс-бар слайда */
+.slides__bar{
+  position:absolute; left:.75rem; right:.75rem; bottom:.5rem; z-index:3;
+  height:var(--bar-h);
+  background: var(--bar-bg);
+  border-radius:999rem; overflow:hidden;
+}
+.slides__bar-inner{
+  height:100%; width:0%;
+  background: var(--bar-fg);
+  transform-origin:0 50%;
+}
+
+/* Плавное появление подписи */
+.slide .slide__caption{
+  transform: translateY(.5rem);
+  opacity:.0;
+}
+.slide.is-active .slide__caption{
+  opacity:1; transform: translateY(0);
+  transition: transform .45s ease, opacity .45s ease .05s;
+}
+
+/* На паузе (hover/невидимость вкладки) ставим HUD на паузу визуально */
+.slides[data-paused="true"] .hud__rec-dot{ animation-play-state: paused; opacity:.5 }
+
+/* --- Анти-мерцание и композитные слои --- */
+.slides, .slide, .slides__bar, .slides__bar-inner { transform: translateZ(0); }
+.slide > img{
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0) scale(1); /* базовый слой */
+}
+
+/* Лёгкий анти-moire (можно отключить) */
+.slides[data-smooth="on"] .slide > img{
+  /* микроскопическое «смягчение» для полосатых текстур */
+  filter: contrast(1.001) saturate(1.001);
+}
+
+/* Прогресс-бар: отдельный слой, анимируем width для стабильности */
+.slides__bar{ contain: layout paint; }
+.slides__bar-inner{
+  width: 0%;
+  will-change: width;
+  transform: none !important; /* отключаем scaleX */
+}
+
+/* Виньетку оставляем, но делаем менее контрастной, чтобы убрать «полосатость» на градиенте */
+.slides::after{
+  background: radial-gradient(120% 80% at 50% 50%,
+    rgba(0,0,0,0) 60%,
+    rgba(0,0,0,.20) 100%); /* было .28 -> .20 */
+}
+
+
+
+.slide img.anti-moire{
+  filter: blur(.15px) contrast(1.003);
+}
+
+
+/* ————— Ultra-smooth setup ————— */
+.slide > img{
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0) scale(1);
+  transform-origin: 50% 50% 0.1px; /* тонкий хак против субпиксельного дрожания */
+}
+
+/* Прогресс-бар — без мерцания */
+.slides__bar{ contain: layout paint; transform: translateZ(0); }
+.slides__bar-inner{ width:0%; will-change: width; transform: none !important; }
+
+/* ===== Overlay-only (абсолютно гладко) ===== */
+.slides[data-overlay="on"] .slides__film,
+.slides[data-overlay="on"] .slides__sheen { display:block; }
+
+.slides__film, .slides__sheen {
+  position:absolute; inset:0; pointer-events:none; z-index:2; display:none;
+}
+
+/* лёгкая "плёнка" */
+.slides__film{
+  background:
+    radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 60%, rgba(0,0,0,.18) 100%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0, rgba(255,255,255,.02) 2px, transparent 2px, transparent 4px);
+  mix-blend-mode:multiply;
+  animation: filmPulse 5s ease-in-out infinite alternate;
+}
+
+/* мягкий световой «свайп» слева-направо */
+.slides__sheen{
+  background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,.05) 40%, transparent 60%);
+  transform: translateX(-40%);
+  animation: sheenSweep 6s linear infinite;
+}
+
+@keyframes filmPulse{
+  0%   { opacity:.35 }
+  100% { opacity:.55 }
+}
+@keyframes sheenSweep{
+  0%   { transform: translateX(-40%) }
+  100% { transform: translateX(140%) }
+}
+
+/* CTA: Рассчитать похожий ремонт */
+.btn-cta-calc{
+  --cta-bg: linear-gradient(90deg, #70d009 0%, #5ac207 100%);
+  --cta-bg-hover: linear-gradient(90deg, #78db0a 0%, #64cb0a 100%);
+  --cta-text: #ffffff;
+  --cta-ring: color-mix(in oklch, #70d009 40%, white 0%);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .9rem 1.2rem .8rem 1.2rem;
+  border-radius: 999rem;
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  font: 600 1rem/1 Manrope, system-ui;
+  text-decoration: none;
+  box-shadow: 0 .2rem .8rem rgba(22,101,52,.25), inset 0 .05rem .05rem rgba(255,255,255,.25);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  isolation: isolate;
+}
+.btn-cta-calc:hover{ background: var(--cta-bg-hover); transform: translateY(-.06rem); }
+.btn-cta-calc:active{ transform: translateY(.02rem); }
+.btn-cta-calc:focus-visible{
+  outline: .2rem solid transparent;
+  box-shadow: 0 .2rem 1rem rgba(22,101,52,.35), 0 0 0 .18rem var(--cta-ring);
+}
+
+/* Подзаголовок */
+.btn-cta__meta{
+  opacity: .9;
+  font-weight: 500;
+  font-size: .85rem;
+  padding: .15rem .6rem;
+  border-radius: 999rem;
+  background: color-mix(in oklch, #166534 20%, transparent);
+}
+@media (max-width: 40rem){
+  .btn-cta__meta{ display:none; }
+}
+
+/* Иконка-стрелка */
+.btn-cta__icon{ flex: 0 0 auto; opacity:.95; transition: transform .2s ease; }
+.btn-cta-calc:hover .btn-cta__icon{ transform: translateX(.2rem); }
+
+/* Лёгкий “sheen” при ховере */
+.btn-cta-calc::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.25) 45%, transparent 60%);
+  transform: translateX(-120%);
+  border-radius: inherit;
+  pointer-events:none;
+}
+.btn-cta-calc:hover::after{ animation: sheen 1.1s ease; }
+@keyframes sheen{
+  to{ transform: translateX(120%); }
+}
+
+/* Поддержка ripple.js, если он подключён */
+.btn-cta-calc[data-ripple]{ overflow: hidden; }
+
+
+.btn-badge{
+  position:absolute; left:-.1rem; top:.1rem;
+  background:#166534; color:#fff; font:700 .75rem/1 Manrope;
+  padding:.25rem .5rem; border-radius:.5rem; box-shadow:0 .15rem .4rem rgba(0,0,0,.2);
+}
+
+.btn-cta-calc{
+  --cta-bg: linear-gradient(90deg,#70d009 0%,#5ac207 100%);
+  --cta-bg-hover: linear-gradient(90deg,#78db0a 0%,#64cb0a 100%);
+  --cta-text:#fff; --cta-ring: color-mix(in oklch,#70d009 40%, white 0%);
+  position:relative; display:inline-flex; align-items:center; gap:.6rem;
+  padding:.9rem 1.2rem .8rem; border-radius:999rem; background:var(--cta-bg); color:var(--cta-text);
+  font:600 1rem/1 Manrope,system-ui; text-decoration:none;
+  box-shadow:0 .2rem .8rem rgba(22,101,52,.25), inset 0 .05rem .05rem rgba(255,255,255,.25);
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease; isolation:isolate;
+}
+.btn-cta-calc:hover{ background:var(--cta-bg-hover); transform:translateY(-.06rem) }
+.btn-cta-calc:active{ transform:translateY(.02rem) }
+.btn-cta-calc:focus-visible{ outline:.2rem solid transparent; box-shadow:0 .2rem 1rem rgba(22,101,52,.35),0 0 0 .18rem var(--cta-ring) }
+.btn-cta__meta{ opacity:.9; font-weight:500; font-size:.85rem; padding:.15rem .6rem; border-radius:999rem; background:color-mix(in oklch,#166534 20%, transparent) }
+@media (max-width:40rem){ .btn-cta__meta{display:none} }
+.btn-cta__icon{ flex:0 0 auto; opacity:.95; transition:transform .2s ease }
+.btn-cta-calc:hover .btn-cta__icon{ transform:translateX(.2rem) }
+.btn-cta-calc::after{ content:""; position:absolute; inset:0; background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.25) 45%,transparent 60%); transform:translateX(-120%); border-radius:inherit; pointer-events:none }
+.btn-cta-calc:hover::after{ animation:sheen 1.1s ease }
+@keyframes sheen{ to{ transform:translateX(120%) } }
+.btn-cta-calc[data-ripple]{ overflow:hidden }
+.btn-badge{ position:absolute; left:-.6rem; top:-.6rem; padding:.25rem .6rem; border-radius:.6rem; background:#166534; color:#fff; font:700 .75rem/1 Manrope,system-ui; box-shadow:0 .15rem .4rem rgba(0,0,0,.25) }
+
+.visually-hidden{
+  position:absolute!important; width:1px;height:1px; margin:-1px; padding:0; border:0;
+  overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%);
+}
+
+.visually-hidden{
+  position:absolute !important;
+  width:1px; height:1px;
+  margin:-1px; padding:0; border:0;
+  overflow:hidden; clip:rect(0 0 0 0);
+  clip-path:inset(50%);
+}
+

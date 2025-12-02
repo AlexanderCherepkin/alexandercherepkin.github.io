@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="ru" class="no-js" data-lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title data-i18n="chat.title">Чат проекта — онлайн-консультация | ПрофРемонт Владимир</title>
+  <meta name="description" content="Онлайн-чат с менеджером по ремонту квартир во Владимире. Бесплатная консультация, расчёт стоимости, помощь с планировкой. Отвечаем в течение 10–15 минут." />
+
+  <!-- Font loading (без preconnect, чтобы не было предупреждения) -->
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;display=swap"
+    as="style">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;display=swap"
+    media="print"
+    onload="this.media='all'">
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;display=swap">
+  </noscript>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://profremont.local-ai-hub.website/chat.html">
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/chat.html">
+  <link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/chat.html?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/chat.html">
+
+  <!-- Favicons / Apple / PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+  <link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#166534" />
+  <meta name="msapplication-config" content="/browserconfig.xml" />
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#166534" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="ПрофРемонт Владимир" />
+  <meta property="og:title" content="Чат проекта — онлайн-консультация по ремонту" />
+  <meta property="og:description" content="Задайте вопрос по ремонту: сроки, смета, материалы. Бесплатная консультация, отвечаем быстро." />
+  <meta property="og:url" content="https://profremont.local-ai-hub.website/chat.html" />
+  <meta property="og:image" content="https://profremont.local-ai-hub.website/img/og-chat.webp" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Чат проекта — онлайн-консультация по ремонту" />
+  <meta name="twitter:description" content="Задайте вопрос по ремонту: сроки, смета, материалы. Бесплатная консультация." />
+  <meta name="twitter:image" content="https://profremont.local-ai-hub.website/img/og-chat.webp" />
+
+  <!-- Structured data (Organization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ПрофРемонт Владимир",
+    "url": "https://profremont.local-ai-hub.website/",
+    "logo": "https://profremont.local-ai-hub.website/icons/android-chrome-512x512.png",
+    "sameAs": ["https://t.me/79585106818"]
+  }
+  </script>
+
+  <!-- LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"ПрофРемонт Владимир",
+    "url":"https://profremont.local-ai-hub.website/",
+    "image":"https://profremont.local-ai-hub.website/icons/android-chrome-512x512.png",
+    "telephone":"+79585106818",
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"Владимир",
+      "addressRegion":"Владимирская область",
+      "addressCountry":"RU"
+    },
+    "areaServed":"Владимир и область",
+    "priceRange":"₽₽",
+    "openingHoursSpecification":[
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"20:00"}
+    ]
+  }
+  </script>
+
+  <!-- ContactPage -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ContactPage",
+    "name":"Чат проекта — онлайн-консультация",
+    "description":"Онлайн-чат для консультаций по ремонту квартир во Владимире",
+    "url":"https://profremont.local-ai-hub.website/chat.html",
+    "mainEntity":{
+      "@type":"LocalBusiness",
+      "name":"ПрофРемонт Владимир",
+      "telephone":"+79585106818"
+    }
+  }
+  </script>
+
+  <!-- FAQPage (для чата) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Сколько стоит консультация в чате?","acceptedAnswer":{"@type":"Answer","text":"Консультация и предварительные расчёты в чате бесплатны. Оплачиваются только работы по договору."}},
+      {"@type":"Question","name":"Могу ли я переписываться анонимно?","acceptedAnswer":{"@type":"Answer","text":"Да, вы можете задать вопросы без указания имени. Контакты понадобятся только для расчёта сметы и договора."}},
+      {"@type":"Question","name":"Можно ли по чату заказать выезд замерщика?","acceptedAnswer":{"@type":"Answer","text":"Да, в чате можно согласовать удобное время замера, адрес и пожелания."}},
+      {"@type":"Question","name":"Как быстро вы отвечаете?","acceptedAnswer":{"@type":"Answer","text":"Обычно отвечаем в течение 10–15 минут в рабочее время (9:00–20:00)."}}
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Главная","item":"https://profremont.local-ai-hub.website/"},
+      {"@type":"ListItem","position":2,"name":"Чат проекта","item":"https://profremont.local-ai-hub.website/chat.html"}
+    ]
+  }
+  </script>
+
+  <!-- AOS (если используется на странице) -->
+  <script defer src="/vendor/aos/aos.js"></script>
+
+  <!-- Критически важные стили (порядок важен: сначала base, потом page-specific) -->
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/brand/palette.css">
+  <link rel="stylesheet" href="/css/theme.profremont.css">
+  <link rel="stylesheet" href="/css/chat.css">
+
+  <!-- Некритичные стили — грузим отложенно -->
+  <link rel="preload" href="/vendor/aos/aos.css" as="style">
+  <link rel="stylesheet" href="/vendor/aos/aos.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/vendor/aos/aos.css"></noscript>
+
+  <style>
+  /* Резервируем место под шапку, чтобы main не прыгал при инъекции header.html */
+  header[data-include="/partials/header.html"] {
+    min-height: 5rem;
+  }
+
+  @media (min-width: 48rem) {
+    header[data-include="/partials/header.html"] {
+      min-height: 5.5rem;
+    }
+  }
+
+  /* Предотвращение сдвигов при загрузке шрифтов */
+  html {
+    font-family: Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  /* Резервирование места для основного контента чата */
+  .chat-page {
+    min-height: 100vh;
+  }
+
+  .chat-hero__content {
+    min-height: 18rem;
+  }
+
+  .chat-thread {
+    min-height: 20rem;
+  }
+
+  /* Плавный скролл */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Скрытие контента до загрузки JS (для no-js fallback) */
+  html.no-js .typing {
+    display: none;
+  }
+  </style>
+
+  <!-- Layout injector -->
+  <script defer src="/js/inject-layout.js"></script>
+</head>
+
+<body>
+  <main id="main" class="chat-page" data-page="chat">
+    <!-- Герой + быстрые действия -->
+    <section class="chat-hero" aria-labelledby="chat-title">
+      <div class="container">
+        <div class="chat-hero__top">
+          <a id="back-home"
+             class="btn btn-back"
+             href="/"
+             data-i18n="chat.back">
+            ← На главную
+          </a>
+
+          <div class="chat-hero__badge-group">
+            <p class="chat-hero__badge" data-i18n="chat.badge">
+              Онлайн-чат с менеджером по ремонту
+            </p>
+            <p class="chat-hero__status" data-i18n="chat.status">
+              Обычно отвечаем в течение 10–15 минут в рабочее время.
+            </p>
+          </div>
+        </div>
+
+        <div class="chat-hero__content">
+          <div class="chat-hero__main">
+            <h1 id="chat-title"
+                class="chat-hero__title"
+                data-i18n="chat.title">
+              Чат проекта
+            </h1>
+
+            <p class="chat-hero__subtitle" data-i18n="chat.subtitle">
+              Напишите нам по вашему объекту: сроки, смета, материалы, планировка. Чем подробнее запрос — тем точнее ответ.
+            </p>
+
+            <ul class="chat-hero__benefits">
+              <li data-i18n="chat.benefits.1">
+                Предварительный расчёт стоимости работ по чату без визита.
+              </li>
+              <li data-i18n="chat.benefits.2">
+                Рекомендации по материалам, черновой и чистовой отделке.
+              </li>
+              <li data-i18n="chat.benefits.3">
+                Помощь с планировкой, зонированием и очередностью работ.
+              </li>
+            </ul>
+
+            <p class="chat-hero__hint" data-i18n="chat.hero.hint">
+              Подготовьте, если есть, фото, планировку или ссылку на объявление — можно просто вставить их в сообщение.
+            </p>
+          </div>
+
+          <!-- Инфо-карточка проекта сбоку -->
+          <aside class="chat-hero__aside" aria-label="Кратко о вашем проекте">
+            <h2 class="chat-hero__aside-title" data-i18n="chat.aside.title">
+              Поможем с вашим объектом
+            </h2>
+            <ul class="chat-hero__aside-list">
+              <li>
+                <span class="chat-hero__aside-label" data-i18n="chat.aside.type.label">Тип ремонта</span>
+                <span class="chat-hero__aside-value" data-i18n="chat.aside.type.value">
+                  Квартира, дом или отдельное помещение
+                </span>
+              </li>
+              <li>
+                <span class="chat-hero__aside-label" data-i18n="chat.aside.area.label">Площадь</span>
+                <span class="chat-hero__aside-value" data-i18n="chat.aside.area.value">
+                  Можно указать в сообщении: например, 42 м²
+                </span>
+              </li>
+              <li>
+                <span class="chat-hero__aside-label" data-i18n="chat.aside.deadline.label">Сроки</span>
+                <span class="chat-hero__aside-value" data-i18n="chat.aside.deadline.value">
+                  Когда вы планируете начать ремонт?
+                </span>
+              </li>
+              <li>
+                <span class="chat-hero__aside-label" data-i18n="chat.aside.budget.label">Бюджет</span>
+                <span class="chat-hero__aside-value" data-i18n="chat.aside.budget.value">
+                  Можно ориентировочно: «до 500&nbsp;000 ₽» или «обсудим».
+                </span>
+              </li>
+            </ul>
+
+            <p class="chat-hero__aside-note" data-i18n="chat.aside.note">
+              Если не знаете, что писать — выберите готовый сценарий ниже, мы подскажем.
+            </p>
+          </aside>
+        </div>
+
+        <!-- Быстрые действия -->
+        <nav class="chat-quick" aria-label="Быстрые действия">
+          <a class="chip"
+             href="tel:+7XXXXXXXXXX"
+             data-i18n="chat.call">
+            Позвонить
+          </a>
+          <a class="chip"
+             href="https://wa.me/7XXXXXXXXXX"
+             rel="noopener"
+             target="_blank"
+             data-i18n="chat.whatsapp">
+            WhatsApp
+          </a>
+          <a class="chip"
+             href="/portfolio.html"
+             data-i18n="chat.portfolio">
+            Портфолио
+          </a>
+          <a class="chip"
+             href="/#callback"
+             data-i18n="chat.callback">
+            Обратный звонок
+          </a>
+          <a class="chip"
+             href="/contacts.html"
+             data-i18n="chat.contacts">
+            Контакты
+          </a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Готовые сценарии сообщений -->
+    <section class="chat-presets" aria-labelledby="chat-presets-title">
+      <div class="container">
+        <header class="chat-section__header">
+          <h2 id="chat-presets-title"
+              class="chat-section__title"
+              data-i18n="chat.presets.title">
+            Не знаете, с чего начать? Выберите готовый сценарий
+          </h2>
+          <p class="chat-section__subtitle"
+             data-i18n="chat.presets.subtitle">
+            Один клик — и текст подставится в поле ввода. Можно отредактировать перед отправкой.
+          </p>
+        </header>
+
+        <div class="chat-presets__grid" role="list">
+          <article class="chat-presets__item" role="listitem">
+            <h3 class="chat-presets__item-title"
+                data-i18n="chat.presets.estimate.title">
+              Хочу предварительный расчёт
+            </h3>
+            <p class="chat-presets__item-text"
+               data-i18n="chat.presets.estimate.text">
+              Подойдёт, если вы только прикидываете бюджет и формат ремонта.
+            </p>
+            <button type="button"
+                    class="btn btn-ghost chat-presets__btn js-chat-preset"
+                    data-message="Добрый день! Хочу предварительный расчёт ремонта. Квартира __ м², тип дома __, состояние сейчас __. Интересует примерный бюджет и сроки под ключ."
+                    data-i18n="chat.presets.estimate.button">
+              Вставить текст в чат
+            </button>
+          </article>
+
+          <article class="chat-presets__item" role="listitem">
+            <h3 class="chat-presets__item-title"
+                data-i18n="chat.presets.design.title">
+              Нужен дизайнерский ремонт
+            </h3>
+            <p class="chat-presets__item-text"
+               data-i18n="chat.presets.design.text">
+              Для проектов с 3D-визуализацией, планировочными решениями и авторским надзором.
+            </p>
+            <button type="button"
+                    class="btn btn-ghost chat-presets__btn js-chat-preset"
+                    data-message="Здравствуйте! Интересует дизайнерский ремонт. Площадь __ м², объект: новостройка/вторичка. Хотим проработать планировку, свет и материалы. Подскажите, как с вами лучше начать работу?"
+                    data-i18n="chat.presets.design.button">
+              Вставить текст в чат
+            </button>
+          </article>
+
+          <article class="chat-presets__item" role="listitem">
+            <h3 class="chat-presets__item-title"
+                data-i18n="chat.presets.bathroom.title">
+              Вопрос по санузлу / ванной
+            </h3>
+            <p class="chat-presets__item-text"
+               data-i18n="chat.presets.bathroom.text">
+              Если нужно уточнить нюансы по плитке, сантехнике, перепланировке.
+            </p>
+            <button type="button"
+                    class="btn btn-ghost chat-presets__btn js-chat-preset"
+                    data-message="Добрый день! Нужна помощь с ремонтом санузла/ванной. Площадь примерно __ м². Интересует: разводка сантехники, выбор плитки и стоимость работ. Можно ли прислать вам фото для оценки?"
+                    data-i18n="chat.presets.bathroom.button">
+              Вставить текст в чат
+            </button>
+          </article>
+
+          <article class="chat-presets__item" role="listitem">
+            <h3 class="chat-presets__item-title"
+                data-i18n="chat.presets.deadline.title">
+              Жёсткие сроки по переезду
+            </h3>
+            <p class="chat-presets__item-text"
+               data-i18n="chat.presets.deadline.text">
+              Когда важно въехать к конкретной дате и уложиться в график.
+            </p>
+            <button type="button"
+                    class="btn btn-ghost chat-presets__btn js-chat-preset"
+                    data-message="Здравствуйте! Планируем ремонт с жёсткими сроками. Нужно закончить к дате __. Квартира/дом __ м², состояние сейчас __. Реально ли уложиться и какие форматы работы вы предложите?"
+                    data-i18n="chat.presets.deadline.button">
+              Вставить текст в чат
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Основное окно чата + боковая панель -->
+    <section class="chat-window" aria-label="Окно чата">
+      <div class="container chat-window__layout">
+        <!-- Левая колонка: сам чат -->
+        <div class="chat-window__main">
+          <header class="chat-window__header">
+            <h2 class="chat-window__title" data-i18n="chat.window.title">
+              Переписка по вашему объекту
+            </h2>
+            <p class="chat-window__subtitle" data-i18n="chat.window.subtitle">
+              История сообщений сохраняется в рамках текущей сессии. В любой момент можно уточнить детали.
+            </p>
+          </header>
+
+          <ul class="chat-thread"
+              role="log"
+              aria-live="polite"
+              aria-relevant="additions">
+            <!-- Сообщения рендерятся JS -->
+          </ul>
+
+          <!-- Индикатор набора -->
+          <div class="typing" aria-hidden="true" hidden>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="typing__label" data-i18n="chat.typing">
+              Печатает…
+            </span>
+          </div>
+        </div>
+
+        <!-- Правая колонка: подсказки и статус -->
+        <aside class="chat-sidebar" aria-label="Подсказки по чату и статус">
+          <section class="chat-sidebar__block">
+            <h3 class="chat-sidebar__title" data-i18n="chat.sidebar.tips.title">
+              Как написать, чтобы ответ был точнее
+            </h3>
+            <ul class="chat-sidebar__list">
+              <li data-i18n="chat.sidebar.tips.1">
+                Укажите тип объекта: новостройка, вторичка, дом, студия и т.д.
+              </li>
+              <li data-i18n="chat.sidebar.tips.2">
+                Напишите примерную площадь и состояние сейчас (черновая, после строителей, жилое).
+              </li>
+              <li data-i18n="chat.sidebar.tips.3">
+                Расскажите, что важно: сроки, бюджет, дизайн, минимум пыли, этапность.
+              </li>
+              <li data-i18n="chat.sidebar.tips.4">
+                Прикрепите фото или планировку — даже сделанные на телефон.
+              </li>
+            </ul>
+          </section>
+
+          <section class="chat-sidebar__block">
+            <h3 class="chat-sidebar__title" data-i18n="chat.sidebar.schedule.title">
+              Когда мы отвечаем
+            </h3>
+            <p class="chat-sidebar__text" data-i18n="chat.sidebar.schedule.text">
+              Основное время работы чата: с 9:00 до 20:00 по рабочим дням.
+              В остальное время вы можете оставить сообщение — мы ответим, как только выйдем на связь.
+            </p>
+          </section>
+
+          <section class="chat-sidebar__block">
+            <h3 class="chat-sidebar__title" data-i18n="chat.sidebar.privacy.title">
+              Конфиденциальность
+            </h3>
+            <p class="chat-sidebar__text" data-i18n="chat.sidebar.privacy.text">
+              Мы не передаём ваши контакты и переписку третьим лицам. Информация используется только для связи с вами по проекту и подготовки предложений.
+            </p>
+            <a href="/privacy.html"
+               class="chat-sidebar__link"
+               data-i18n="chat.sidebar.privacy.link">
+              Политика конфиденциальности
+            </a>
+          </section>
+        </aside>
+      </div>
+
+      <!-- Панель ввода -->
+      <form class="chat-input"
+            id="chat-form"
+            autocomplete="off"
+            aria-label="Форма ввода сообщения">
+        <div class="container chat-input__row">
+          <label class="visually-hidden"
+                 for="chat-message"
+                 data-i18n="chat.input.label">
+            Сообщение
+          </label>
+          <input id="chat-message"
+                 class="chat-input__field"
+                 type="text"
+                 inputmode="text"
+                 autocomplete="off"
+                 placeholder="Напишите сообщение…"
+                 data-i18n-placeholder="chat.input.placeholder"
+                 aria-describedby="chat-note"
+                 enterkeyhint="send" />
+
+          <button type="submit"
+                  class="btn btn-send"
+                  data-i18n="chat.send"
+                  aria-label="Отправить сообщение">
+            Отправить
+          </button>
+        </div>
+        <p id="chat-note" class="chat-note">
+          <span data-i18n="chat.note">
+            * Сообщение может быть передано менеджеру. Отправляя, вы соглашаетесь с политикой конфиденциальности.
+          </span>
+        </p>
+      </form>
+
+      <!-- Кнопка прокрутки вниз -->
+      <button type="button"
+              class="scroll-down"
+              aria-label="Прокрутить чат вниз"
+              hidden>
+        ↓
+      </button>
+    </section>
+
+    <!-- Как проходит общение и следующий шаг -->
+    <section class="chat-flow" aria-labelledby="chat-flow-title">
+      <div class="container">
+        <header class="chat-section__header">
+          <h2 id="chat-flow-title"
+              class="chat-section__title"
+              data-i18n="chat.flow.title">
+            Как проходит общение в чате
+          </h2>
+          <p class="chat-section__subtitle"
+             data-i18n="chat.flow.subtitle">
+            Наша задача — не просто ответить на вопрос, а провести вас по всему циклу ремонта: от идеи до сдачи объекта.
+          </p>
+        </header>
+
+        <ol class="chat-flow__steps">
+          <li class="chat-flow__step">
+            <h3 class="chat-flow__step-title"
+                data-i18n="chat.flow.step1.title">
+              1. Описываете задачу
+            </h3>
+            <p class="chat-flow__step-text"
+               data-i18n="chat.flow.step1.text">
+              Пишете, что хотите сделать, прикладываете фото или план. Можно кратко — менеджер сам уточнит недостающие детали.
+            </p>
+          </li>
+          <li class="chat-flow__step">
+            <h3 class="chat-flow__step-title"
+                data-i18n="chat.flow.step2.title">
+              2. Получаете рекомендации и ориентиры по бюджету
+            </h3>
+            <p class="chat-flow__step-text"
+               data-i18n="chat.flow.step2.text">
+              Мы объясняем, какие варианты ремонта подойдут, из чего складывается стоимость и какие этапы вас ожидают.
+            </p>
+          </li>
+          <li class="chat-flow__step">
+            <h3 class="chat-flow__step-title"
+                data-i18n="chat.flow.step3.title">
+              3. Назначаем замер и готовим смету
+            </h3>
+            <p class="chat-flow__step-text"
+               data-i18n="chat.flow.step3.text">
+              При необходимости договариваемся о выезде замерщика, после чего готовим подробную смету и график работ.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FAQ по чату -->
+    <section class="chat-faq" aria-labelledby="chat-faq-title">
+      <div class="container">
+        <header class="chat-section__header">
+          <h2 id="chat-faq-title"
+              class="chat-section__title"
+              data-i18n="chat.faq.title">
+            Частые вопросы о чате
+          </h2>
+        </header>
+
+        <div class="chat-faq__list">
+          <details class="chat-faq__item">
+            <summary class="chat-faq__question"
+                     data-i18n="chat.faq.q1">
+              Сколько стоит консультация в чате?
+            </summary>
+            <div class="chat-faq__answer"
+                 data-i18n="chat.faq.a1">
+              Консультация и предварительные расчёты в чате бесплатны. Оплачиваются только работы по договору и дополнительные услуги по согласованию.
+            </div>
+          </details>
+
+          <details class="chat-faq__item">
+            <summary class="chat-faq__question"
+                     data-i18n="chat.faq.q2">
+              Могу ли я переписываться анонимно?
+            </summary>
+            <div class="chat-faq__answer"
+                 data-i18n="chat.faq.a2">
+              Вы можете сначала задать вопросы без указания имени. Для расчёта сметы и подготовки договора всё равно понадобятся контакты, но только с вашего согласия.
+            </div>
+          </details>
+
+          <details class="chat-faq__item">
+            <summary class="chat-faq__question"
+                     data-i18n="chat.faq.q3">
+              Можно ли по чату заказать выезд замерщика?
+            </summary>
+            <div class="chat-faq__answer"
+                 data-i18n="chat.faq.a3">
+              Да, в чате можно согласовать удобное время замера, адрес и пожелания. Менеджер уточнит детали и подтвердит запись.
+            </div>
+          </details>
+
+          <details class="chat-faq__item">
+            <summary class="chat-faq__question"
+                     data-i18n="chat.faq.q4">
+              Что, если я ещё не определился с форматом ремонта?
+            </summary>
+            <div class="chat-faq__answer"
+                 data-i18n="chat.faq.a4">
+              Это нормально. Опишите текущую ситуацию и то, чего вы хотите добиться. Мы предложим несколько сценариев: от косметического до комплексного ремонта.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Альтернативные способы связи -->
+    <section class="chat-alt" aria-labelledby="chat-alt-title">
+      <div class="container chat-alt__layout">
+        <div class="chat-alt__text">
+          <h2 id="chat-alt-title"
+              class="chat-section__title"
+              data-i18n="chat.alt.title">
+            Не любите переписку?
+          </h2>
+          <p class="chat-section__subtitle"
+             data-i18n="chat.alt.subtitle">
+            Вы можете начать с чата, а продолжить по телефону, в мессенджере или лично на объекте — как вам удобнее.
+          </p>
+        </div>
+
+        <div class="chat-alt__actions">
+          <a class="btn btn-primary"
+             href="tel:+7XXXXXXXXXX"
+             data-i18n="chat.alt.call">
+            Позвонить менеджеру
+          </a>
+          <a class="btn btn-outline"
+             href="/contacts.html"
+             data-i18n="chat.alt.visit">
+            Посмотреть все контакты
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <script src="/js/chat.js" defer></script>
+</body>
+</html>

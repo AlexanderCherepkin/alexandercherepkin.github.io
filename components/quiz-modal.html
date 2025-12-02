@@ -1,0 +1,388 @@
+<!-- /components/quiz-modal.html -->
+<!-- ✅ Оптимизированный модал квиза с улучшениями Performance -->
+
+<div class="modal" id="modal-quiz" role="dialog" aria-modal="true"
+     aria-labelledby="quizTitle" aria-describedby="quizDesc" hidden>
+
+  <!-- Подложка (НЕ блокирует клики по dialog) -->
+  <div class="modal__backdrop" aria-hidden="true"></div>
+
+  <div class="modal__dialog" role="document" tabindex="-1">
+    <!-- Close button -->
+    <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close
+            data-i18n-aria-label="aria.label.zakryt">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="modal__close-icon" width="24" height="24">
+        <path fill="currentColor" d="M18.3 5.7a1 1 0 00-1.4-1.4L12 9.17 7.1 4.3A1 1 0 105.7 5.7L10.6 10.6 5.7 15.5a1 1 0 101.4 1.4L12 12l4.9 4.9a1 1 0 001.4-1.4L13.4 10.6 18.3 5.7z"/>
+      </svg>
+    </button>
+
+    <header class="modal__header">
+      <h2 class="modal__title" id="quizTitle" data-i18n="quiz.title">Квиз: расчёт стоимости</h2>
+      <p class="modal__desc" id="quizDesc" data-i18n="quiz.desc">Ответьте на 9 вопросов — финальный экран покажет ориентир по срокам и бюджету.</p>
+    </header>
+
+    <div class="quiz js-quiz" data-steps="9" data-analytics-scope="quiz">
+      <!-- ✅ Progress bar -->
+      <div class="quiz__progress" role="progressbar"
+           aria-label="Прогресс прохождения квиза"
+           data-i18n-aria-label="aria.label.progress_prohozhdeniya_kviza"
+           aria-valuemin="0" aria-valuemax="9" aria-valuenow="0">
+        <div class="quiz__bar js-quiz-bar" style="width:0%"></div>
+      </div>
+
+      <form class="quiz__form" id="quizForm" action="/api/quiz" method="post" novalidate>
+        <!-- ✅ Honeypot -->
+        <div class="hp-field" aria-hidden="true" hidden>
+          <label class="visually-hidden" for="qz-company">Company</label>
+          <input type="text" id="qz-company" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+        </div>
+        
+        <input type="hidden" name="csrf_seed" value="">
+
+        <!-- Шаг 1: Тип объекта -->
+        <section class="quiz__step is-active" data-step="1" aria-labelledby="q1label">
+          <h3 class="quiz__question" id="q1label" aria-live="polite" data-i18n="quiz.q1.title">Тип объекта</h3>
+          <fieldset class="quiz__options">
+            <legend class="visually-hidden" data-i18n="aria.label.vyberite_tip_obekta">Выберите тип объекта</legend>
+            
+            <label class="quiz__option">
+              <input type="radio" name="type" value="Квартира" required>
+              <span data-i18n="quiz.q1.opt.apartment">Квартира</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="type" value="Дом/Коттедж" required>
+              <span data-i18n="quiz.q1.opt.house">Дом/Коттедж</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="type" value="Офис" required>
+              <span data-i18n="quiz.q1.opt.office">Офис</span>
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- Шаг 2: Площадь -->
+        <section class="quiz__step" data-step="2" aria-labelledby="q2label" hidden>
+          <h3 class="quiz__question" id="q2label" aria-live="polite" data-i18n="quiz.q2.title">Площадь (м²)</h3>
+          <div class="quiz__options">
+            <input class="quiz__input" 
+                   type="number" 
+                   name="area" 
+                   inputmode="numeric" 
+                   min="10" 
+                   max="500" 
+                   step="1"
+                   placeholder="Например, 64" 
+                   data-i18n-placeholder="placeholder.naprimer_64"
+                   autocomplete="off" 
+                   required
+                   aria-describedby="areaHelp">
+            <small id="areaHelp" class="form-hint">От 10 до 500 м²</small>
+          </div>
+        </section>
+
+        <!-- Шаг 3: Тип ремонта -->
+        <section class="quiz__step" data-step="3" aria-labelledby="q3label" hidden>
+          <h3 class="quiz__question" id="q3label" aria-live="polite" data-i18n="quiz.q3.title">Тип ремонта</h3>
+          <fieldset class="quiz__options">
+            <legend class="visually-hidden" data-i18n="aria.label.vyberite_tip_remonta">Выберите тип ремонта</legend>
+            
+            <label class="quiz__option">
+              <input type="radio" name="repair_type" value="Косметический" required>
+              <span data-i18n="quiz.q3.opt.cosmetic">Косметический</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="repair_type" value="Капитальный" required>
+              <span data-i18n="quiz.q3.opt.capital">Капитальный</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="repair_type" value="Дизайнерский" required>
+              <span data-i18n="quiz.q3.opt.design">Дизайнерский</span>
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- Шаг 4: Количество комнат -->
+        <section class="quiz__step" data-step="4" aria-labelledby="q4label" hidden>
+          <h3 class="quiz__question" id="q4label" aria-live="polite" data-i18n="quiz.q4.title">Количество комнат</h3>
+          <fieldset class="quiz__options">
+            <legend class="visually-hidden" data-i18n="aria.label.skolko_komnat">Сколько комнат</legend>
+            
+            <label class="quiz__option">
+              <input type="radio" name="rooms" value="Студия" required>
+              <span data-i18n="quiz.q4.opt.studio">Студия</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="rooms" value="1" required>
+              <span data-i18n="quiz.q4.opt.1">1</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="rooms" value="2" required>
+              <span data-i18n="quiz.q4.opt.2">2</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="rooms" value="3" required>
+              <span data-i18n="quiz.q4.opt.3">3</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="rooms" value="4+" required>
+              <span data-i18n="quiz.q4.opt.4plus">4+</span>
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- Шаг 5: Материалы -->
+        <section class="quiz__step" data-step="5" aria-labelledby="q5label" hidden>
+          <h3 class="quiz__question" id="q5label" aria-live="polite" data-i18n="quiz.q5.title">Кто закупает материалы?</h3>
+          <fieldset class="quiz__options">
+            <legend class="visually-hidden" data-i18n="aria.label.zakupka_materialov">Закупка материалов</legend>
+            
+            <label class="quiz__option">
+              <input type="radio" name="materials" value="Заказчик закупает">
+              <span data-i18n="quiz.q5.opt.client">Заказчик закупает</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="materials" value="Мы закупаем">
+              <span data-i18n="quiz.q5.opt.we">Мы закупаем</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="radio" name="materials" value="Смешанный вариант">
+              <span data-i18n="quiz.q5.opt.mixed">Смешанный вариант</span>
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- Шаг 6: Дополнительные работы -->
+        <section class="quiz__step" data-step="6" aria-labelledby="q6label" hidden>
+          <h3 class="quiz__question" id="q6label" aria-live="polite" data-i18n="quiz.q6.title">Дополнительные работы</h3>
+          <fieldset class="quiz__options">
+            <legend class="visually-hidden" data-i18n="aria.label.dopolnitelnye_raboty">Дополнительные работы</legend>
+            
+            <label class="quiz__option">
+              <input type="checkbox" name="extras[]" value="Электрика">
+              <span data-i18n="quiz.q6.opt.electricity">Электрика</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="checkbox" name="extras[]" value="Сантехника">
+              <span data-i18n="quiz.q6.opt.plumbing">Сантехника</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="checkbox" name="extras[]" value="Стяжка/полы">
+              <span data-i18n="quiz.q6.opt.floors">Стяжка/полы</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="checkbox" name="extras[]" value="Потолки">
+              <span data-i18n="quiz.q6.opt.ceilings">Потолки</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="checkbox" name="extras[]" value="Перепланировка">
+              <span data-i18n="quiz.q6.opt.replan">Перепланировка</span>
+            </label>
+            
+            <label class="quiz__option">
+              <input type="checkbox" name="extras[]" value="Дизайн-проект">
+              <span data-i18n="quiz.q6.opt.design">Дизайн-проект</span>
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- Шаг 7: Бюджет -->
+        <section class="quiz__step" data-step="7" aria-labelledby="q7label" hidden>
+          <h3 class="quiz__question" id="q7label" aria-live="polite" data-i18n="quiz.q7.title">Бюджет и когда начинать?</h3>
+          <div class="quiz__grid">
+            <div class="form-group">
+              <label for="budget" data-i18n="quiz.q7.label.budget">Бюджет</label>
+              <select id="budget" class="quiz__input" name="budget" required>
+                <option value="" selected disabled>Выберите диапазон</option>
+                <option value="до 300 тыс. ₽">до 300 тыс. ₽</option>
+                <option value="300–700 тыс. ₽">300–700 тыс. ₽</option>
+                <option value="700 тыс. ₽ и выше">700 тыс. ₽ и выше</option>
+                <option value="Пока не знаю">Пока не знаю</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="start_when">Старт работ</label>
+              <select id="start_when" class="quiz__input" name="start_when" required>
+                <option value="" selected disabled>Выберите срок</option>
+                <option value="Как можно скорее">Как можно скорее</option>
+                <option value="В течение месяца">В течение месяца</option>
+                <option value="В течение 3 месяцев">В течение 3 месяцев</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Шаг 8: Город -->
+        <section class="quiz__step" data-step="8" aria-labelledby="q8label" hidden>
+          <h3 class="quiz__question" id="q8label" aria-live="polite">Где объект?</h3>
+          <div class="quiz__grid">
+            <div class="form-group">
+              <label for="city">Город*</label>
+              <input id="city" 
+                     class="quiz__input" 
+                     type="text" 
+                     name="city"
+                     placeholder="Владимир, Суздаль…" 
+                     autocomplete="address-level2" 
+                     required>
+            </div>
+
+            <div class="form-group">
+              <label for="access">Доступ*</label>
+              <select id="access" class="quiz__input" name="access" required>
+                <option value="" selected disabled>Выберите вариант</option>
+                <option value="Есть ключи">Есть ключи, доступ свободный</option>
+                <option value="Новостройка">Новостройка, ещё без ключей</option>
+                <option value="Жилое">Жилое, проживаем внутри</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Шаг 9: Контакты -->
+        <section class="quiz__step" data-step="9" aria-labelledby="q9label" hidden>
+          <h3 class="quiz__question" id="q9label" aria-live="polite">Контакты для расчёта</h3>
+          <div class="quiz__grid">
+            <div class="form-group">
+              <label for="quiz_name">Имя*</label>
+              <input id="quiz_name" 
+                     class="quiz__input" 
+                     type="text" 
+                     name="name" 
+                     autocomplete="name" 
+                     required>
+            </div>
+
+            <div class="form-group">
+              <label for="quiz_phone">Телефон*</label>
+              <input id="quiz_phone" 
+                     class="quiz__input" 
+                     type="tel" 
+                     name="phone" 
+                     autocomplete="tel"
+                     required 
+                     pattern="^[+0-9\s()-]{7,}$" 
+                     inputmode="tel"
+                     placeholder="+7 (___) ___-__-__">
+            </div>
+
+            <div class="form-group form-group--full">
+              <label for="quiz_comment">Комментарий</label>
+              <textarea id="quiz_comment" 
+                        class="quiz__input" 
+                        name="comment" 
+                        rows="3"
+                        placeholder="Опишите задачу (опционально)" 
+                        autocomplete="off"></textarea>
+            </div>
+          </div>
+
+          <p class="quiz__policy form-hint">
+            Нажимая «Отправить», вы соглашаетесь с
+            <a href="/privacy/police.html" class="link-btn" target="_blank" rel="noopener">политикой конфиденциальности</a>.
+          </p>
+        </section>
+
+        <output id="quizStatus" class="quiz__status" role="status" aria-live="polite" aria-atomic="true" hidden></output>
+
+        <!-- Footer с кнопками -->
+        <footer class="quiz__footer">
+          <button class="btn btn--ghost" type="button" data-quiz-prev disabled>Назад</button>
+          <button class="btn" type="button" data-quiz-next>Далее</button>
+          <button class="btn" type="submit" data-quiz-submit hidden>Отправить</button>
+        </footer>
+      </form>
+
+      <!-- Результаты -->
+      <div class="quiz__result" hidden aria-live="polite" aria-atomic="true">
+        <h3 class="quiz__question">Предварительный расчёт</h3>
+        <p class="quiz__lead js-quiz-summary">
+          Спасибо! Мы получили ваши ответы.
+        </p>
+        <div class="quiz__cta">
+          <a class="btn link-btn" 
+             href="https://wa.me/79585106818" 
+             target="_blank" 
+             rel="noopener noreferrer">Продолжить в WhatsApp</a>
+          
+          <a class="btn btn--ghost link-btn" 
+             href="https://t.me/79585106818" 
+             target="_blank" 
+             rel="noopener noreferrer">Продолжить в Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Критический CSS -->
+<style>
+  .modal[hidden] { 
+    display: none !important; 
+  }
+  
+  .modal {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  
+  .modal.is-open {
+    display: flex !important;
+    z-index: 9999 !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+  }
+
+  .modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .modal__dialog {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: auto;
+    padding: 2rem;
+  }
+
+  body.scroll-lock {
+    overflow: hidden !important;
+  }
+
+  .hp-field { 
+    display: none !important; 
+  }
+
+  .quiz__bar { 
+    transition: width 0.3s ease-out;
+  }
+</style>

@@ -1,0 +1,36 @@
+/* skeleton.css — ДОБАВИТЬ (подключить в head.html) */
+:root{
+  --sk-bg: hsl(0 0% 92%);
+  --sk-shine: hsl(0 0% 98%);
+  --loader-bg: hsl(0 0% 0% / 0.2);
+}
+@media (prefers-color-scheme: dark){
+  :root{ --sk-bg: hsl(0 0% 20%); --sk-shine: hsl(0 0% 28%); --loader-bg: hsl(0 0% 0% / 0.35); }
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--sk-bg);
+  border-radius: 0.8rem;
+}
+.skeleton::after{
+  content:"";
+  position:absolute; inset:0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, var(--sk-shine), transparent);
+  animation: sk 1.2s infinite;
+}
+@keyframes sk { to { transform: translateX(100%); } }
+
+.skeleton-text { height: 1.2rem; margin-block: 0.6rem; }
+.skeleton-avatar { width: 3.2rem; height: 3.2rem; border-radius: 50%; }
+.skeleton-media { width: 100%; aspect-ratio: 16/9; border-radius: 0.8rem; }
+
+/* Фейд-лоадер для SPA */
+#page-loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--loader-bg);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease;
+}
+#page-loader.is-active { opacity: 1; pointer-events: auto; }

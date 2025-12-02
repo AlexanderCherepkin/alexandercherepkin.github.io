@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Главная -->
+  <url>
+    <loc>https://profremont.local-ai-hub.website/</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/"/>
+  </url>
+
+  <url>
+    <loc>https://profremont.local-ai-hub.website/?lang=en</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/"/>
+  </url>
+
+  <!-- remont/html/*.html -->
+  <url>
+    <loc>https://profremont.local-ai-hub.website/remont/html/cosmetic.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/remont/html/cosmetic.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/remont/html/cosmetic.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/remont/html/cosmetic.html"/>
+  </url>
+
+  <url>
+    <loc>https://profremont.local-ai-hub.website/remont/html/capital.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/remont/html/capital.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/remont/html/capital.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/remont/html/capital.html"/>
+  </url>
+
+  <url>
+    <loc>https://profremont.local-ai-hub.website/remont/html/design.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/remont/html/design.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/remont/html/design.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/remont/html/design.html"/>
+  </url>
+
+  <url>
+    <loc>https://profremont.local-ai-hub.website/remont/html/new-build.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/remont/html/new-build.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/remont/html/new-build.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/remont/html/new-build.html"/>
+  </url>
+
+  <url>
+    <loc>https://profremont.local-ai-hub.website/remont/html/secondary.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/remont/html/secondary.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/remont/html/secondary.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/remont/html/secondary.html"/>
+  </url>
+
+  <url>
+    <loc>https://profremont.local-ai-hub.website/directions/html/whitebox.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/remont/html/whitebox.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/remont/html/whitebox.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/remont/html/whitebox.html"/>
+  </url>
+
+  <!-- directions/html/*.html -->
+  <url>
+    <loc>https://profremont.local-ai-hub.website/directions/html/plumbing.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/directions/html/plumbing.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/directions/html/plumbing.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/directions/html/plumbing.html"/>
+  </url>
+
+  <url>
+    <loc>https://profremont.local-ai-hub.website/directions/html/electrical.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/directions/html/electrical.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/directions/html/electrical.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/directions/html/electrical.html"/>
+  </url>
+
+  <url>
+    <loc>https://profremont.local-ai-hub.website/directions/html/bathroom.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/directions/html/bathroom.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/directions/html/bathroom.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/directions/html/bathroom.html"/>
+  </url>
+
+  <url>
+    <loc>https://profremont.local-ai-hub.website/directions/html/kitchen.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/directions/html/kitchen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/directions/html/kitchen.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/directions/html/kitchen.html"/>
+  </url>
+
+  <!-- privacy -->
+  <url>
+    <loc>https://profremont.local-ai-hub.website/privacy/police.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://profremont.local-ai-hub.website/privacy/police.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://profremont.local-ai-hub.website/privacy/police.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://profremont.local-ai-hub.website/privacy/police.html"/>
+  </url>
+  
+  <url>
+      <loc>https://profremont.local-ai-hub.website/pages/chat.html</loc>
+      <lastmod>2025-11-02</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+    </url>
+    <url>
+      <loc>https://profremont.local-ai-hub.website/pages/chat.html?lang=en</loc>
+      <lastmod>2025-11-02</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+    </url>
+
+</urlset>

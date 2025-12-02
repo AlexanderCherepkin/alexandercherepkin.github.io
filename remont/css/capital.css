@@ -1,0 +1,731 @@
+/* ===== capital.css (main-only) ===== */
+/* Фолбэк-токены (если глобальные не подключены) */
+:root{
+  --ink: #0f172a;
+  --text: var(--ink);
+  --muted: #6b7280;
+  --brand: #16a34a;
+  --brand-2: #15803d;
+  --accent: #84cc16;
+  --bg: #ffffff;
+  --bg-2: #f7faf9;
+  --line: #e5e7eb;
+  --radius: 1.2rem;
+  --shadow: 0 0.6rem 2rem rgba(2,6,23,.08);
+  --ring: 0 0 0 .14rem rgba(22,163,74,.35);
+
+  --hero-h: 88rem;
+  --content-w: 150rem; /* контейнер */
+}
+/* Скрываем бургер-меню на всех страницах, КРОМЕ главной (.page-index) */
+body:not(.page-index) .site-header__burger,
+body:not(.page-index) .nav-toggle,
+body:not(.page-index) .site-header__burger-line {
+    display: none !important;
+}
+
+/* Базовая утилита контейнера и секций */
+.container{
+  width: min(100%, calc(var(--content-w) + 3.2rem));
+  margin-inline: auto;
+  padding-inline: 1.6rem;
+}
+.section{
+  padding-block: 4rem;
+}
+.section:first-child{ padding-block-start: 0; }
+
+/* Заголовки */
+h1,h2,h3{ color: var(--text); line-height: 1.15; }
+h1{ font-size: clamp(2rem, 3.6vw, 3.2rem); font-weight: 800; letter-spacing: -.02em; }
+h2{ font-size: clamp(1.6rem, 2.6vw, 2.4rem); font-weight: 800; margin-bottom: 1.6rem; }
+h3{ font-size: clamp(1.2rem, 1.6vw, 1.4rem); font-weight: 700; }
+
+.lead{ color: var(--text); opacity: .9; font-size: 1.125rem; max-width: 50rem; }
+
+/* Кнопки */
+.btn{
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 2.8rem; padding-inline: 1.1rem; border-radius: calc(var(--radius) * 0.9);
+  font-weight: 700; text-decoration: none; border: .08rem solid transparent;
+  transition: transform .1s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+  box-shadow: 0 .2rem .6rem rgba(0,0,0,.05);
+  will-change: transform;
+}
+.btn:focus-visible{ outline: none; box-shadow: var(--ring); }
+.btn:active{ transform: translateY(.06rem); }
+
+.btn--solid{ background: var(--brand); color: #fff; }
+.btn--solid:hover{ background: var(--brand-2); }
+
+.btn--ghost{
+  background: transparent; color: var(--brand); border-color: color-mix(in srgb, var(--brand) 35%, transparent);
+}
+.btn--ghost:hover{
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+}
+
+a { text-decoration: none; }              /* убирает подчёркивание */
+a:hover, a:focus { text-decoration: none; }  /* на ховер/фокус тоже */
+
+/* HERO */
+.hero{
+  position: relative; min-height: var(--hero-h); display: grid; place-items: center;
+  isolation: isolate; overflow: clip;
+}
+.hero__overlay{
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(2,6,23,.55) 0%, rgba(2,6,23,.25) 30%, rgba(2,6,23,.4) 100%);
+  z-index: 1;
+}
+.hero__bgset{ position: absolute; inset: 0; z-index: 0; }
+.hero__bg{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0; transition: opacity .8s ease;
+}
+.hero__bg.is-active{ opacity: 1; }
+
+.hero__content{
+  position: relative; z-index: 2; color: #fff; padding-block: 4rem; width: min(100%, 58rem);
+}
+.eyebrow{
+  display: inline-block; margin-bottom: .8rem;
+  background: rgba(255,255,255,.08); border: .08rem solid rgba(255,255,255,.18);
+  color: #eafff0; padding: .3rem .6rem; border-radius: 999rem; font-weight: 700; font-size: 1.2rem;
+  backdrop-filter: blur(.2rem);
+}
+.hero__cta{ display: flex; gap: .8rem; margin-top: 1.2rem; flex-wrap: wrap; }
+.hero__badges{ display: flex; gap: .6rem; margin-top: 1rem; flex-wrap: wrap; padding: 0; list-style: none; }
+.badge{
+  background: rgba(255,255,255,.1); color: #f8fff9; border: .08rem solid rgba(255,255,255,.2);
+  padding: .35rem .7rem; border-radius: 999rem; font-weight: 700; font-size: 1.2rem; backdrop-filter: blur(.2rem);
+}
+
+/* WHY */
+.grid-3{
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+}
+.card{
+  background: var(--bg-2); border: .08rem solid var(--line);
+  border-radius: var(--radius); padding: 1.2rem; box-shadow: var(--shadow);
+}
+
+/* SCOPE */
+.scope__wrap{ display: grid; grid-template-columns: 1.6fr .9fr; gap: 1rem; align-items: start; }
+.scope__list{ display: grid; gap: .6rem; padding-left: 1.1rem; }
+.scope__list li{ line-height: 1.55; }
+.scope__note{
+  background: #effcf3; border: .08rem dashed #b6e2c2; color: #165534;
+  padding: .9rem 1rem; border-radius: calc(var(--radius) * .8);
+}
+
+/* PROCESS */
+.steps{
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-top: 1rem;
+}
+.steps > li{
+  background: #f7faf9; border: .08rem solid var(--line); border-radius: 999rem;
+  padding: .5rem .8rem .5rem 2rem; position: relative; font-weight: 600;
+}
+.steps > li::before{
+  content: counter(step); counter-increment: step;
+  position: absolute; left: .6rem; top: 50%; transform: translateY(-50%);
+  width: 1.4rem; height: 1.4rem; border-radius: 999rem; background: var(--brand); color: #fff;
+  display: grid; place-items: center; font-size: .9rem; font-weight: 800;
+}
+.steps{ counter-reset: step; }
+
+/* Timeline */
+.timeline{ margin-top: 1.6rem; }
+.timeline__bar{
+  height: .2rem; background: var(--line); border-radius: 999rem; margin-block: 1rem .8rem;
+}
+.timeline__ranges{
+  display: grid; gap: .4rem; grid-template-columns: repeat(3, 1fr);
+  list-style: none; padding: 0; margin: 0;
+}
+.timeline__ranges li{
+  display: grid; grid-template-columns: auto 1fr; gap: .5rem; align-items: center;
+  background: #f7faf9; border: .08rem solid var(--line); border-radius: 999rem; padding: .5rem .8rem;
+}
+.timeline__ranges li span:first-child{
+  background: #e8f8ee; color: #124d2a; border: .08rem solid #cfeedd;
+  padding: .3rem .6rem; border-radius: 999rem; font-weight: 800; font-size: .9rem;
+}
+
+/* PACKAGES */
+.prices-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: stretch; }
+.price-card{
+  background: #fff; border: .08rem solid var(--line); border-radius: var(--radius); padding: 1.2rem; box-shadow: var(--shadow);
+  display: grid; align-content: start; gap: .8rem;
+}
+.price-card__title{ font-size: 1.2rem; font-weight: 800; }
+.price-card__list{ display: grid; gap: .4rem; padding-left: 1.1rem; }
+.price-card__note{ color: var(--muted); font-size: .95rem; }
+.price-card__price{ margin-top: .2rem; font-size: 1.4rem; font-weight: 900; color: var(--brand); }
+.price-card--hit{ outline: .16rem solid color-mix(in srgb, var(--brand) 22%, transparent); background: #fbfffc; }
+
+/* MATERIALS */
+.grid-4{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.mat-card{
+  background: #fff; border: .08rem solid var(--line); border-radius: var(--radius);
+  padding: 1rem; box-shadow: var(--shadow);
+}
+
+/* GALLERY */
+.gallery__grid{
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; margin-bottom: 1rem;
+}
+.gallery__item{
+  display: block; border: .08rem solid var(--line); border-radius: calc(var(--radius) * .7);
+  overflow: clip; background: #fff; padding: 0; cursor: zoom-in;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.gallery__item img{ display: block; width: 100%; height: 23rem; object-fit: cover; }
+.gallery__item:hover{ transform: translateY(-.06rem); box-shadow: 0 .4rem 1.2rem rgba(2,6,23,.12); }
+
+/* Before / After */
+.beforeafter__wrap{
+  position: relative; border-radius: var(--radius); overflow: clip; border: .08rem solid var(--line);
+  height: 56rem; background: #000;
+  --pos: 50;
+}
+.beforeafter__wrap img{
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; pointer-events: none;
+}
+.beforeafter__wrap img:first-child{ /* BEFORE stays full */
+  clip-path: inset(0 calc(100% - var(--pos)*1%) 0 0);
+}
+.beforeafter__wrap img:nth-child(2){ /* AFTER */
+  clip-path: inset(0 0 0 calc(var(--pos)*1%));
+}
+.beforeafter__slider{
+  position: absolute; inset: 0; width: 100%; appearance: none; background: transparent; cursor: ew-resize;
+}
+.beforeafter__slider:focus-visible{ outline: none; }
+.beforeafter__slider::-webkit-slider-thumb{
+  -webkit-appearance: none; width: .16rem; height: 100%; background: #fff; border: .12rem solid #0006;
+  box-shadow: 0 0 0 .14rem rgba(255,255,255,.75), 0 0 0 .28rem rgba(0,0,0,.25); border-radius: 0;
+}
+.beforeafter__slider::-moz-range-thumb{
+  width: .16rem; height: 100%; background: #fff; border: .12rem solid #0006;
+  box-shadow: 0 0 0 .14rem rgba(255,255,255,.75), 0 0 0 .28rem rgba(0,0,0,.25);
+}
+
+/* LIGHTBOX */
+.lightbox{
+  border: none; padding: 0; width: min(92vw, 80rem);
+  max-height: 92vh; background: transparent; overflow: visible;
+}
+.lightbox::backdrop{ background: rgba(2,6,23,.72); backdrop-filter: blur(.2rem); }
+.lightbox__img{
+  display: block; width: 100%; height: auto; border-radius: var(--radius);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.35);
+}
+.lightbox__close{
+  position: absolute; top: -2.6rem; right: 0;
+  width: 2.2rem; height: 2.2rem; border-radius: 999rem; border: .08rem solid #ffffff55;
+  background: #ffffff; color: #0f172a; font-size: 1.4rem; line-height: 1; cursor: pointer;
+}
+.lightbox__arrows{
+  position: absolute; inset: 0; pointer-events: none; /* фикс «не дергаться» */
+}
+.lightbox__prev,.lightbox__next{
+  pointer-events: auto; position: absolute; top: 50%; transform: translateY(-50%);
+  width: 2.6rem; height: 2.6rem; border-radius: 999rem; background: rgba(255,255,255,.9);
+  border: .08rem solid #ffffff55; display: grid; place-items: center; font-size: 1.2rem; cursor: pointer;
+  transition: opacity .2s ease, filter .2s ease;
+}
+.lightbox__prev{ left: -.6rem; } .lightbox__next{ right: -.6rem; }
+.lightbox__prev:hover,.lightbox__next:hover{ opacity: .9; filter: brightness(.98); }
+/* важно: НЕ меняем top/transform на :hover — стрелки не «прыгают» */
+
+/* FAQ (details) */
+.accordion details{
+  background: #f7faf9; border: .08rem solid var(--line); border-radius: calc(var(--radius) * .8);
+  padding: .7rem 1rem; transition: border-color .2s ease, background-color .2s ease;
+}
+.accordion summary{
+  cursor: pointer; font-weight: 800; list-style: none; position: relative; padding-right: 2rem;
+}
+.accordion summary::-webkit-details-marker{ display: none; }
+.accordion details[open]{ background: #fbfffc; border-color: color-mix(in srgb, var(--brand) 20%, var(--line)); }
+.accordion__content{ margin-top: .6rem; color: var(--text); }
+
+/* CTA form */
+.form{ display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; align-items: end; }
+.form label{ display: grid; gap: .35rem; font-weight: 700; }
+.form input{
+  height: 2.8rem; padding-inline: .8rem; border-radius: .8rem; border: .08rem solid var(--line); background: #fff;
+}
+.form input:focus-visible{ outline: none; box-shadow: var(--ring); }
+.form .btn{ height: 2.8rem; }
+.form__consent{ grid-column: 1 / -1; color: var(--muted); font-size: .95rem; }
+
+.price-disclaimer{ margin-top: .8rem; color: var(--muted); font-size: .95rem; }
+
+/* Респонсив */
+@media (max-width: 75rem){
+  :root{ --hero-h: 34rem; }
+  .grid-4{ grid-template-columns: repeat(2, 1fr); }
+  .prices-grid{ grid-template-columns: 1fr; }
+  .grid-3{ grid-template-columns: 1fr; }
+  .scope__wrap{ grid-template-columns: 1fr; }
+  .steps{ grid-template-columns: 1fr; }
+  .timeline__ranges{ grid-template-columns: 1fr; }
+  .gallery__grid{ grid-template-columns: repeat(2, 1fr); }
+  .form{ grid-template-columns: 1fr; }
+  .hero__content{ padding-block: 3rem; }
+}
+
+/* === HEADER over HERO (прозрачная над героем) === */
+:root{ --header-h: 4rem; } /* будет уточнено из JS */
+
+header, .site-header, .header{
+  position: absolute; inset-block-start: 0; inset-inline: 0;
+  z-index: 100;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  transition: background-color .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+}
+
+/* Прозрачная тема над героем: белые ссылки/иконки */
+header.is-transparent, .site-header.is-transparent, .header.is-transparent{
+  background: linear-gradient(180deg, rgba(2,6,23,.18), rgba(2,6,23,0)); /* мягкая вуаль */
+  backdrop-filter: saturate(1.1) blur(.2rem);
+}
+header.is-transparent :where(a, button, .logo, .nav, svg, span){
+  color: #fff;
+  fill: #fff;
+}
+
+/* Плотная шапка после ухода от HERO */
+header.is-solid, .site-header.is-solid, .header.is-solid{
+  position: sticky; top: 0; /* фиксируем в потоке после героя */
+  background: var(--bg);
+  box-shadow: 0 .3rem 1rem rgba(2,6,23,.08);
+  backdrop-filter: none;
+}
+
+/* Чтобы контент под шапкой не «подпрыгивал» на мобильных */
+.hero{
+  margin-top: 0;
+  padding-top: max(3.6rem, var(--header-h)); /* отступ под прозрачную шапку */
+}
+
+/* HERO выравниваем к самому верху вьюпорта */
+main > .hero:first-child{ margin-block-start: 0; }
+
+/* Дополнительно немного высоты герою на десктопе */
+:root{ --hero-h: 75rem; }
+
+@media (max-width: 75rem){
+  :root{ --hero-h: 38rem; }
+}
+
+/* === HOTFIX: убираем линию между header и HERO === */
+header, .site-header, .header{
+  border: 0 !important;
+  box-shadow: none !important;
+  background-clip: padding-box; /* чтобы не рисовало 1px по границе */
+}
+header.is-transparent, .site-header.is-transparent, .header.is-transparent{
+  /* та же вуаль, но без резкой границы */
+  background: linear-gradient(180deg, rgba(2,6,23,.15) 0%, rgba(2,6,23,.05) 30%, rgba(2,6,23,0) 100%);
+  -webkit-backdrop-filter: saturate(1.1) blur(.2rem);
+  backdrop-filter: saturate(1.1) blur(.2rem);
+}
+
+/* иногда hairline даёт слой overlay — убираем артефакт */
+.hero__overlay{ transform: translateZ(0); }
+
+/* === (опционально) Зелёные пункты главного меню === */
+/* Вариант А: зелёные всегда */
+.header .nav a, header .nav a{
+  color: var(--brand) !important;
+  font-weight: 700;
+}
+.header .nav a:hover, header .nav a:hover{ color: var(--brand-2) !important; }
+
+.mega-btn {color: #fff !important;}
+
+.site-header__link, .site-header__link:visited {
+    -webkit-text-fill-color: #fff;
+    background: transparent;
+    text-decoration: none;
+}
+
+
+
+/* фон затемняем немного сильнее */
+.hero__overlay{
+  background: linear-gradient(180deg, rgba(2,6,23,.65) 0%, rgba(2,6,23,.45) 35%, rgba(2,6,23,.55) 100%);
+}
+
+/* левый блок контента: узкая колонка, слева поля как у контейнера */
+.hero__content{
+  width: min(100%, 98rem);
+  margin-left: clamp(1rem, 6vw, 3rem);
+  margin: auto;
+  padding-inline: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  color: #fff;
+  text-shadow: 0 .08rem .28rem rgba(0,0,0,.35);
+}
+
+/* заголовок + лид — белые, крупные */
+.hero h1{
+  color: #fff !important;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  font-size: clamp(3.2rem, 4.6vw, 4.2rem);
+  line-height: 1.1;
+  max-width: none;
+}
+.hero .lead{
+  color: #fff !important;
+  opacity: .95;
+  font-size: clamp(1.25rem, 1.55vw, 1.45rem);
+  max-width: none;
+}
+
+/* eyebrow — зелёная пилюля с белым текстом */
+.eyebrow{
+  background: var(--brand) !important;
+  color: #fff !important;
+  border: .08rem solid color-mix(in srgb, var(--brand) 85%, #0000);
+  box-shadow: 0 .2rem .6rem rgba(0,0,0,.12);
+}
+
+/* CTA: слева, как на примере */
+.hero__cta{ justify-content: flex-start; gap: 1rem; }
+
+/* кнопки */
+.btn--solid{
+  background: var(--brand) !important; color:#fff !important; border-color: transparent;
+}
+.btn--solid:hover{ background: var(--brand-2) !important; }
+
+.btn--ghost{
+  background: var(--brand) !important;
+  color: #fff !important;
+  border-color: var(--brand) !important;
+}
+
+/* бейджи — светлые, с тонкой белой рамкой */
+.hero__badges{ gap: .9rem; }
+.badge{
+  background: rgba(255,255,255,.12) !important;
+  color: #fff !important;
+  border: .08rem solid rgba(255,255,255,.28) !important;
+  text-shadow: none;
+}
+
+/* чтобы хедер/навигация остались видимыми над героем */
+header.is-transparent :where(a,span,svg){ color:#fff; fill:#fff; }
+
+/* === NUCLEAR OVERRIDE: цвет текста у "Этапы работ" в HERO === */
+.hero .hero__cta .btn.btn--ghost,
+.hero .hero__cta .btn.btn--ghost:link,
+.hero .hero__cta .btn.btn--ghost:visited,
+.hero .hero__cta .btn.btn--ghost:hover,
+.hero .hero__cta .btn.btn--ghost:active,
+.hero .hero__cta .btn.btn--ghost:focus,
+.hero .hero__cta .btn.btn--ghost *{
+  color: #fff !important;                  /* белый текст */
+  -webkit-text-fill-color: #fff !important;/* сафари/ios */
+  background: transparent !important;      /* без подложки */
+  border-color: currentColor !important;   /* рамка = цвет текста */
+  text-decoration: none !important;
+}
+
+/* === КРУПНЕЕ НОМЕРА В "Этапы работ" === */
+.steps > li{
+  padding-left: 2.6rem;            /* больше место под круглую метку */
+  min-height: 2.2rem;
+}
+.steps > li::before{
+  width: 1.9rem;                    /* было ~1.4rem */
+  height: 1.9rem;
+  left: .5rem;
+  font-size: 1.1rem;                /* цифра крупнее */
+  font-weight: 900;
+}
+
+/* === КРУПНЕЕ ПИЛЮЛИ "Дни 1–3", "Дни 4–7" и т.д. === */
+.timeline__ranges li{
+  padding: .65rem 1rem;             /* чуть выше строка */
+}
+.timeline__ranges li span:first-child{
+  font-size: 1.5rem;               /* было ~0.9rem */
+  font-weight: 900;
+  padding: .38rem .8rem;
+  border-width: .1rem;              /* пилюля контрастнее */
+}
+
+/* Адаптив: на телефонах чутка меньше, чтобы не ломало строки */
+@media (max-width: 40rem){
+  .steps > li{ padding-left: 2.2rem; }
+  .steps > li::before{
+    width: 1.7rem; height: 1.7rem; font-size: 1rem;
+  }
+  .timeline__ranges li span:first-child{
+    font-size: 1rem; padding: .34rem .7rem;
+  }
+}
+
+/* === PACKAGES: больше воздуха, мягкая окантовка, смещение вправо === */
+
+/* Чуть усилим фон секции и дадим дополнительный левый отступ */
+.packages.section{
+  background: #eefbf1; /* очень светлая мята */
+}
+.packages .container{
+  padding-left: clamp(2rem, 6vw, 4rem); /* «от лева» */
+  padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+/* Сетка карточек: больше зазор */
+.prices-grid{
+  gap: 1.4rem;
+}
+
+/* Карточки — больше внутренние отступы и «задний бордер» */
+.price-card{
+  padding: 1.6rem 1.8rem;                         /* воздуха внутрь */
+  border-radius: calc(var(--radius) * 1.1);
+  border: .1rem solid color-mix(in srgb, var(--brand) 8%, var(--line));
+  /* задний «второй» бордер: мягкая внутренняя окантовка + лёгкая тень */
+  box-shadow:
+    inset 0 0 0 .14rem rgba(255,255,255,.75),
+    0 .6rem 1.6rem rgba(2,6,23,.06);
+  background: #fff;
+}
+
+/* «Хит» — слегка выделим */
+.price-card--hit{
+  outline: .16rem solid color-mix(in srgb, var(--brand) 18%, transparent);
+  box-shadow:
+    inset 0 0 0 .14rem rgba(255,255,255,.85),
+    0 .8rem 2rem rgba(2,6,23,.08);
+  background: #fbfffc;
+}
+
+/* Микроправки типографики внутри карточек */
+.price-card__title{ margin-bottom: .4rem; }
+.price-card__list{ gap: .6rem; }
+.price-card__note{ margin-top: .6rem; }
+.price-card__price{ margin-top: .4rem; }
+
+/* На узких экранax сохраняем воздух */
+@media (max-width: 75rem){
+  .packages .container{ padding-left: clamp(1.2rem, 4vw, 2rem); }
+  .price-card{ padding: 1.4rem 1.6rem; }
+}
+
+
+.modal__dialog {
+    position: relative;
+    z-index: 1;
+    max-width: 100rem;
+    margin: 4rem auto;
+    padding: 10rem;
+}
+
+.modal__header {
+    padding: 0 1.2rem;
+}
+
+.modal {
+    max-width: 104rem;
+    width: min(100% - 2rem, 80rem);
+    /* border: none; */
+    border-radius: 35.2rem;
+    padding: 0;
+}
+
+/* Модалка всегда поверх всего нашего героя/хедера */
+:where(dialog[open], .modal, .popup, [role="dialog"]){
+  z-index: 100000 !important;
+}
+
+/* Крестик: поверх, кликабелен, без теней-оверлеев */
+:where(dialog[open], .modal, .popup, [role="dialog"])
+  :is(.modal__close, .popup__close, .btn-close, .close, .mfp-close, .fancybox__close){
+  position: absolute;
+  top: 10px; right: 12px;
+  z-index: 100001 !important;
+  pointer-events: auto !important;
+}
+
+/* На всякий случай: задний фон героя не перехватывает клики */
+.hero__overlay{ pointer-events: none; }
+
+.modal__dialog {
+    position: relative;
+    z-index: 1;
+    max-width: 100rem;
+    margin: 4rem auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* модалка и крестик выше всего */
+:where(dialog[open], .modal, .popup, [role="dialog"], .quiz){ z-index: 100000 !important; }
+:where(dialog[open], .modal, .popup, [role="dialog"], .quiz)
+  :is(.modal__close, .popup__close, .btn-close, .close, .mfp-close, .fancybox__close){ z-index: 100001 !important; }
+/* фон героя не ловит клики */
+.hero__overlay{ pointer-events: none; }
+
+
+
+
+
+
+/* Исправление наложения логотипа на меню */
+/*.site-header {*/
+/*  position: relative;*/
+/*  z-index: 100;*/
+/*}*/
+
+.site-header__logo {
+  position: relative;
+  z-index: 2;
+  margin-right: 2rem; 
+}
+
+.site-header__nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* Прозрачная шапка над героем */
+/*header.is-transparent {*/
+/*  background: linear-gradient(180deg, rgba(2,6,23,.15) 0%, rgba(2,6,23,0) 100%);*/
+/*  backdrop-filter: saturate(1.1) blur(.2rem);*/
+/*}*/
+
+/* Остальные стили остаются без изменений */
+.section{
+  padding-block: 4rem;
+}
+.section:first-child{ padding-block-start: 0; }
+
+/* Заголовки */
+h1,h2,h3{ color: var(--text); line-height: 1.15; }
+h1{ font-size: clamp(2rem, 3.6vw, 3.2rem); font-weight: 800; letter-spacing: -.02em; }
+h2{ font-size: clamp(1.6rem, 2.6vw, 2.4rem); font-weight: 800; margin-bottom: 1.6rem; }
+h3{ font-size: clamp(1.2rem, 1.6vw, 1.4rem); font-weight: 700; }
+
+.lead{ color: var(--text); opacity: .9; font-size: 1.125rem; max-width: 50rem; }
+
+/* Кнопки */
+.btn{
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 2.8rem; padding-inline: 1.1rem; border-radius: calc(var(--radius) * 0.9);
+  font-weight: 700; text-decoration: none; border: .08rem solid transparent;
+  transition: transform .1s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+  box-shadow: 0 .2rem .6rem rgba(0,0,0,.05);
+  will-change: transform;
+}
+.btn:focus-visible{ outline: none; box-shadow: var(--ring); }
+.btn:active{ transform: translateY(.06rem); }
+
+.btn--solid{ background: var(--brand); color: #fff; }
+.btn--solid:hover{ background: var(--brand-2); }
+
+.btn--ghost{
+  background: transparent; color: var(--brand); border-color: color-mix(in srgb, var(--brand) 35%, transparent);
+}
+.btn--ghost:hover{
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+}
+
+/* HERO */
+.hero{
+  position: relative; min-height: var(--hero-h); display: grid; place-items: center;
+  isolation: isolate; overflow: clip;
+  margin-top: 0;
+  padding-top: max(3.6rem, var(--header-h));
+}
+.hero__overlay{
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(2,6,23,.65) 0%, rgba(2,6,23,.25) 30%, rgba(2,6,23,.4) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero__bgset{ position: absolute; inset: 0; z-index: 0; }
+.hero__bg{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0; transition: opacity .8s ease;
+}
+.hero__bg.is-active{ opacity: 1; }
+
+.hero__content{
+  position: relative; z-index: 2; color: #fff;
+  width: min(100%, 58rem);
+  padding-inline: 0;
+  text-shadow: 0 .08rem .28rem rgba(0,0,0,.35);
+}
+.eyebrow{
+  display: inline-block; margin-bottom: .8rem;
+  background: var(--brand); color: #fff;
+  border: .08rem solid color-mix(in srgb, var(--brand) 85%, #0000);
+  padding: .3rem .6rem; border-radius: 999rem; font-weight: 700; font-size: 1.2rem;
+  box-shadow: 0 .2rem .6rem rgba(0,0,0,.12);
+}
+.hero__cta{ display: flex; gap: .8rem; margin-top: 1.2rem; flex-wrap: wrap; justify-content: flex-start; }
+.hero__badges{ display: flex; gap: .6rem; margin-top: 1rem; flex-wrap: wrap; padding: 0; list-style: none; }
+.badge{
+  background: rgba(255,255,255,.12); color: #fff; border: .08rem solid rgba(255,255,255,.28);
+  padding: .35rem .7rem; border-radius: 999rem; font-weight: 700; font-size: 1.2rem;
+}
+
+/* Остальные секции остаются без изменений */
+.grid-3{
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+}
+.card{
+  background: var(--bg-2); border: .08rem solid var(--line);
+  border-radius: var(--radius); padding: 1.2rem; box-shadow: var(--shadow);
+}
+
+.scope__wrap{ display: grid; grid-template-columns: 1.6fr .9fr; gap: 1rem; align-items: start; }
+.scope__list{ display: grid; gap: .6rem; padding-left: 1.1rem; }
+.scope__list li{ line-height: 1.55; }
+.scope__note{
+  background: #effcf3; border: .08rem dashed #b6e2c2; color: #165534;
+  padding: .9rem 1rem; border-radius: calc(var(--radius) * .8);
+}
+
+/* Респонсив */
+@media (max-width: 75rem){
+  :root{
+    --hero-h: 70rem;
+    --container-padding: 1.5rem;
+  }
+  .grid-4{ grid-template-columns: repeat(2, 1fr); }
+  .prices-grid{ grid-template-columns: 1fr; }
+  .grid-3{ grid-template-columns: 1fr; }
+  .scope__wrap{ grid-template-columns: 1fr; }
+  .steps{ grid-template-columns: 1fr; }
+  .timeline__ranges{ grid-template-columns: 1fr; }
+  .gallery__grid{ grid-template-columns: repeat(2, 1fr); }
+  .form{ grid-template-columns: 1fr; }
+  .hero__content{ padding-block: 3rem; }
+}
+
+@media (max-width: 48rem){
+  :root{
+    --container-padding: 2rem;
+  }
+  .hero__content {
+      padding: .9rem 1rem; border-radius: calc(var(--radius) * .8);
+  }
+  .site-header__logo {
+    margin-right: 1rem;
+  }
+}

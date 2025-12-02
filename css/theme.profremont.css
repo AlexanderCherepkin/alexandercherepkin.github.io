@@ -1,0 +1,408 @@
+/* ================================
+   ПрофРемонт — ЗЕЛЁНАЯ ТЕМА (clean, unified)
+   ================================ */
+:root{
+  /* Палитра */
+  --brand:#8cc63e;
+  --brand-2:#6ba62f;
+  --accent:#cde989;
+
+  /* Текст/границы */
+  --ink:#1b1f13;
+  --muted:#5f6b4f;
+  --line:#cfe5b9;
+
+  /* Поверхности */
+  --surface-1:oklch(0.975 0.03 145); /* секции */
+  --surface-2:oklch(0.982 0.022 145); /* карточки/контейнеры */
+  --surface-3:oklch(0.988 0.015 145); /* лёгкие области */
+
+  /* Фон страницы (градиент) */
+  --bg-page-1:oklch(0.985 0.02 145);
+  --bg-page-2:oklch(0.98 0.03 145);
+  --bg-page-3:oklch(0.975 0.04 145);
+
+  /* Совместимость с аддонами */
+  --bg:var(--surface-1);
+  --bg-2:var(--surface-3);
+  --text:var(--ink);
+
+  /* Прочее */
+  --radius:1.2rem;
+  --ring:0 0 0 .14rem color-mix(in oklch, var(--brand) 35%, transparent);
+
+  /* Типографика */
+  --fs-base:1.6rem;
+  --fs-h1:clamp(2.6rem, 2rem + 1.4vw, 3.6rem);
+  --fs-h2:clamp(2rem, 1.6rem + .9vw, 2.8rem);
+  --lh-tight:1.25;
+  --font-benefits:"Manrope", Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* Topbar (расширенная версия) */
+  --topbar-h:0rem;
+  --topbar-z:1100;
+  --topbar-bg:oklch(0.96 0.03 145);
+  --topbar-text:oklch(0.28 0.06 145);
+  --topbar-shadow:0 0.2rem 1rem rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --topbar-bg:oklch(0.23 0.03 145);
+    --topbar-text:oklch(0.92 0.03 145);
+    --topbar-shadow:0 0.2rem 1rem rgba(0,0,0,.35);
+  }
+}
+
+/* ===== База / фон ===== */
+html{ font-size:62.5%; scroll-behavior:smooth; }
+html{ background:linear-gradient(180deg, #f3f9ec 0%, #eaf3e0 45%, #e2efd3 100%); }
+@supports (color:oklch(0.98 0.03 145)){
+  html{
+    background:linear-gradient(180deg, var(--bg-page-1) 0%, var(--bg-page-2) 45%, var(--bg-page-3) 100%);
+  }
+}
+body{ background:transparent !important; color:var(--ink); }
+.page, .wrapper, .layout, main{ background:transparent !important; }
+html { scrollbar-gutter: stable both-edges; }
+
+/* Лок скролла для модалок/меню */
+body.scroll-lock{ overflow:hidden; overscroll-behavior:none; }
+
+/* =======================
+   ВЕРХНЯЯ ПЛАШКА (topbar)
+   ======================= */
+.topbar{
+  background:var(--topbar-bg);
+  color:var(--topbar-text);
+  border-bottom:.0625rem solid color-mix(in oklab, var(--topbar-text), transparent 85%);
+  font-family:var(--font, "Manrope", system-ui, -apple-system, Segoe UI, Roboto, sans-serif);
+  font-size:1.4rem;
+  line-height:1.4;
+}
+.topbar--fixed{
+  position:fixed;
+  inset-inline:0;
+  top:0;
+  z-index:var(--topbar-z);
+  transform:translateY(-100%);
+  opacity:0;
+  transition:transform .5s cubic-bezier(.22,.8,.32,1), opacity .35s ease-out;
+  box-shadow:var(--topbar-shadow);
+  will-change:transform;
+  padding-top:max(0rem, env(safe-area-inset-top));
+}
+.topbar--fixed.is-open{ transform:translateY(0); opacity:1; }
+.topbar__inner{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  align-items:center;
+  gap:1rem;
+  padding:.75rem 1rem;
+}
+.topbar__list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem 1.25rem;
+  margin:0; padding:0;
+  list-style:none;
+  font-size:1.2rem; font-weight:700;
+}
+.topbar__item{ display:inline-flex; align-items:center; gap:.4rem; }
+.topbar__icon{ font-size:1.05em; }
+.topbar__dot{ opacity:.6; margin-inline:.25rem; }
+.topbar__link{
+  color:inherit; text-decoration:none;
+  border-bottom:.0625rem dashed color-mix(in oklab, currentColor, transparent 60%);
+}
+.topbar__link:hover,
+.topbar__link:focus-visible{
+  color:color-mix(in oklab, var(--topbar-text), var(--brand) 35%);
+  border-bottom-color:currentColor; outline:none;
+}
+.topbar__cta{
+  justify-self:end; white-space:nowrap;
+  border-color:color-mix(in oklab, var(--brand), black 10%);
+}
+.topbar__cta:hover,
+.topbar__cta:focus-visible{ background:var(--brand); color:#fff; }
+.topbar__close{
+  justify-self:end; appearance:none; border:0; color:inherit;
+  inline-size:2.25rem; block-size:2.25rem;
+  display:grid; place-items:center; border-radius:.5rem; cursor:pointer;
+}
+.topbar__close:hover,
+.topbar__close:focus-visible{
+  outline:none; background:color-mix(in oklab, var(--topbar-text), transparent 92%);
+}
+.topbar__close-ic{ display:block; }
+@media (max-width:56rem){
+  .topbar__inner{ grid-template-columns:1fr auto; gap:.75rem; }
+  .topbar__cta{ order:2; }
+  .topbar__close{ order:3; }
+}
+@media (prefers-reduced-motion: reduce){ .topbar--fixed{ transition:none; } }
+html.has-topbar-padding{ scroll-padding-top:calc(var(--topbar-h) + .5rem); }
+
+/* =======================
+   ХЕДЕР (полупрозрачный)
+   ======================= */
+.site-header{
+  -webkit-backdrop-filter:saturate(160%) blur(6px);
+  backdrop-filter:saturate(160%) blur(6px);
+  background:color-mix(in oklch, var(--surface-3) 40%, transparent);
+  border-bottom:.1rem solid rgba(207, 229, 185, .4);
+  position:sticky; top:0; z-index:50;
+}
+.site-header.is-scrolled{ background:rgba(243, 249, 236, .7); }
+@supports (color:oklch(0.98 0.03 145)){
+  .site-header.is-scrolled{
+    background:color-mix(in oklch, var(--surface-3) 70%, transparent);
+    border-bottom-color:color-mix(in oklch, var(--line) 70%, transparent);
+  }
+}
+.site-header__inner{
+  align-items:center; display:grid; gap:2rem;
+  grid-template-columns:auto 1fr auto;
+  min-height:6.4rem; padding:1.2rem 1.6rem;
+}
+.site-header__menu{
+  display:flex; gap:2.4rem; list-style:none; margin:0; padding:0;
+}
+.site-header__link,
+.site-header__link:visited{
+  -webkit-text-fill-color:var(--ink);
+  background:transparent; border-radius:.6rem;
+  color:var(--ink) !important;
+  font-size:1.8rem; font-weight:700; letter-spacing:.01em;
+  padding:.8rem 1rem; position:relative; text-decoration:none;
+  transition:color .12s ease, background-color .12s ease;
+}
+.site-header__link:focus-visible{ box-shadow:var(--ring); outline:none; }
+.site-header__link:hover,
+.site-header__link:focus,
+.site-header__link:active{
+  -webkit-text-fill-color:currentColor;
+  background:var(--surface-3);
+  color:color-mix(in oklch, var(--ink) 92%, black 8%) !important;
+}
+@supports (color:oklch(0.98 0.03 145)){
+  .site-header__link:hover,
+  .site-header__link:focus,
+  .site-header__link:active{
+    background:color-mix(in oklch, var(--surface-3) 70%, white 30%);
+  }
+}
+.site-header__link::after{
+  background:transparent; border-radius:.22rem;
+  bottom:.25rem; content:""; height:.22rem; left:.6rem; right:.6rem;
+  position:absolute; transform:scaleX(0); transform-origin:left;
+  transition:transform .14s ease, background-color .14s ease;
+}
+.site-header__link:hover::after,
+.site-header__link:focus-visible::after,
+.site-header__link[aria-current="page"]::after{
+  background:var(--brand); transform:scaleX(1);
+}
+.site-header__cta{ align-items:center; display:flex; gap:1rem; }
+.site-header__burger{ background:transparent; border:0; border-radius:.6rem; display:none; padding:1rem; }
+.site-header__burger:focus-visible{ box-shadow:var(--ring); }
+@media (max-width:64rem){
+  .site-header__menu, .site-header__cta{ display:none; }
+  .site-header__burger{ display:inline-block; }
+  .site-header__mobile{
+    -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+    background:rgba(238, 246, 230, .8);
+  }
+  @supports (color:oklch(0.98 0.03 145)){
+    .site-header__mobile{ background:color-mix(in oklch, var(--surface-2) 80%, transparent); }
+  }
+  .site-header__mobile .site-header__link{ font-size:1.8rem; font-weight:700; }
+}
+
+/* =======================
+   HERO (актуальная версия)
+   ======================= */
+.hero{position:relative;padding:3.2rem 0;background:var(--bg,#fff); border-bottom:.1rem solid var(--line);}
+.hero__inner{display:grid;grid-template-columns:1.1fr .9fr;gap:2.4rem;align-items:center;background:var(--surface-1);border:.1rem solid var(--line);border-radius:1.6rem;padding:2.4rem 1.6rem;}
+.hero__content{background:var(--surface-2);border:.1rem solid var(--line);border-radius:1.2rem;box-shadow:0 .6rem 2rem rgba(20, 40, 15, .08);padding:1.8rem;}
+.hero__title{margin:0 0 .8rem;font-size:clamp(2.2rem,2.2rem + 1.2vw,3.2rem);line-height:1.2;color:var(--ink,#0f172a);}
+.hero__subtitle{margin:0 0 1.4rem;color:var(--muted,#6b7280);}
+.hero__actions{display:flex;gap:1rem;flex-wrap:wrap;margin:1.2rem 0;}
+.hero__bullets{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:.8rem;margin:1.4rem 0 0;padding:0;list-style:none;}
+.hero__badge{display:flex;align-items:center;gap:.6rem;}
+.hero__tick{width:1.4rem;height:1.4rem;border-radius:50%;background:var(--brand,#16a34a);}
+.hero__media{text-align:right;justify-self:center;}
+.hero__media img{max-width:100%;height:auto;border-radius:1.2rem;box-shadow:var(--shadow,0 .6rem 2rem rgba(0,0,0,.08));}
+@media (max-width:64rem){.hero__inner{grid-template-columns:1fr;}}
+@media (max-width:40rem){.hero{padding:2.4rem 0;}.hero__actions{flex-direction:column;}}
+html[data-theme="dark"] .hero{background:oklch(.19 .03 145);}
+
+/* HERO: преимущества */
+.hero__benefits{
+  background:var(--bg-2, #f7faf9);
+  border-radius:1.2rem;
+  box-shadow:var(--shadow, 0 .6rem 2rem rgba(2, 6, 23, .08));
+  display:grid; gap:1.2rem;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  list-style:none; margin-inline:0; margin-top:1.6rem; padding:1.2rem;
+}
+.hero__benefits--more{ margin-top:1.2rem; }
+.hero__benefit{
+  align-items:flex-start; background:#fff; border-radius:.8rem; display:flex; gap:.8rem;
+  min-height:4.2rem; padding:1rem 1.2rem;
+}
+.hero__benefit-icon{
+  color:var(--brand, #16a34a);
+  display:inline-grid; flex:none; height:2.4rem; place-items:center; width:2.4rem;
+}
+.hero__benefit-icon svg{ height:1.4rem; opacity:.9; width:1.4rem; }
+.hero__benefit-text{
+  color:var(--text, #0f172a);
+  font-family:var(--font-benefits);
+  font-size:1.2rem; font-weight:700; letter-spacing:.003em; line-height:1.35;
+  max-width: 20ch; /* ✅ ИСПРАВЛЕНО: достаточно для короткой фразы */
+}
+.hero__benefits-more-wrap{ margin-top:1.2rem; }
+@media (max-width:75rem){ .hero__benefits{ grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+@media (max-width:48rem){
+  .hero__benefits{
+    -webkit-overflow-scrolling:touch;
+    grid-auto-columns:85%;
+    grid-auto-flow:column;
+    grid-template-columns:none;
+    overflow-x:auto; overscroll-behavior-x:contain;
+    padding-bottom:1rem; scroll-behavior:smooth; scroll-snap-type:x mandatory;
+  }
+  .hero__benefit{ scroll-snap-align:start; }
+}
+/* Тёмная тема */
+html[data-theme="dark"] .hero__benefits{ background:rgba(148, 163, 184, .12); }
+html[data-theme="dark"] .hero__benefit{ background:rgba(2, 6, 23, .6); }
+html[data-theme="dark"] .hero__benefit-text{ color:var(--ink, #e5e7eb); }
+/* Respect [hidden] */
+.hero__benefits[hidden]{ display:none !important; }
+
+/* =======================
+   СЕКЦИИ / КАРТОЧКИ
+   ======================= */
+.section{ background:var(--surface-1); border-top:.1rem solid var(--line); }
+.card{
+  background:var(--surface-2);
+  border:.1rem solid var(--line);
+  border-radius:1.2rem;
+  box-shadow:0 .4rem 1.2rem rgba(20, 40, 15, .06);
+}
+
+/* =======================
+   КНОПКИ (унифицировано)
+   ======================= */
+.btn{
+  -webkit-text-fill-color:currentColor; /* Safari */
+  align-items:center;
+  background:var(--brand);
+  border:.1rem solid transparent;
+  border-radius:.9rem;
+  color:#fff;
+  display:inline-flex;
+  font-weight:600;
+  gap:.8rem;
+  justify-content:center;
+  line-height:var(--lh-tight);
+  padding:1.2rem 1.8rem;
+  text-decoration:none;
+  transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease, color .12s ease;
+}
+.btn--xl{ font-size:1.8rem; padding:1.6rem 2.2rem; }
+.btn:focus-visible{ box-shadow:var(--ring); outline:none; }
+.btn:active{ transform:translateY(.2rem); }
+
+/* Ghost */
+.btn.btn--ghost{
+  align-items:center; background:transparent;
+  border:.1rem solid var(--line);
+  border-radius:.8rem; color:var(--ink);
+  cursor:pointer; display:inline-flex;
+  font-size:1.4rem; gap:.8rem; justify-content:center;
+  line-height:1.2; padding:.9rem 1.4rem; text-decoration:none;
+  transition:box-shadow .2s ease, background-color .2s ease;
+}
+/* Визиты не зеленим — читаемость */
+.btn.btn--ghost,
+.btn.btn--ghost:link,
+.btn.btn--ghost:visited{
+  color:var(--ink) !important;
+  -webkit-text-fill-color:var(--ink);
+}
+.btn.btn--ghost:hover,
+.btn.btn--ghost:focus,
+.btn.btn--ghost:active{
+  background:color-mix(in oklch, var(--surface-2) 70%, white 30%);
+  border-color:color-mix(in oklch, var(--line) 85%, var(--brand) 15%);
+  color:var(--ink) !important;
+  -webkit-text-fill-color:var(--ink);
+  outline:none;
+}
+
+/* Залитая зелёная */
+a.btn,
+a.btn:link,
+a.btn:visited,
+a.btn:hover,
+a.btn:focus,
+a.btn:active{
+  color:#fff !important;
+  -webkit-text-fill-color:#fff; /* Safari */
+}
+.btn:not(.btn--ghost):hover,
+.btn:not(.btn--ghost):active{
+  background:var(--brand-2);
+  color:#fff !important;
+  -webkit-text-fill-color:#fff;
+}
+
+/* Ссылко-кнопки */
+.link-btn{ text-decoration:none; }
+.link-btn:not(.btn):hover{ color:#6ba62f; }
+
+/* =======================
+   Служебные эффекты
+   ======================= */
+@keyframes ctaPulse {
+  0% { box-shadow: 0 0 0 0 rgba(140,198,62,.45); }
+  100% { box-shadow: 0 0 0 1.6rem rgba(140,198,62,0); }
+}
+.cta-target-highlight{
+  outline:.2rem solid color-mix(in oklch, var(--brand, #8cc63e) 60%, white 40%);
+  border-radius:1.2rem;
+  animation: ctaPulse 1.2s ease-out 2;
+}
+
+/* === Chat: зелёная линия под пунктом меню === */
+#nav-chat{
+  position: relative;
+}
+#nav-chat::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -.4rem;
+  height: .2rem;
+  border-radius: .2rem;
+  background: var(--brand, #16a34a);
+}
+
+.topbar__close{ font-size:1.4rem !important; color:#0f172a !important; }
+
+/* Резервируем место под шапку, чтобы main не прыгал,
+   пока header ещё пустой и ждёт inject-layout.js */
+body > header[data-include] {
+  min-height: 4.5rem; /* подгони под реальную высоту шапки */
+}
+
+/* Чуть больше на десктопе, если шапка выше */
+@media (min-width: 48rem) {
+  body > header[data-include] {
+    min-height: 5.5rem;
+  }
+}
+
+

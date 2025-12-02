@@ -1,0 +1,64 @@
+# ...все предыдущие разделы без изменений...
+
+# ---------- Security headers ----------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+  <If "%{HTTPS} == 'on'">
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  </If>
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://mc.yandex.ru https://cdn.jsdelivr.net https://unpkg.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; manifest-src 'self'; media-src 'self' data: blob:; worker-src 'self' blob:; frame-src 'self' https://mc.yandex.ru https://www.google.com"
+</IfModule>
+
+# ---------- Переписывания / SPA ----------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTP → HTTPS (перенесено вверх)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # алиасы vendor (версии пакетов → локальные папки)
+  RewriteRule ^vendor/(aos|gsap)@[^/]+/(.*)$ /vendor/$1/$2 [L]
+
+  # ассеты отдаём как есть
+  RewriteRule ^(.*\.(?:css|js|mjs|map|json|png|jpe?g|webp|avif|svg|gif|ico|woff2?|ttf|eot|txt|xml|webmanifest))$ - [L]
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # удаляем index.php|html из URL
+  RewriteRule ^(.*/)?index\.(php|html?)$ /$1 [R=301,L]
+
+  # завершающий слэш только для путей без расширений
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{1,5}$
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}/ [R=301,L]
+
+  # SPA: остальное на index.html
+  RewriteRule . /index.html [L,QSA]
+</IfModule>
+
+AddType text/css .css
+AddType text/html .html
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(avif|webp|jpg|jpeg|png|gif|ico|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+

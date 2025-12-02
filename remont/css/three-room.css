@@ -1,0 +1,519 @@
+/* ===== three-room.css — Капитальный ремонт 3-комнатной, 84 м² ===== */
+
+/* Фолбэк-токены (если brand/palette.css ещё не подгрузился) */
+:root{
+  --brand-600: #166534;
+  --brand-500: #1a7a3e;
+  --brand-400: #2da14e;
+  --brand-accent: #70d009;
+
+  --surface-d: #0f172a;
+  --surface-d-2:#0b1220;
+  --text-on-dark: #e5e7eb;
+  --shadow: 0 .16rem .8rem rgba(0,0,0,.25);
+
+  /* Слайдер/HUD */
+  --hud-color: #fff;
+  --bar-bg: color-mix(in oklch, #ffffff 25%, transparent);
+  --bar-fg: var(--brand-accent);
+  --bar-h: .25rem;
+}
+
+/* Скрываем бургер-меню на всех страницах, КРОМЕ главной (.page-index) */
+body:not(.page-index) .site-header__burger,
+body:not(.page-index) .nav-toggle,
+body:not(.page-index) .site-header__burger-line {
+    display: none !important;
+}
+
+main.case-page{ padding: 1.2rem 0; }
+.content{ font-size: 1.25rem; line-height: 1.55; }
+
+/* Заголовки секций */
+.case-section-title{
+  position: relative;
+  margin: 1.2rem 0 .8rem;
+  padding-block: .2rem;
+  line-height: 1.2;
+}
+.case-section-title::after{
+  content:"";
+  display:block;
+  height: .24rem;
+  width: 6rem;
+  margin-top: .4rem;
+  border-radius: 999rem;
+  background: linear-gradient(90deg, var(--brand-600), color-mix(in oklab, var(--brand-600) 55%, var(--brand-accent)));
+}
+
+/* Мета */
+.case-meta{ margin-top: .8rem; }
+.case-meta__row strong{ color: var(--brand-600); font-weight: 700; }
+.case-meta__muted{ opacity: .85; }
+
+/* Двухколоночный блок */
+.case-two-col{ display: grid; gap: 1.6rem; }
+@media (min-width: 56rem){ .case-two-col{ grid-template-columns: 1.3fr .9fr; } }
+
+/* KPI */
+.case-kpi{
+  display: grid; gap: .8rem;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  margin: .8rem 0 1.2rem;
+}
+@media (min-width: 48rem){ .case-kpi{ grid-template-columns: repeat(4, minmax(0,1fr)); } }
+.kpi{
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+  color: var(--text-on-dark);
+  background:
+    radial-gradient(80rem 40rem at 110% -20%, color-mix(in oklab, var(--brand-accent) 18%, var(--surface-d)) 0%, transparent 55%),
+    var(--surface-d);
+  outline: .12rem solid color-mix(in oklab, var(--brand-600) 26%, transparent);
+  box-shadow: var(--shadow);
+}
+.kpi strong{ font-size: 1.2rem; display:block; }
+.kpi small{ display:block; opacity:.88; margin-top: .2rem; }
+
+/* Смета по зонам (оригинальный блок) */
+.zones-grid{
+  display:grid; gap:.8rem;
+  grid-template-columns: 1fr;
+  margin:.6rem 0 1rem;
+}
+@media (min-width: 48rem){ .zones-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+.zone{
+  background: var(--surface-d);
+  color: var(--text-on-dark);
+  border-radius: 1rem;
+  padding: 1rem 1.2rem;
+  border: .1rem solid color-mix(in oklab, var(--brand-600) 22%, transparent);
+  box-shadow: var(--shadow);
+}
+.zone h3{ margin: 0 0 .2rem; font: 600 1.05rem/1.2 Manrope, system-ui; }
+.zone p{ margin: 0 0 .4rem; opacity: .9; }
+.zone__sum{ display:inline-block; margin-top:.2rem; color:#fff; background: color-mix(in oklab, var(--brand-600) 65%, #0000); padding:.25rem .5rem; border-radius:.4rem; }
+.zones-note{ font-size:.95rem; opacity:.9; margin-top:.2rem; }
+
+/* Таймлайн */
+.case-timeline{
+  counter-reset: day;
+  display: grid; gap: 1rem; margin-top: .8rem;
+}
+.case-timeline .step{
+  position: relative;
+  color: var(--text-on-dark);
+  background: var(--surface-d);
+  border-radius: 1rem;
+  padding: 1rem 1.2rem 1rem 1.4rem;
+  box-shadow: var(--shadow);
+  border-inline-start: .24rem solid var(--brand-600);
+}
+.case-timeline .step::before{
+  counter-increment: day;
+  content: "День " counter(day) " — ";
+  font-weight: 700;
+  color: var(--brand-accent);
+}
+
+/* Галерея */
+.case-gallery .case-grid{
+  display:grid; gap:.6rem; grid-template-columns:1fr;
+}
+.case-gallery img{
+  display:block; width:100%; height:auto; border-radius:.8rem;
+  outline:.12rem solid color-mix(in oklab, var(--brand-600) 22%, transparent);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.case-gallery img[data-full]{ cursor: zoom-in; }
+.case-gallery img[data-full]:hover{ transform: translateY(-.08rem); box-shadow: 0 .4rem 1rem rgba(0,0,0,.18); }
+.lightbox__caption{ margin-top:.4rem; font-size:.9rem; opacity:.8; }
+
+/* Видео-контейнер (запас) */
+.video-wrap{
+  aspect-ratio: 16/9;
+  background: var(--surface-d-2);
+  border-radius: 1rem;
+  overflow: hidden;
+  outline: .14rem solid color-mix(in oklab, var(--brand-600) 28%, transparent);
+  box-shadow: 0 .4rem 1.2rem rgba(0,0,0,.35);
+}
+.video-wrap video{ width:100%; height:100%; display:block; }
+
+/* ===== СЛАЙДЕР ===== */
+.slides{
+  position:relative; border-radius:1rem; overflow:clip;
+  box-shadow:0 .5rem 2rem rgba(0,0,0,.1);
+  background:#0a0a0a; isolation:isolate;
+}
+.slides::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 60%, rgba(0,0,0,.20) 100%);
+  mix-blend-mode:multiply;
+}
+.slides__viewport{ position:relative; width:100%; aspect-ratio:16/9; }
+.slide{
+  position:absolute; inset:0; opacity:0; transform:scale(.98);
+  transition:opacity .5s ease, transform .6s ease;
+  display:grid; place-items:end; background:#111;
+}
+.slide.is-active{ opacity:1; transform:scale(1); }
+.slide>img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; will-change: transform; backface-visibility: hidden;
+  transform: translateZ(0) scale(1); transform-origin: 50% 50% .1px;
+}
+.slide .slide__caption{
+  position:relative; width:max(22%,20rem);
+  margin:0 1rem 1rem; padding:.75rem 1rem; border-radius:.75rem;
+  background:color-mix(in oklch,white 10%,transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  color:#fff; font:500 1rem/1.3 Manrope,system-ui;
+  box-shadow:0 .5rem 1.5rem rgba(0,0,0,.25);
+  transform: translateY(.5rem); opacity:.0;
+  text-align: center;
+}
+.slide.is-active .slide__caption{ opacity:1; transform: translateY(0); transition: transform .45s ease, opacity .45s ease .05s; }
+@media (prefers-color-scheme: dark){
+  .slide .slide__caption{ background:color-mix(in oklch,black 40%,transparent); color:#f5f5f5; }
+}
+
+/* Навигация/точки — без дёргания при :hover */
+.slides__nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  z-index:2; width:2.5rem; height:2.5rem;
+  border:0; border-radius:50%;
+  background: var(--brand-600); color:#fff;
+  display:grid; place-items:center; cursor:pointer; opacity:.9;
+  will-change: transform;
+}
+.slides__nav:hover{ opacity:1; transform:translateY(-50%) translateY(0); }
+.slides__nav--prev{ left:.75rem; }
+.slides__nav--next{ right:.75rem; }
+
+.slides__dots{
+  position:absolute; left:50%; bottom:.75rem; transform:translateX(-50%);
+  display:flex; gap:.5rem; z-index:2;
+}
+.dot{
+  width:.625rem; height:.625rem; border-radius:999rem; border:0;
+  background:color-mix(in oklch,white 50%,transparent);
+  opacity:.6; cursor:pointer;
+}
+.dot.is-active{ width:1.5rem; opacity:1; background: var(--brand-accent); transition:width .25s ease; }
+
+/* HUD прогресс */
+.slides__hud{
+  position:absolute; top:.5rem; left:.75rem; z-index:3;
+  display:flex; align-items:center; gap:.5rem;
+  padding:.25rem .5rem; border-radius:.5rem;
+  color:var(--hud-color); font:600 .875rem/1 Manrope,system-ui;
+  background: color-mix(in oklch, black 35%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.hud__rec-dot{
+  width:.5rem; height:.5rem; border-radius:50%;
+  background:#ff3b30; box-shadow:0 0 .5rem rgba(255,59,48,.9);
+  animation: recPulse 1.2s ease-in-out infinite;
+}
+@keyframes recPulse{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(1.25); opacity:.6 } }
+.slides__bar{
+  position:absolute; left:.75rem; right:.75rem; bottom:.5rem; z-index:3;
+  height:var(--bar-h); background: var(--bar-bg);
+  border-radius:999rem; overflow:hidden; contain: layout paint; transform: translateZ(0);
+}
+.slides__bar-inner{ height:100%; width:0%; background: var(--bar-fg); will-change: width; }
+
+/* FAQ */
+.faq details{
+  background: var(--surface-d);
+  color: var(--text-on-dark);
+  border-radius: 1rem;
+  padding: .8rem 1rem;
+  border: .1rem solid color-mix(in oklab, var(--brand-600) 18%, transparent);
+  transition: border-color .2s ease;
+}
+.faq details + details{ margin-top: .8rem; }
+.faq details[open]{ border-color: color-mix(in oklab, var(--brand-600) 45%, transparent); }
+.faq summary{ cursor: pointer; }
+
+/* CTA */
+.case-cta--bottom{ text-align: center; margin-top: 1.6rem; }
+.case-cta .btn, .btn-cta-calc{
+  color:#fff !important;
+  text-shadow: 0 .04rem .08rem rgba(0,0,0,.35);
+}
+.btn.btn--ghost{
+  border-color: color-mix(in oklab, var(--brand-600) 45%, #fff);
+  color: var(--brand-600) !important;
+}
+.btn.btn--ghost:hover{ background: color-mix(in oklab, var(--brand-accent) 12%, #fff); }
+
+/* Вспомогательное */
+.visually-hidden{
+  position:absolute !important; width:1px; height:1px;
+  margin:-1px; padding:0; border:0; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%);
+}
+
+/* Светлая схема */
+@media (prefers-color-scheme: light){
+  .kpi,.case-timeline .step,.faq details{ color: #0b1220; background: #ffffff; }
+  .zone{ color:#0b1220; background:#ffffff; }
+  .video-wrap{ background:#f6f8fb; }
+}
+
+/* Двухколоночный блок: финальная геометрия */
+.case-body.case-two-col{ display:grid; gap:1.2rem; }
+@media (min-width:56rem){
+  .case-body.case-two-col{ grid-template-columns: 2fr 1.5fr; align-items:start; }
+}
+.case-desc{ max-width: 80ch; }
+.case-desc ul{ margin:.6rem 0 0 1.2rem; padding:0; }
+.case-desc li{ margin:.35rem 0; }
+
+/* Подпись под галереей */
+    .case-gallery .lightbox__caption{
+      margin-top:.5rem;
+      font-size: 1.3rem;
+      color: var(--muted-fg, #777);
+      text-align:center;
+}
+
+.lightbox__caption{ margin-top:.4rem; font-size: 1.3rem; opacity:.8; }
+
+/* Стабильный скролл при модалках/лайтбоксе */
+html{ scrollbar-gutter: stable both-edges; }
+body.scroll-lock{ overflow:hidden; overscroll-behavior:none; }
+
+/* ===== Timeline (45 дней) ===== */
+.case-timeline{
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding-left: 3.6rem; /* место под полосу и точки */
+}
+
+/* вертикальная полоса на всю высоту списка */
+.case-timeline::before{
+  content:"";
+  position: absolute;
+  left: 1.6rem;
+  top: .25rem;
+  bottom: .25rem;
+  width: .24rem;
+  background:
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--brand, #16a34a) 85%, transparent) 0%,
+      color-mix(in oklab, var(--brand, #16a34a) 65%, transparent) 100%
+    );
+  border-radius: 1rem;
+  opacity: .9;
+}
+
+/* карточка шага */
+.case-timeline .step{
+  position: relative;
+  padding: 1.2rem 1.4rem 1.2rem 1.4rem;
+  background: var(--bg-2, #f7faf9);
+  border: 1px solid var(--line, #e5e7eb);
+  border-radius: var(--radius, 1.2rem);
+  box-shadow: var(--shadow, 0 .6rem 2rem rgba(2,6,23,.08));
+  color: var(--text, #0f172a);
+}
+
+/* точка шага на линии */
+.case-timeline .step::before{
+  content:"";
+  position: absolute;
+  left: -2.05rem; /* центр к вертикальной полосе */
+  top: 1.3rem;
+  width: .9rem; height: .9rem;
+  background: var(--bg, #fff);
+  border: .22rem solid var(--brand, #16a34a);
+  border-radius: 50%;
+  box-shadow: 0 0 0 .18rem var(--bg, #fff);
+}
+
+/* бейдж диапазона дней — используем <strong> из HTML */
+.case-timeline .step > strong{
+  display: inline-block;
+  margin-right: .5rem;
+  padding: .2rem .8rem;
+  line-height: 1.6;
+  font-weight: 700;
+  color: var(--brand-2, #15803d);
+  background: color-mix(in oklab, var(--brand, #16a34a) 18%, transparent);
+  border: 1px solid color-mix(in oklab, var(--brand, #16a34a) 40%, transparent);
+  border-radius: 999rem; /* пилюля */
+  white-space: nowrap;
+}
+
+/* ховер/фокус для доступности */
+.case-timeline .step:focus-within,
+.case-timeline .step:hover{
+  border-color: color-mix(in oklab, var(--brand, #16a34a) 45%, var(--line, #e5e7eb));
+  box-shadow: 0 .4rem 1.2rem rgba(2,6,23,.06);
+}
+
+/* Тёмная тема */
+@media (prefers-color-scheme: dark){
+  .case-timeline .step{
+    background: color-mix(in oklab, #0b1220 75%, #0f172a);
+    border-color: color-mix(in oklab, #30404f 70%, #222);
+    color: #e5e7eb;
+    box-shadow: none;
+  }
+  .case-timeline::before{
+    opacity: 1;
+  }
+  .case-timeline .step::before{
+    background: #0b1220;
+    box-shadow: 0 0 0 .18rem #0b1220;
+  }
+  .case-timeline .step > strong{
+    color: #c7f9cc;
+    border-color: color-mix(in oklab, var(--brand, #16a34a) 55%, transparent);
+    background: color-mix(in oklab, var(--brand, #16a34a) 24%, transparent);
+  }
+}
+
+/* Мобильная плотность */
+@media (max-width: 38rem){
+  .case-timeline{ gap: .8rem; padding-left: 3.2rem; }
+  .case-timeline .step{ padding: 1rem 1.2rem; }
+  .case-timeline .step::before{ top: 1.1rem; }
+  .case-timeline .step > strong{ font-weight: 700; }
+}
+
+/* === 1) Автонумерация шагов (1–22) === */
+.case-timeline{
+  counter-reset: step; /* сброс счётчика */
+}
+
+.case-timeline .step{
+  counter-increment: step; /* +1 для каждого шага */
+}
+
+/* число в бейдже перед диапазоном дней */
+.case-timeline .step > strong::before{
+  content: "0" counter(step) ". ";
+  font-variant-numeric: tabular-nums;
+  opacity: .9;
+}
+
+/* убираем ведущий ноль с 10 и далее */
+.case-timeline .step:nth-child(n+10) > strong::before{
+  content: counter(step) ". ";
+}
+
+/* === 2) Горизонтальный таймлайн для десктопа === */
+@media (min-width: 72rem){
+  .case-timeline{
+    padding-left: 0;          /* вертикальный отступ больше не нужен */
+    padding-top: 3.8rem;      /* место под горизонтальную линию */
+    display: grid;
+    grid-auto-flow: column;   /* в строку */
+    grid-auto-columns: 1fr;   /* равные колонки */
+    gap: 1.2rem;
+    align-items: start;
+    position: relative;
+  }
+
+  /* горизонтальная полоса по всей ширине */
+  .case-timeline::before{
+    content:"";
+    position: absolute;
+    left: .6rem;
+    right: .6rem;
+    top: 1.6rem;
+    height: .24rem;
+    width: auto;
+    background:
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--brand, #16a34a) 85%, transparent) 0%,
+        color-mix(in oklab, var(--brand, #16a34a) 65%, transparent) 100%
+      );
+    border-radius: 1rem;
+    opacity: .9;
+  }
+
+  /* карточки-колонки */
+  .case-timeline .step{
+    padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+    min-height: 7.6rem;
+  }
+
+  /* точка шага — сверху, по центру карточки */
+  .case-timeline .step::before{
+    left: 50%;
+    transform: translateX(-50%);
+    top: -.6rem;
+    width: .9rem; height: .9rem;
+    background: var(--bg, #fff);
+    border: .22rem solid var(--brand, #16a34a);
+    border-radius: 50%;
+    box-shadow: 0 0 0 .18rem var(--bg, #fff);
+  }
+}
+
+/* Тёмная тема — коррекция для горизонтального вида */
+@media (prefers-color-scheme: dark) and (min-width: 72rem){
+  .case-timeline::before{ opacity: 1; }
+  .case-timeline .step::before{
+    background: #0b1220;
+    box-shadow: 0 0 0 .18rem #0b1220;
+  }
+}
+
+
+/* === FIX: отключаем горизонтальный режим, везде вертикальный === */
+@media (min-width: 72rem){
+  .case-timeline{
+    /* назад к вертикальной колонке */
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-columns: unset;
+    gap: 1rem;
+
+    /* возвращаем левую направляющую */
+    padding-top: 0;
+    padding-left: 3.6rem;
+    overflow: visible;      /* чтобы не тянуть страницу по ширине */
+  }
+
+  /* вертикальная полоса на всю высоту */
+  .case-timeline::before{
+    left: 1.6rem;
+    right: auto;
+    top: .25rem;
+    bottom: .25rem;
+    width: .24rem;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  /* точка шага — слева от карточки */
+  .case-timeline .step::before{
+    left: -2.05rem;
+    top: 1.3rem;
+    transform: none;
+  }
+}
+
+/* страховка от «уехавших» псевдоэлементов/теней */
+.case-timeline, .case-timeline * { min-width: 0; }
+html, body { overflow-x: clip; } /* обрезаем возможные субпиксельные переполнения */
+
+
+.slides__nav,
+.dot,
+button {
+  min-width: 8px;
+  min-height: 6px;
+}
+
+.slides__dots .dot {
+  margin: 0 8px; /* Add spacing between dots */
+}

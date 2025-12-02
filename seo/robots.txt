@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prof33.ru/sitemap.xml

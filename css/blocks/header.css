@@ -1,0 +1,92 @@
+/* Чуть темнее, менее насыщенно */
+:root{
+  --logo-green:#66c80a;        /* было #70d009 */
+  --logo-green-border:#55b108; /* бордер на полтона темнее */
+}
+
+/* === HEADER buttons: как на главной, жёсткая переустановка === */
+header.site-header .header-cta .btn,
+header.site-header nav .btn,
+header.site-header .btn{
+  background:var(--brand,#16a34a) !important;
+  color:#fff !important;
+  border:.1rem solid var(--brand,#16a34a) !important;
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  text-decoration:none !important;
+  box-shadow:0 .3rem 1rem rgba(22,163,74,.18) !important;
+}
+header.site-header .btn--ghost{
+  background:transparent !important;
+  color:var(--brand,#16a34a) !important;
+  border-color:var(--brand,#16a34a) !important;
+  box-shadow:none !important;
+}
+header.site-header .btn:hover{
+  transform:translateY(-.1rem);
+  box-shadow:0 .6rem 1.6rem rgba(22,163,74,.22) !important;
+}
+header.site-header .btn[disabled],
+header.site-header .btn.is-disabled{
+  opacity:.6 !important;
+  pointer-events:none;
+}
+
+/* На случай глобального «приглушения» всего header: выпиливаем его */
+header.site-header,
+header.site-header *{
+  filter:none !important;
+}
+
+/* Перекрывающие декоративные слои хедера не должны ловить клики */
+.site-header::before,
+.site-header::after,
+.js-site-header::before,
+.js-site-header::after,
+.site-header .header-overlay{
+  pointer-events:none;
+}
+
+/* Кнопка темы поверх и кликабельна */
+#themeToggle,
+[data-theme-toggle]{
+  position:relative;
+  z-index:10;
+  pointer-events:auto;
+}
+
+/* ===== ТОЛЬКО состояние покоя ===== */
+/* все «полные» (залитые) кнопки */
+.btn:not(.btn--ghost):not(:hover):not(:focus):not(:active){
+  background:var(--logo-green) !important;
+  border-color:var(--logo-green-border) !important;
+  color:#fff !important;
+}
+
+/* CTA-кнопка (на всякий случай отдельно) */
+.btn-cta-calc:not(:hover):not(:focus):not(:active){
+  background:var(--logo-green) !important;
+  border-color:var(--logo-green-border) !important;
+  color:#fff !important;
+}
+
+/* прозрачная (ghost) — в покое */
+.btn.btn--ghost:not(:hover):not(:focus):not(:active){
+  background:transparent !important;
+  color:var(--logo-green) !important;
+  border-color:var(--logo-green) !important;
+}
+
+/* «Назад к портфолио» — в покое как логотип */
+.link-btn:not(:hover):not(:focus):not(:active),
+.case-nav .btn:not(.btn--ghost):not(:hover):not(:focus):not(:active){
+  background:var(--logo-green) !important;
+  border-color:var(--logo-green-border) !important;
+  color:#fff !important;
+}
+
+/* бейдж на CTA — в покое чуть темнее, чтобы читался */
+.btn-badge{ background:var(--logo-green-border) !important; }
+
+

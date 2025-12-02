@@ -1,0 +1,145 @@
+/* contacts.css */
+/* Контакты — современная карточная верстка + ухоженная карта */
+
+.contacts{ padding:2rem 1.6rem; background:color-mix(in oklab, #fff 97%, var(--brand,#16a34a) 3%); }
+.contacts .container{ max-width:120rem; margin:0 auto; }
+
+.section-header{ text-align:center; margin:0 0 1.25rem; }
+.section-header .section-subtitle{ color:var(--muted,#6b7280); margin:0.25rem 0 0; }
+
+/* Верхний ряд */
+.contacts-top{
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* ровно половины */
+  gap: 1.6rem;
+  align-items: stretch;
+}
+
+.contacts-top .contacts-info,
+.contacts-top .contacts-map-col{
+  max-width: none;
+}
+
+/* карточка и обёртка карты тянутся на высоту строки грида */
+.contacts-card{ height: 100%; }
+.map-embed{
+  height: auto;         /* управляет aspect-ratio */
+  min-height: 28rem;    /* чтобы карта не была слишком низкой */
+}
+
+
+/* Карточка с контактами */
+.contacts-card{
+  padding:1.2rem;
+  border:.1rem solid #e5e7eb;
+  background:#fff;
+  border-radius:1.2rem;
+  box-shadow:0 .6rem 1.6rem rgba(2,6,23,.06);
+}
+
+.contacts-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:.6rem;
+}
+
+.contacts-item{
+  display:grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap:.5rem 1rem;
+  align-items:start;
+  padding:.75rem 1rem;
+  border:.1rem solid #eef2f7;
+  background:#fff;
+  border-radius:.8rem;
+}
+
+.contacts-label{
+  color:var(--muted,#6b7280);
+  font-weight:600;
+}
+
+.contacts-value{
+  color:var(--ink,#0f172a);
+  word-break:break-word;
+}
+
+.contacts-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+  margin-top:1rem;
+}
+
+/* Колонка карты */
+.contacts-map-col{ display:flex; flex-direction:column; gap:.6rem; }
+
+.map-embed{
+  position:relative;
+  aspect-ratio: 16 / 10;
+  width:100%;
+  border:.1rem solid #e5e7eb;
+  border-radius:1.2rem;
+  overflow:hidden;
+  background:#edf6f0;
+  box-shadow:0 .6rem 1.6rem rgba(2,6,23,.06);
+}
+
+.map-embed iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  filter:saturate(1.05) contrast(1.03);
+}
+
+/* Панель действий на карте */
+.map-toolbar{
+  position:absolute;
+  right:.8rem;
+  bottom:.8rem;
+  display:flex;
+  gap:.6rem;
+  pointer-events:none;
+}
+.map-toolbar .btn{
+  pointer-events:auto;
+  backdrop-filter:saturate(1.1) blur(2px);
+}
+
+/* Фолбэк-ссылка под картой */
+.contacts-map-fallback{ margin:0; text-align:right; }
+.contacts-map-fallback .link-btn{ color:var(--brand,#16a34a); }
+
+/* Пометка и форма */
+.contacts-note{
+  margin:1rem 0 .75rem;
+  color:var(--muted,#6b7280);
+  font-size:1.35rem;
+}
+.contacts-form{ margin-top:.75rem; }
+.contacts__form{ margin-top:.5rem; }
+
+/* Состояния формы (визуальная обратная связь) */
+.form-status{ margin-top:.6rem; font-size:1.35rem; }
+.form-status.sending{ color:#0ea5e9; }
+.form-status.success{ color:#16a34a; }
+.form-status.error{ color:#dc2626; }
+
+/* Визуально скрытый текст (на случай, если базового класса нет) */
+.visually-hidden{
+  position:absolute !important;
+  width:1px; height:1px;
+  margin:-1px; padding:0; border:0;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;
+}
+
+/* Адаптив */
+@media (max-width:64rem){
+  .contacts-top{ grid-template-columns: 1fr; }
+  .map-embed{ aspect-ratio: 4 / 3; }
+  .contacts-item{ grid-template-columns: 1fr; }
+}

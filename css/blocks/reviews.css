@@ -1,0 +1,167 @@
+/* === Reviews (ПрофРемонт) — финал === */
+
+/* Контейнер и шапка */
+.reviews .container{ margin:0 auto; max-width:150rem; }
+.reviews__head{ margin:0 0 2rem; text-align:center; }
+.reviews__title{ margin:0 0 .4rem; color:var(--ink,#0f172a); font-size:var(--fs-h2,2.4rem); }
+.reviews__lead{ margin:0; color:var(--muted,#6b7280); }
+
+/* Сводка рейтинга */
+.reviews__summary{
+  display:grid; grid-template-columns:1fr; gap:.8rem; margin-top:1.2rem; justify-items:center;
+}
+.reviews__score{
+  display:inline-flex; align-items:center; gap:.8rem; padding:.6rem 1rem;
+  border:.1rem solid color-mix(in oklab, var(--brand,#16a34a) 20%, #e5e7eb);
+  border-radius:2rem; background:#fff;
+}
+.reviews__score-num{ font-size:1.6rem; font-weight:700; color:var(--ink,#0f172a); }
+.reviews__score-stars{ letter-spacing:.12rem; color:#f59e0b; font-size:1.4rem; font-weight:700; }
+.reviews__score-meta{ color:var(--muted,#6b7280); font-size:1.2rem; }
+
+.reviews__badges{
+  display:inline-flex; gap:.8rem; align-items:center; justify-content:center;
+  list-style:none; margin:.4rem 0 0; padding:0;
+}
+.reviews__badge{
+  display:inline-flex; align-items:center; gap:.5rem; padding:.4rem .8rem;
+  border:.1rem solid #e5e7eb; border-radius:2rem; background:#fff;
+  color:var(--muted,#6b7280); font-size:1.2rem;
+}
+
+/* Базовые блоки секции */
+.reviews{ padding-block:2.5rem; }
+.reviews__viewport{ position:relative; overflow:hidden; }
+
+/* === Трек: ровно 2 карточки в viewport, без обрезаний === */
+.reviews__track{
+  --col-gap:1rem;
+  display:grid;
+  grid-auto-flow:column;
+  gap:var(--col-gap);
+  align-items:stretch;
+  grid-auto-columns:calc((100% - var(--col-gap)) / 2);
+  will-change:transform;
+  transition:transform .3s ease;
+}
+@media (max-width:48rem){
+  .reviews__track{ grid-auto-columns:100%; }
+}
+
+/* Слайды */
+.reviews__slide{ scroll-snap-align:center; height:100%; }
+
+/* Карточка отзыва */
+.review{
+  display:grid; grid-template-rows:auto min-content; gap:1.2rem; width:100%;
+  border:.12rem solid #e5e7eb; border-radius:1.2rem; background:#fff;
+  box-shadow:0 .6rem 1.6rem rgba(2,6,23,.06);
+  height:100%; overflow:hidden; /* для скруглений, без обрезания текста */
+}
+.review__img{ display:block; inline-size:100%; height:auto; border-radius:.5rem; }
+.review__caption{ display:flex; align-items:center; gap:.5rem; margin-block:.5rem 0; }
+.review__meta{ color:var(--muted,#6b7280); font-size:1.2rem; padding:0 0 .5rem .5rem; }
+.review__stars{ color:#f59e0b; font-size:1.4rem; font-weight:700; padding:0 0 .5rem .5rem; }
+.review__text{ margin:0; padding:1.2rem 1.2rem .4rem; color:var(--ink,#0f172a); font-size:1.4rem; line-height:1.5; }
+.review__author{ font-weight:600; color:var(--ink,#0f172a); }
+.review__link{
+  margin:-.6rem 1.2rem 1.2rem; align-self:end; justify-self:start;
+  display:inline-flex; gap:.5rem; font-size:1.3rem; color:var(--brand,#16a34a); text-decoration:none;
+}
+.review__link:hover{ text-decoration:underline; }
+
+/* Навигация стрелками */
+.reviews__nav{
+  position:absolute; inset-block-start:50%; inset-inline:0;
+  display:flex; justify-content:space-between; transform:translateY(-50%);
+  pointer-events:none;
+}
+.reviews__btn{
+  inline-size:2.75rem; block-size:2.75rem; pointer-events:auto;
+  display:grid; place-items:center;
+  background:rgba(0,0,0,.55); color:#fff; border:0; border-radius:50%;
+  transition:opacity .2s ease;
+}
+.reviews__btn[disabled]{ opacity:.4; cursor:not-allowed; }
+.reviews__btn:focus-visible{ outline:.2rem solid #0a84ff; outline-offset:.2rem; }
+
+/* Точки — большая кликабельная зона + маленькая метка */
+.reviews__dots{ display:flex; gap:.5rem; justify-content:center; margin-block:1rem 0; }
+.reviews__dot{
+  position:relative; inline-size:2.75rem; block-size:2.75rem; padding:0; border:0; background:transparent; border-radius:50%;
+}
+.reviews__dot::after{
+  content:""; position:absolute; inset:auto;
+  inline-size:.75rem; block-size:.75rem; border-radius:50%;
+  left:50%; top:50%; transform:translate(-50%,-50%);
+  background:rgba(0,0,0,.35);
+}
+.reviews__dot.is-active::after{ background:currentColor; }
+.reviews__dot:focus-visible{ outline:.2rem solid #0a84ff; outline-offset:.2rem; }
+
+/* Ссылки снизу */
+.reviews__links{ display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; margin-block:1rem 0; }
+
+/* Кнопки проекта */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:3.6rem; padding:0 1.6rem; border:none; border-radius:.8rem;
+  background:var(--brand,#16a34a); color:#fff; cursor:pointer; text-decoration:none;
+  font-size:1.4rem; font-weight:600;
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.btn:hover{ transform:translateY(-.1rem); box-shadow:0 .4rem 1.2rem rgba(22,163,74,.25); }
+.btn.btn--ghost{
+  border:.1rem solid var(--brand,#16a34a);
+  background:transparent; color:var(--brand,#16a34a);
+}
+.btn.btn--ghost:hover{ background:color-mix(in oklab, var(--brand,#16a34a) 10%, #fff); }
+
+/* Тёмная тема */
+html[data-theme="dark"] .reviews{ background:oklch(.19 .03 145); }
+html[data-theme="dark"] .reviews__viewport{ border-color:oklch(.32 .03 145); background:oklch(.23 .02 145); }
+html[data-theme="dark"] .review{ border-color:oklch(.30 .02 145); background:oklch(.20 .02 145); }
+html[data-theme="dark"] .reviews__badge{ background:oklch(.22 .02 145); border-color:oklch(.30 .02 145); }
+
+/* Утилиты */
+.reviews .visually-hidden{
+  position:absolute !important; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+.sr-only{
+  position:absolute; inline-size:1px; block-size:1px; margin:-1px; padding:0; border:0;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;
+}
+
+/* === Аир-тюнинг только для текстовых карточек === */
+.reviews .review--text{
+  --rv-pad-x:1.6rem;
+  --rv-pad-y:1.2rem;
+  grid-template-rows:auto min-content; /* перекрывает раннюю 1fr */
+  gap:.8rem;
+}
+@media (min-width:48rem){
+  .reviews .review--text{
+    --rv-pad-x:2rem;
+    --rv-pad-y:1.6rem;
+    gap:1rem;
+  }
+}
+.reviews .review--text .review__text{
+  margin:0;
+  padding:var(--rv-pad-y) var(--rv-pad-x);
+  line-height:1.65;
+  text-wrap:pretty;
+}
+.reviews .review--text .review__caption{
+  margin:0;
+  padding:0 var(--rv-pad-x) var(--rv-pad-y);
+  gap:.8rem;
+  align-items:baseline;
+}
+.reviews .review--text .review__link{
+  margin:0 var(--rv-pad-x) var(--rv-pad-y);
+}
+/* у карточек-скринов ничего не меняем */
+.reviews .review:not(.review--text) .review__img{}
+

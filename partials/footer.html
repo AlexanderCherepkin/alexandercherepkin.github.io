@@ -1,0 +1,126 @@
+<footer class="site-footer site-footer--brand" id="site-footer" role="contentinfo" aria-labelledby="footerTitle">
+  <div class="container">
+    <h2 class="visually-hidden" id="footerTitle">Подвал сайта «ПрофРемонт»</h2>
+
+    <div class="site-footer__grid">
+      <!-- Бренд + краткий текст -->
+      <section class="footer-brand">
+        <a class="footer-brand__logo" href="/" aria-label="ПрофРемонт — на главную">
+          <img src="/png/brand1.png" alt="ПрофРемонт" width="160" height="52" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-brand__about">
+          Ремонт квартир, офисов и коттеджей во Владимире с 2015 года.
+          Договор, фиксированные сроки и стоимость, еженедельные отчёты.
+        </p>
+        <div class="footer-brand__cta">
+          <button class="btn" type="button" data-modal-open="quiz">Узнать стоимость</button>
+        </div>
+      </section>
+
+      <!-- Меню: Ремонт -->
+      <nav class="footer-nav" aria-labelledby="footerRemont">
+        <h3 class="footer-nav__title" id="footerRemont">Ремонт</h3>
+        <ul class="footer-nav__list" role="list">
+          <li><a href="/remont/html/apartment-studio.html">Квартира-студия</a></li>
+          <li><a href="/remont/html/one-room.html">1-комнатная</a></li><!-- fix: // -> / -->
+          <li><a href="/remont/html/two-room.html">2-комнатная</a></li>
+          <li><a href="/remont/html/three-room.html">3-комнатная</a></li>
+          <li><a href="/remont/html/cosmetic.html">Косметический</a></li>
+          <li><a href="/remont/html/capital.html">Капитальный</a></li>
+          <li><a href="/remont/html/design.html">Дизайнерский</a></li>
+          <li><a href="/remont/html/new-build.html">Новостройка</a></li>
+          <li><a href="/remont/html/secondary.html">Вторичка</a></li>
+        </ul>
+      </nav>
+
+      <!-- Меню: Услуги -->
+      <nav class="footer-nav" aria-labelledby="footerUslugi">
+        <h3 class="footer-nav__title" id="footerUslugi">Услуги</h3>
+        <ul class="footer-nav__list" role="list">
+          <li><a href="/directions/html/loggia.html">Лоджия комфорт-класса</a></li>
+          <li><a href="/directions/html/electrical.html">Электромонтаж</a></li>
+          <li><a href="/directions/html/plumbing.html">Сантехнические работы</a></li>
+          <li><a href="/directions/html/whitebox.html">Отделка WhiteBox</a></li>
+          <!-- <li><a href="/uslugi/naruzhnaya-otdelka.html">Наружная отделка</a></li> -->
+          <li><a href="/directions/html/bathroom.html">Ремонт ванной</a></li>
+          <li><a href="/directions/html/kitchen.html">Ремонт кухни</a></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+
+        <!-- Кнопка чата -->
+         <a id="nav-chat" class="site-header__link no-underline"
+             href="/pages/chat.html" data-hard data-i18n="nav.chat" target="_blank">
+            Чат&nbsp;проекта
+          </a>
+      </nav>
+
+      <!-- Контакты -->
+      <section class="footer-contacts" aria-labelledby="footerContacts">
+        <h3 class="footer-nav__title" id="footerContacts">Контакты</h3>
+
+        <address class="footer-contacts__address" translate="no">
+          <ul class="footer-contacts__list" role="list">
+            <li>
+              <a class="footer-contacts__link" href="tel:+79585106818" aria-label="Позвонить +7 (958) 510-68-18">+7 (958) 510-68-18</a>
+            </li>
+            <li>
+              <a class="footer-contacts__link" href="mailto:info@profremont.ru">info@profremont.ru</a>
+            </li>
+            <li>
+              <span class="footer-contacts__text">Владимир и область</span>
+            </li>
+            <li class="footer-social">
+              <a class="footer-social__link" href="https://wa.me/79585106818" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
+              <a class="footer-social__link" href="https://t.me/XXXXXXXX" target="_blank" rel="noopener" aria-label="Telegram">Telegram</a>
+              <a class="footer-social__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте">VK</a>
+            </li>
+          </ul>
+        </address>
+
+        <div id="footer-contacts" class="footer-contacts__cta"><!-- fix: уникальный id -->
+          <a class="btn link-btn link-btn__cta" href="/#contacts">Страница контактов</a>
+          <a class="btn btn--ghost" href="tel:+79585106818" style="color: #ffffff !important;">Позвонить</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== Subscribe (вставлено под сеткой футера) ===== -->
+    <section class="subscribe" aria-labelledby="subscribe-title">
+      <h2 id="subscribe-title" data-i18n="subscribe.title">Будьте на связи</h2>
+      <p data-i18n="subscribe.desc">Подпишитесь, чтобы получать новости и скидки.</p>
+
+      <form id="subscribe-form" class="subscribe-form" novalidate>
+        <!-- honeypot -->
+        <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-100vw;" aria-hidden="true">
+        <label class="visually-hidden" for="subscribe-email" data-i18n="subscribe.ariaLabel">Ваш email</label>
+        <input id="subscribe-email" name="email" type="email" required
+          inputmode="email" autocomplete="email"
+          data-i18n-placeholder="subscribe.placeholder"
+          data-i18n-aria-label="subscribe.ariaLabel"
+          placeholder="your@email"
+        />
+        <button type="submit" class="neu-btn" data-i18n="subscribe.btn">Подписаться</button>
+        <p id="subscribe-hint" class="form-hint" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <!-- ===== /Subscribe ===== -->
+
+  </div>
+
+  <div class="site-footer__bottom">
+    <div class="container">
+      <div class="site-footer__row">
+        <div class="site-footer__copy">
+          © <span class="js-year">2025</span> «ПрофРемонт». Все права защищены.
+          <noscript>© 2025 «ПрофРемонт». Все права защищены.</noscript>
+        </div>
+        <nav class="site-footer__legal" aria-label="Юридическая информация">
+          <a href="/privacy/police.html#contacts" target="_blank">Политика конфиденциальности</a><!-- fix: /privacy/policy.html -->
+          <a href="#" rel="nofollow">Публичная оферта</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>

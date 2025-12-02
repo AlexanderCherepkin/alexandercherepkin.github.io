@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+
+Host: profremont.local-ai-hub.website
+Sitemap: https://profremont.local-ai-hub.website/sitemap.xml

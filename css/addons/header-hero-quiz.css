@@ -1,0 +1,507 @@
+/* ===== Modal + Quiz (addon). Подключать ПОСЛЕ темы ===== */
+
+/* Базовые */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== Header: моб. меню ===== */
+.site-header__mobile-menu {
+  display: grid;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 1.2rem 1.6rem;
+}
+
+.site-header__mobile-cta {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.2rem 1.6rem 1.6rem;
+}
+
+/* ===== Modal ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.modal[hidden] {
+  display: none !important;
+}
+
+/* backdrop под диалогом */
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+@supports (backdrop-filter: blur(4px)) {
+  .modal__backdrop {
+    backdrop-filter: blur(0.6rem);
+  }
+}
+
+ диалог 
+.modal__dialog {
+  position: relative;
+  z-index: 1;
+  max-width: 70rem;
+  inline-size: min(74rem, calc(100dvw - 2rem));
+  max-block-size: calc(100dvh - 20rem);
+  overflow: auto;
+
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 1rem 3rem rgba(2, 6, 23, 0.2);
+  padding: 2rem;
+  outline: none;
+}
+
+.modal__dialog:focus-visible {
+  box-shadow: var(--ring);
+}
+
+.modal__header {
+  margin-block-end: 1rem;
+}
+
+.modal__title {
+  margin: 0 0 0.4rem;
+  font-size: var(--fs-h2);
+}
+
+.modal__desc {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Кнопка закрытия — контрастный «крест» из линий, поверх скроллбара */
+.modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+
+  border: 2px solid #e5e7eb;
+  border-radius: 0.6rem;
+  background: var(--bg-2, #f3f4f6);
+  cursor: pointer;
+  color: #0f172a;    /* цвет крестика в светлой теме */
+  z-index: 5;        /* поверх оверлей-скроллбара */
+}
+
+/* рисуем «Х» двумя штрихами */
+.modal__close::before,
+.modal__close::after {
+  content: "";
+  position: absolute;
+  width: 1.6rem;
+  height: 0.18rem;
+  background: currentColor;
+  border-radius: 0.18rem;
+  transform-origin: 50% 50%;
+}
+.modal__close::before { transform: rotate(45deg); }
+.modal__close::after  { transform: rotate(-45deg); }
+
+.modal__close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(22, 101, 52, 0.25);
+}
+
+/* Лок скролла при открытой модалке */
+.scroll-lock {
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* ===== Quiz ===== */
+.quiz__progress {
+  block-size: 0.6rem;
+  margin-block-end: 1.2rem;
+
+  overflow: hidden;
+  border-radius: 0.6rem;
+  background: var(--bg-2);
+}
+
+.quiz__bar {
+  block-size: 100%;
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+  transform-origin: left;
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.quiz__question {
+  margin: 0 0 1rem;
+  font-size: var(--fs-h2);
+}
+
+/* Сетка вариантов: равная высота карточек */
+.quiz__options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 48rem) {
+  .quiz__options {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quiz__option {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.9rem;
+
+  min-block-size: 4.8rem;
+  padding: 1.2rem 1.4rem;
+
+  border: 0.1rem solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--surface-3);
+
+  user-select: none;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    border-color 0.12s ease,
+    background-color 0.12s ease;
+}
+
+.quiz__option:hover {
+  border-color: color-mix(in oklch, var(--line) 70%, var(--brand) 30%);
+}
+
+.quiz__option:active {
+  transform: translateY(0.02rem);
+}
+
+/* лёгкая «ступенька» на десктопе */
+@media (min-width: 48.01rem) {
+  .quiz__option:nth-child(odd) {
+    transform: translateY(0.12rem);
+  }
+
+  .quiz__option:nth-child(3n) {
+    transform: translateY(0.24rem);
+  }
+}
+
+/* Кастомные radio/checkbox (центр ядра) */
+.quiz__option input {
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+
+  inline-size: 1.6rem;
+  block-size: 1.6rem;
+  margin: 0;
+  padding: 0;
+
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+
+  border: 0.14rem solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+
+  transition:
+    border-color 0.12s ease,
+    background-color 0.12s ease;
+}
+
+.quiz__option input[type="checkbox"] {
+  border-radius: 0.4rem;
+}
+
+.quiz__option input:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.quiz__option input::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  inline-size: 0.9rem;
+  block-size: 0.9rem;
+  border-radius: 50%;
+  background: var(--brand);
+
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.12s ease;
+}
+
+/* чекбокс — квадратный индикатор */
+.quiz__option input[type="checkbox"]::before {
+  inline-size: 1rem;
+  block-size: 1rem;
+  border-radius: 0.2rem;
+  background: var(--brand);
+}
+
+.quiz__option input:checked {
+  border-color: color-mix(in oklch, var(--line) 35%, var(--brand) 65%);
+  background: color-mix(in oklch, white 85%, var(--brand) 15%);
+}
+
+.quiz__option input:checked::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.quiz__option span {
+  align-self: center;
+  color: var(--ink);
+  font-size: 1.6rem;
+  line-height: 1.35;
+}
+
+/* Формы */
+.quiz__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.quiz__grid textarea {
+  resize: vertical;
+}
+
+.quiz__input {
+  inline-size: 100%;
+  padding: 1.2rem 1.4rem;
+
+  border: 0.1rem solid var(--line);
+  border-radius: 0.8rem;
+
+  appearance: textfield;
+  font-size: 1.6rem;
+}
+
+.quiz__input:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+@media (max-width: 48rem) {
+  .quiz__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Липкий футер навигации квиза */
+.quiz__footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  margin-block-start: 1.6rem;
+  padding: 0.8rem 0 0.2rem;
+
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.92) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: saturate(120%);
+  border-top: 1px solid #eef2f7;
+}
+
+.quiz__result .quiz__lead {
+  color: var(--muted);
+}
+
+.is-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 0.14rem rgba(239, 68, 68, 0.15);
+}
+
+/* Полные кнопки — белый текст */
+.btn:not(.btn--ghost) {
+  color: #fff;
+}
+
+/* Итоговый блок квиза */
+.quiz__summary {
+  margin: 0.8rem 0 1.2rem;
+  padding: 1.2rem 1.4rem;
+
+  border: 0.1rem solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--surface-2);
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.03);
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: 18rem 1fr;
+  gap: 0.6rem 1.2rem;
+  margin: 0;
+}
+
+.kv dt {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.kv dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+.quiz__note {
+  margin: 0.6rem 0 1.2rem;
+  color: var(--muted);
+}
+
+@media (max-width: 48rem) {
+  .kv {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Dark theme ===== */
+html[data-theme="dark"] .modal__dialog {
+  color: var(--text);
+  background: #0b0f1a;
+}
+
+html[data-theme="dark"] .modal__desc,
+html[data-theme="dark"] .quiz__result .quiz__lead {
+  color: #9aa3b2;
+}
+
+html[data-theme="dark"] .quiz__option {
+  border-color: rgba(229, 231, 235, 0.15);
+}
+
+html[data-theme="dark"] .quiz__progress {
+  background: rgba(229, 231, 235, 0.12);
+}
+
+html[data-theme="dark"] .modal__close {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: #111827;
+  color: #e5e7eb; /* светлый крестик в тёмной теме */
+}
+
+html[data-theme="dark"] .quiz__footer {
+  background: linear-gradient(
+    to top,
+    rgba(11, 15, 26, 1),
+    rgba(11, 15, 26, 0.92) 60%,
+    rgba(11, 15, 26, 0)
+  );
+  border-top: 1px solid rgba(229, 231, 235, 0.12);
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .quiz__bar {
+    transition: none;
+  }
+}
+
+/* ===== High-contrast focus fallback (если нет var(--ring)) ===== */
+@supports not (box-shadow: var(--ring)) {
+  .modal__dialog:focus-visible,
+  .quiz__input:focus-visible {
+    outline: 0.2rem solid var(--brand);
+  }
+}
+
+/* ===== Светлый бэкдроп только для квиза ===== */
+#modal-quiz .modal__backdrop {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+@supports (backdrop-filter: blur(4px)) {
+  #modal-quiz .modal__backdrop {
+    backdrop-filter: blur(3px) saturate(120%);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.44),
+      rgba(255, 255, 255, 0.28)
+    );
+  }
+}
+
+
+/* Универсальные модалки (callback, modal-quiz и др.) */
+.modal[hidden]{display:none!important}
+.modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center}
+.modal__backdrop{position:absolute;inset:0;background:rgba(2,6,23,.5);backdrop-filter:saturate(120%) blur(.4rem)}
+.modal__dialog{
+  position:relative;z-index:1;max-height:90vh;overflow:auto;
+  background:var(--bg,#fff);color:var(--text,#0f172a);border-radius:1.2rem;box-shadow:0 1.2rem 3.6rem rgba(0,0,0,.35);padding:1.2rem
+}
+.modal__close{position:absolute;top:.6rem;right:.6rem;border:0;background:transparent;cursor:pointer;width:2.4rem;height:2.4rem;border-radius:.6rem}
+.modal__close:focus-visible{outline:var(--ring)}
+.modal__header{margin:0 0 1rem}
+.modal__title{margin:0 0 .4rem;font:700 1.8rem/1.2 var(--font,system-ui)}
+.modal__subtitle,.modal__lead{margin:0;color:var(--muted)}
+.modal__actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
+.modal__footer{margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap}
+
+/* Формовые элементы в модалках */
+.field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.8rem}
+.field__label{font:600 1.2rem/1.2 var(--font,system-ui);color:var(--muted)}
+.field__input, .form__control, .quiz__input, .form select, .form input[type="text"], .form input[type="tel"], .form textarea{
+  width:100%;padding:.8rem 1rem;border:.1rem solid var(--line,#e5e7eb);border-radius:.6rem;background:#fff;color:var(--text)
+}
+.field__input:focus-visible,.form__control:focus-visible,.quiz__input:focus-visible{outline:var(--ring)}
+html[data-theme="dark"] .modal__dialog{background:oklch(.23 .02 145);border:.1rem solid #233046}
+
+/* === Chat underline: принудительно показать линию у #nav-chat === */
+.site-header nav a#nav-chat{
+  position: relative;
+  display: inline-block;
+  padding-bottom: .5rem; /* резерв под линию */
+}
+
+/* сама полоса */
+.site-header nav a#nav-chat::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -.05rem;
+  height: .2rem;
+  border-radius: .2rem;
+  background: var(--brand, #16a34a) !important;
+
+  /* ключ: перебиваем базовое скрытие у .site-header__link::after */
+  transform: scaleX(1) !important;
+  transform-origin: left !important;
+  opacity: 1 !important;
+}
+
+.hp-field {
+    display: none;
+}
+}

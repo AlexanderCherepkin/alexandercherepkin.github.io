@@ -1,0 +1,30 @@
+/* neu.css — ДОБАВИТЬ */
+:root{
+  --neu-bg: #eef2f3;
+  --neu-dark: #b8c2c6;
+  --neu-light: #ffffff;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --neu-bg: #1c1f22; --neu-dark:#141618; --neu-light:#262a2e;
+  }
+}
+.neu-card {
+  background: var(--neu-bg);
+  border-radius: 1.2rem;
+  box-shadow:
+    0.4rem 0.4rem 0.9rem var(--neu-dark),
+   -0.4rem -0.4rem 0.9rem var(--neu-light);
+  padding: 1.2rem;
+}
+.neu-btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 0.9rem 1.4rem; border-radius: 1rem; border: 0;
+  background: var(--neu-bg); cursor: pointer;
+  box-shadow:
+    0.3rem 0.3rem 0.6rem var(--neu-dark),
+   -0.3rem -0.3rem 0.6rem var(--neu-light);
+  transition: transform .1s ease;
+}
+.neu-btn:active { transform: translateY(0.1rem); }
+

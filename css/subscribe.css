@@ -1,0 +1,15 @@
+/* subscribe.css — компактные стили (rem) */
+.subscribe { margin-block: 2rem; }
+.subscribe-form { display:flex; gap: 0.8rem; flex-wrap: wrap; }
+.subscribe-form input[type=email]{
+  flex:1 1 22rem; min-width: 18rem;
+  padding: 0.9rem 1.1rem; border-radius: 0.8rem; border: 0.1rem solid hsl(0 0% 80%);
+}
+@media (prefers-color-scheme: dark){
+  .subscribe-form input[type=email]{ border-color: hsl(0 0% 35%); }
+}
+.form-hint{ font-size: 0.9rem; margin-top: 0.6rem; }
+.visually-hidden{
+  position:absolute!important; width:0.01rem; height:0.01rem; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; clip-path:inset(50%);
+}
+

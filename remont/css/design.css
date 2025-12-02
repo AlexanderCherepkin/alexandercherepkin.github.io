@@ -1,0 +1,833 @@
+/* /remont/css/design.css — v3 optimized */
+
+/* ================================
+   CSS Custom Properties
+   ================================ */
+:root {
+  --brand-700: #14532d;
+  --brand-600: #166534;
+  --brand-500: #1a7a3e;
+  --brand-400: #2da14e;
+  --brand-accent: #70d009;
+  --surface-d: #0f172a;
+  --surface-d-2: #0b1220;
+  --text-on-dark: #e5e7eb;
+  --ring: rgba(22, 101, 52, 0.28);
+  --shadow: 0 0.16rem 0.8rem rgba(0, 0, 0, 0.25);
+
+  --hud-color: #fff;
+  --bar-bg: rgba(255, 255, 255, 0.25);
+  --bar-fg: var(--brand-accent);
+  --bar-h: 0.25rem;
+}
+
+/* Скрываем бургер-меню на всех страницах, КРОМЕ главной (.page-index) */
+body:not(.page-index) .site-header__burger,
+body:not(.page-index) .nav-toggle,
+body:not(.page-index) .site-header__burger-line {
+    display: none !important;
+}
+
+/* ================================
+   Base
+   ================================ */
+html {
+  scrollbar-gutter: stable both-edges;
+}
+
+body.scroll-lock {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.container {
+  max-width: 150rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+/* ================================
+   HERO
+   ================================ */
+.hero-design {
+  position: relative;
+  display: grid;
+  gap: 1.2rem;
+  align-items: center;
+  grid-template-columns: 1fr;
+  margin: 1.2rem 0 1.6rem;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f7faf9, #ffffff);
+}
+
+@media (min-width: 64rem) {
+  .hero-design {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.hero-design__inner {
+  padding: 1.4rem;
+}
+
+.hero-design__title {
+  font: 700 2rem/1.15 Manrope, system-ui;
+  letter-spacing: -0.01em;
+  margin: 0.2rem 0 0.6rem;
+}
+
+.hero-accent {
+  color: var(--brand-600);
+}
+
+.hero-design__lead {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  opacity: 0.95;
+  max-width: 60ch;
+}
+
+.hero-design__cta {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.hero-design__media picture,
+.hero-design__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-design__media {
+  border-radius: 1.2rem;
+  overflow: hidden;
+  outline: 0.12rem solid rgba(22, 101, 52, 0.18);
+}
+
+/* ================================
+   Buttons
+   ================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.8rem;
+  border: 0.1rem solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-cta-calc {
+  position: relative;
+  color: #fff !important;
+  background: var(--brand-600);
+  border: 0.125rem solid rgba(255, 255, 255, 0.14);
+}
+
+.btn-cta-calc:hover {
+  background: var(--brand-700);
+}
+
+.btn-cta-calc:focus-visible {
+  outline: 0.1875rem solid #0b1220;
+  outline-offset: 0.1875rem;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: rgba(22, 101, 52, 0.45);
+  color: var(--brand-700);
+}
+
+.btn--ghost:hover {
+  background: rgba(112, 208, 9, 0.12);
+}
+
+.btn-badge {
+  position: absolute;
+  left: -0.1rem;
+  top: 0.1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--brand-700);
+  font: 700 0.75rem/1 Manrope, system-ui;
+  box-shadow: 0 0.15rem 0.4rem rgba(0, 0, 0, 0.2);
+  border: 0.0625rem solid rgba(20, 83, 45, 0.25);
+}
+
+.btn-cta__main {
+  color: #fff;
+}
+
+.btn-cta__meta {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Link buttons */
+a.btn.link-btn {
+  background: rgba(22, 101, 52, 0.1);
+  color: #0b1220;
+  border: 0.125rem solid rgba(22, 101, 52, 0.35);
+}
+
+a.btn.link-btn:hover {
+  background: rgba(22, 101, 52, 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  a.btn.link-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 0.125rem solid rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* ================================
+   Case Meta
+   ================================ */
+.case-meta {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 56rem) {
+  .case-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.case-meta__row strong {
+  color: var(--brand-600);
+  font-weight: 700;
+}
+
+.case-meta__muted {
+  opacity: 0.85;
+}
+
+/* ================================
+   KPI Cards (с CSS-анимацией вместо AOS)
+   ================================ */
+.design-kpi {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 1rem 0 1.4rem;
+}
+
+@media (min-width: 48rem) {
+  .design-kpi {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.kpi {
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+  color: var(--text-on-dark);
+  background: radial-gradient(
+      80rem 40rem at 110% -20%,
+      rgba(112, 208, 9, 0.18) 0%,
+      transparent 55%
+    ),
+    var(--surface-d);
+  outline: 0.12rem solid rgba(22, 101, 52, 0.26);
+  box-shadow: var(--shadow);
+
+  /* Начальное состояние для анимации */
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Staggered delay для каждой карточки */
+.kpi:nth-child(1) { transition-delay: 0s; }
+.kpi:nth-child(2) { transition-delay: 0.1s; }
+.kpi:nth-child(3) { transition-delay: 0.2s; }
+.kpi:nth-child(4) { transition-delay: 0.3s; }
+
+/* Когда карточка видна */
+.kpi.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kpi strong {
+  font-size: 1.1rem;
+  display: block;
+}
+
+.kpi small {
+  display: block;
+  opacity: 0.9;
+  margin-top: 0.2rem;
+}
+
+/* ================================
+   Section Titles
+   ================================ */
+.case-section-title {
+  position: relative;
+  margin: 1.2rem 0 0.8rem;
+  padding-block: 0.2rem;
+  line-height: 1.2;
+}
+
+.case-section-title::after {
+  content: "";
+  display: block;
+  height: 0.24rem;
+  width: 6rem;
+  margin-top: 0.4rem;
+  border-radius: 999rem;
+  background: linear-gradient(
+    90deg,
+    var(--brand-600),
+    var(--brand-400)
+  );
+}
+
+/* ================================
+   Two Column Layout
+   ================================ */
+.case-two-col {
+  display: grid;
+  gap: 1.6rem;
+}
+
+@media (min-width: 56rem) {
+  .case-two-col {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.case-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ================================
+   Gallery
+   ================================ */
+.case-gallery .case-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 48rem) {
+  .case-gallery .case-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.case-gallery figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  background: rgba(11, 11, 11, 0.03);
+}
+
+.case-gallery .media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.case-gallery img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  outline: 0.12rem solid rgba(22, 101, 52, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.case-gallery img[data-full] {
+  cursor: zoom-in;
+}
+
+.case-gallery img[data-full]:hover {
+  transform: translateY(-0.08rem);
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.18);
+}
+
+.case-gallery figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: #666;
+}
+
+.lightbox__caption {
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  text-align: center;
+}
+
+/* ================================
+   Slides (Carousel) with CSS Ken Burns
+   ================================ */
+.slides {
+  position: relative;
+  border-radius: 1rem;
+  overflow: clip;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  background: #0a0a0a;
+  isolation: isolate;
+}
+
+.slides::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 80% at 50% 50%,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+.slides__viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.5s ease, transform 0.6s ease;
+  display: grid;
+  place-items: end;
+  background: #111;
+}
+
+.slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slide > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backface-visibility: hidden;
+  transform: translateZ(0) scale(1);
+}
+
+/* Ken Burns на чистом CSS */
+.slide.is-active > img {
+  animation: kenburns var(--slide-interval, 6s) linear forwards;
+}
+
+@keyframes kenburns {
+  from {
+    transform: translateZ(0) scale(1);
+  }
+  to {
+    transform: translateZ(0) scale(1.02);
+  }
+}
+
+/* Caption */
+.slide .slide__caption {
+  position: relative;
+  width: max(60%, 20rem);
+  margin: 0 1rem 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font: 500 1rem/1.3 Manrope, system-ui;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+  transform: translateY(0.5rem);
+  opacity: 0;
+}
+
+.slide.is-active .slide__caption {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.45s ease, opacity 0.45s ease 0.05s;
+}
+
+@media (prefers-color-scheme: dark) {
+  .slide .slide__caption {
+    background: rgba(0, 0, 0, 0.4);
+    color: #f5f5f5;
+  }
+}
+
+/* Navigation */
+.slides__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 3rem;
+  height: 3rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.35);
+  border-radius: 0.8rem;
+  background: transparent;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0.95;
+  transition: opacity 0.15s ease, box-shadow 0.15s ease;
+  will-change: opacity;
+}
+
+.slides__nav:hover {
+  opacity: 1;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.25);
+}
+
+.slides__nav--prev {
+  left: 0.75rem;
+}
+
+.slides__nav--next {
+  right: 0.75rem;
+}
+
+/* Dots */
+.slides__dots {
+  position: absolute;
+  left: 50%;
+  bottom: 0.75rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 999rem;
+  border: 0;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: width 0.25s ease, opacity 0.25s ease;
+}
+
+.dot.is-active {
+  width: 1.5rem;
+  opacity: 1;
+  background: var(--brand-accent);
+}
+
+/* HUD */
+.slides__hud {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--hud-color);
+  font: 600 0.875rem/1 Manrope, system-ui;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.hud__rec-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #ff3b30;
+  box-shadow: 0 0 0.5rem rgba(255, 59, 48, 0.9);
+  animation: recPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes recPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.6;
+  }
+}
+
+.slides[data-paused="true"] .hud__rec-dot {
+  animation-play-state: paused;
+  opacity: 0.5;
+}
+
+/* Progress Bar */
+.slides__bar {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.5rem;
+  z-index: 3;
+  height: var(--bar-h);
+  background: var(--bar-bg);
+  border-radius: 999rem;
+  overflow: hidden;
+  contain: layout paint;
+  transform: translateZ(0);
+}
+
+.slides__bar-inner {
+  height: 100%;
+  width: 0%;
+  background: var(--bar-fg);
+  will-change: width;
+}
+
+/* ================================
+   Timeline
+   ================================ */
+.case-timeline {
+  counter-reset: day;
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.case-timeline .step {
+  position: relative;
+  color: var(--text-on-dark);
+  background: var(--surface-d);
+  border-radius: 1rem;
+  padding: 1rem 1.2rem 1rem 1.4rem;
+  box-shadow: var(--shadow);
+  border-inline-start: 0.24rem solid var(--brand-600);
+}
+
+.case-timeline .step::before {
+  counter-increment: day;
+  content: "Шаг " counter(day) " — ";
+  font-weight: 700;
+  color: var(--brand-accent);
+}
+
+/* ================================
+   FAQ
+   ================================ */
+.faq details {
+  background: var(--surface-d);
+  color: var(--text-on-dark);
+  border-radius: 1rem;
+  padding: 0.8rem 1rem;
+  border: 0.1rem solid rgba(22, 101, 52, 0.18);
+  transition: border-color 0.2s ease;
+}
+
+.faq details + details {
+  margin-top: 0.8rem;
+}
+
+.faq details[open] {
+  border-color: rgba(22, 101, 52, 0.45);
+}
+
+.faq summary {
+  cursor: pointer;
+}
+
+/* ================================
+   CTA Bottom
+   ================================ */
+.case-cta--bottom {
+  text-align: center;
+  margin-top: 1.6rem;
+}
+
+.case-cta .btn,
+.btn-cta-calc {
+  color: #fff !important;
+  text-shadow: 0 0.04rem 0.08rem rgba(0, 0, 0, 0.35);
+}
+
+/* ================================
+   Light Mode Overrides
+   ================================ */
+@media (prefers-color-scheme: light) {
+  .kpi,
+  .case-timeline .step,
+  .faq details {
+    color: #0b1220;
+    background: #ffffff;
+  }
+}
+
+/* ================================
+   To Top Button
+   ================================ */
+.to-top {
+  position: fixed;
+  right: 5rem;
+  bottom: 0.5rem;
+  z-index: 2147483647;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 2rem;
+  border: 0.2rem solid rgba(22, 101, 52, 0.8);
+  background: rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ================================
+   Reduced Motion
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+  .kpi,
+  .slide,
+  .slide.is-active > img,
+  .slide .slide__caption,
+  .to-top {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .kpi {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ================================
+   Lightbox Styles (injected by JS, but base here)
+   ================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox[hidden] {
+  display: none !important;
+}
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(0.2rem);
+}
+
+.lightbox__frame {
+  position: relative;
+  max-width: 92vw;
+  max-height: 92dvh;
+  display: grid;
+  place-items: center;
+  outline: 0.16rem solid rgba(22, 101, 52, 0.5);
+  border-radius: 1rem;
+  box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  background: #0b1220;
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 92dvh;
+  display: block;
+}
+
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 0.1rem solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.lightbox__close:hover,
+.lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.25);
+}
+
+.lightbox__close {
+  top: 0.6rem;
+  right: 0.6rem;
+}
+
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox__prev {
+  left: 1rem;
+}
+
+.lightbox__next {
+  right: 1rem;
+}
+
+.lightbox__svg {
+  width: 2rem;
+  height: 2rem;
+  pointer-events: none;
+}

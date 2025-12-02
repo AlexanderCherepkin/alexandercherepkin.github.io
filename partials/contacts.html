@@ -1,0 +1,170 @@
+<!-- contacts.html -->
+<section id="contacts" class="section contacts" aria-labelledby="contacts-title" itemscope itemtype="https://schema.org/LocalBusiness">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="contacts-title" data-i18n="contacts.title">Контакты</h2>
+      <p class="section-subtitle" data-i18n="contacts.subtitle">Свяжитесь с нами удобным способом — ответим быстро.</p>
+    </header>
+
+    <!-- Верхний ряд: слева инфо, справа карта -->
+    <div class="contacts-top" role="region" aria-label="Контактная информация и карта">
+      <!-- Информация -->
+      <div class="contacts-info" data-i18n-scope="contacts">
+        <div class="contacts-card" role="group" aria-label="Как связаться">
+          <ul class="contacts-list" role="list">
+            <li class="contacts-item">
+              <span class="contacts-label" data-i18n="contacts.phone_label">Телефон:</span>
+              <a href="tel:+79585106818" data-track="phone" rel="nofollow" itemprop="telephone" class="contacts-value" data-i18n="contacts.phone_value">+7 (958) 510-68-18</a>
+            </li>
+            <li class="contacts-item">
+              <span class="contacts-label" data-i18n="contacts.whatsapp_label">WhatsApp:</span>
+              <a href="https://wa.me/79585106818" target="_blank" rel="noopener nofollow" data-track="whatsapp" class="contacts-value" data-i18n="contacts.whatsapp_value">Написать в WhatsApp</a>
+            </li>
+            <li class="contacts-item">
+              <span class="contacts-label" data-i18n="contacts.email_label">Email:</span>
+              <a href="mailto:info@profremont.ru" rel="nofollow" data-track="email" itemprop="email" class="contacts-value" data-i18n="contacts.email_value">info@profremont.ru</a>
+            </li>
+            <li class="contacts-item">
+              <span class="contacts-label" data-i18n="contacts.address_label">Адрес офиса:</span>
+              <span class="contacts-value" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itemprop="addressLocality" data-i18n="contacts.address_city">г. Владимир</span>,
+                <span itemprop="streetAddress" data-i18n="contacts.address_street">ул. Примерная, д. 1</span>
+              </span>
+            </li>
+            <li class="contacts-item">
+              <span class="contacts-label" data-i18n="contacts.hours_label">График:</span>
+              <time class="contacts-value" itemprop="openingHours" datetime="Mo-Sa 09:00-20:00" data-i18n="contacts.hours_value">Пн–Сб 09:00–20:00</time>
+            </li>
+          </ul>
+
+          <div class="contacts-actions" role="group" aria-label="Быстрые действия">
+            <a class="btn" href="tel:+79585106818" data-track="phone" data-i18n="contacts.action_call">Позвонить</a>
+            <a class="btn btn--ghost" href="https://wa.me/79585106818" target="_blank" rel="noopener nofollow" data-track="whatsapp" data-i18n="contacts.action_whatsapp">Написать в WhatsApp</a>
+            <a class="btn btn--ghost" href="mailto:info@profremont.ru" rel="nofollow" data-track="email" data-i18n="contacts.action_email">Написать на Email</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Карта -->
+      <div class="contacts-map-col">
+        <div class="map-embed" data-track="map_interaction" aria-describedby="map-desc">
+          <iframe
+            title="Карта офиса ПрофРемонт Владимир"
+            aria-label="Карта расположения офиса"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=56.129496,40.407997&amp;hl=ru&amp;z=16&amp;output=embed"
+            allowfullscreen>
+          </iframe>
+
+          <div class="map-toolbar" role="group" aria-label="Действия с картой">
+            <a class="btn btn--ghost contacts-map-btn"
+               href="https://maps.google.com/?q=56.129496,40.407997"
+               target="_blank"
+               rel="noopener nofollow"
+               data-i18n="contacts.map_open_btn"
+               aria-label="Открыть локацию в Google Maps">Открыть в Google Maps</a>
+          </div>
+        </div>
+
+        <p id="map-desc" class="visually-hidden" data-i18n="contacts.map_desc">Встроенная карта Google. Кнопка «Открыть в Google Maps» откроет адрес в новой вкладке.</p>
+      </div>
+    </div>
+
+    <!-- Общая пометка под верхним рядом -->
+    <p class="contacts-note" data-i18n="contacts.map_note">
+      Точка указана по входу. Уточнения пришлём при подтверждении замера.
+    </p>
+
+    <!-- Нижний ряд: форма на всю ширину контейнера -->
+    <div class="contacts-form">
+      <form id="contact-form"
+            class="callback__form contacts__form form"
+            action="/mailer/send.php"
+            method="post"
+            novalidate
+            aria-describedby="contact-form-desc">
+        <p id="contact-form-desc" class="visually-hidden" data-i18n="contacts.form_aria">
+          Форма обратной связи для заявки на замер/консультацию.
+        </p>
+
+        <!-- Honeypot -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="company" class="visually-hidden">Company</label>
+          <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- CSRF (заполняется contact-form.js) -->
+        <input type="hidden" name="csrf_seed" value="">
+
+        <!-- Табличная сетка полей -->
+        <div class="callback__grid">
+          <label class="field">
+            <span class="field__label" data-i18n="contacts.form_name_label">Имя*</span>
+            <input class="field__input"
+                   id="cf-name"
+                   name="name"
+                   type="text"
+                   required
+                   autocomplete="name"
+                   placeholder="Как к вам обращаться"
+                   aria-invalid="false"
+                   aria-describedby="cf-name-hint"
+                   data-i18n-alt="contacts.form_name_placeholder">
+            <span id="cf-name-hint" class="visually-hidden" data-i18n="contacts.form_name_hint">Например: Александр</span>
+          </label>
+
+          <label class="field">
+            <span class="field__label" data-i18n="contacts.form_phone_label">Телефон*</span>
+            <input class="field__input"
+                   id="cf-phone"
+                   name="phone"
+                   type="tel"
+                   inputmode="tel"
+                   pattern="^[+0-9\s()\-]{7,}$"
+                   autocomplete="tel"
+                   required
+                   placeholder="+7 XXX XXX-XX-XX"
+                   aria-invalid="false"
+                   aria-describedby="cf-phone-hint"
+                   data-i18n-alt="contacts.form_phone_placeholder">
+            <span id="cf-phone-hint" class="visually-hidden" data-i18n="contacts.form_phone_hint">Формат: +7 958 510-68-18</span>
+          </label>
+
+          <label class="field field--full">
+            <span class="field__label" data-i18n="contacts.form_message_label">Комментарий</span>
+            <textarea class="field__input"
+                      id="cf-msg"
+                      name="message"
+                      rows="3"
+                      autocomplete="off"
+                      placeholder="Удобное время для звонка / адрес / задачи"
+                      aria-invalid="false"
+                      data-i18n-alt="contacts.form_message_placeholder"></textarea>
+          </label>
+        </div>
+
+        <div class="callback__actions">
+          <button type="submit"
+                  class="btn btn-primary"
+                  data-track="contact_form_submit"
+                  data-i18n="contacts.form_submit">Отправить заявку</button>
+          <a class="btn btn--ghost"
+             href="tel:+79585106818"
+             data-track="phone"
+             aria-label="Позвонить +7 (958) 510-68-18"
+             data-i18n="contacts.form_call_alt">Или позвоните</a>
+        </div>
+
+        <p class="form-agree">
+          <span data-i18n="contacts.form_policy_prefix">Нажимая на кнопку, вы принимаете условия</span>
+          <a class="link-btn" href="/privacy/police.html#contacts" rel="nofollow" data-i18n="contacts.form_policy_link" target="_blank">политики конфиденциальности</a>.
+        </p>
+
+        <div class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+

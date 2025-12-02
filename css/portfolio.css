@@ -1,0 +1,142 @@
+/* Портфолио: сетка, фильтры, карточки, lightbox — зелёная тема */
+
+/* Блок и хедер */
+.portfolio { padding: 2.4rem 0; }
+.portfolio__header { margin-bottom: 1.2rem; }
+.portfolio__title { margin: 0 0 0.4rem; font-size: var(--fs-h2); line-height: var(--lh-tight); letter-spacing:-0.01em; }
+.portfolio__subtitle { margin: 0; color: var(--muted); font-size: 1.5rem; }
+
+/* Фильтры */
+.portfolio__filters{
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:1rem; padding:1rem; margin:1.2rem 0 1.6rem;
+  border:.1rem solid var(--line); border-radius:1rem; background:var(--surface-1);
+}
+.portfolio__filter{ display:grid; gap:.4rem; }
+.portfolio__label{ color:var(--ink); font-size:1.4rem; font-weight:700; }
+.portfolio__select,.portfolio__range{
+  width:100%; padding:.8rem 1rem; border:.1rem solid var(--line); border-radius:.6rem;
+  color:var(--ink); background:var(--surface-3);
+}
+.portfolio__out{ color:var(--muted); font-size:1.4rem; }
+.portfolio__actions{ display:flex; align-items:end; justify-content:flex-end; gap:.8rem; }
+@media (max-width:64rem){ .portfolio__filters{ grid-template-columns:1fr 1fr; } }
+@media (max-width:42rem){ .portfolio__filters{ grid-template-columns:1fr; } }
+
+/* Сетка работ (ровные ряды) */
+.portfolio__grid{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.8rem; align-items:stretch;
+}
+@media (max-width:64rem){ .portfolio__grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:42rem){ .portfolio__grid{ grid-template-columns:1fr; } }
+
+/* Карточка */
+.work-card{
+  display:flex; flex-direction:column; height:100%;
+  overflow:clip; border:.1rem solid var(--line); border-radius:1rem; background:var(--surface-2);
+  transition:transform .12s ease, box-shadow .12s ease, opacity .25s ease;
+}
+.work-card:focus-visible{ outline:none; box-shadow:var(--ring); }
+.work-card:hover{ transform:translateY(-.3rem); box-shadow:0 .6rem 1.6rem rgba(20,40,15,.08); }
+
+.work-card__media{ line-height:0; display:block; background:var(--surface-3); aspect-ratio:3/2; overflow:hidden; }
+.work-card__media img{ display:block; width:100%; height:100%; object-fit:cover; }
+
+.work-card__body{ flex:1 1 auto; display:flex; flex-direction:column; gap:.8rem; padding:1.4rem; }
+.work-card__title{ margin:0 0 .8rem; font-size:1.9rem; line-height:var(--lh-tight); letter-spacing:-.01em; }
+.work-card__meta{ margin:0 0 1rem; padding-left:1.4rem; color:var(--ink); }
+.work-card__meta li{ margin:.3rem 0; }
+.work-card__cta{ display:flex; flex-wrap:wrap; gap:.6rem; }
+.work-card__body > .btn, .work-card__cta{ margin-top:auto; }
+
+/* Кнопка «Показать ещё» */
+.portfolio__more{ display:flex; justify-content:center; margin-top:2rem; }
+
+/* Плавное появление (совместимо с IntersectionObserver) */
+.work-card[data-reveal]{ opacity:0; transform:translateY(.6rem); }
+.work-card.is-visible, .work-card.revealed{ opacity:1; transform:none; transition:opacity .3s ease, transform .3s ease; }
+.no-js .work-card:not([hidden]):not(.revealed){ opacity:1; transform:none; }
+
+
+/* Lightbox */
+.portfolio-lightbox .modal__dialog{ max-width:86rem; }
+.lightbox__stage{
+  display:grid; gap:.6rem; padding:.8rem; border:.1rem solid var(--line);
+  border-radius:1rem; background:var(--surface-1);
+}
+.lightbox__img{ display:block; width:100%; height:auto; border-radius:.6rem; }
+.lightbox__caption{ color:var(--muted); font-size:1.4rem; }
+.lightbox__controls{ display:flex; justify-content:space-between; gap:.6rem; margin-top:.6rem; }
+
+/* Case Modal */
+.modal.case-modal[hidden]{ display:none !important; }
+.modal.case-modal{ position:fixed; inset:0; z-index:1000; }
+.modal__backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.5); }
+.modal__dialog{ position:relative; z-index:1; max-width:86rem; margin:4rem auto; padding:1rem; }
+.case-modal .modal__dialog{
+  background:var(--surface-1); border:.1rem solid var(--line); border-radius:1rem;
+  box-shadow:0 .8rem 2.4rem rgba(0,0,0,.18);
+}
+.modal__close{ position:absolute; top:.6rem; right:.6rem; min-width:3.6rem; min-height:3.6rem; }
+.case-modal__content{ outline:none; }
+.case-head{ display:grid; gap:.8rem; padding:.8rem 1rem 0 1rem; }
+.case-title{ margin:0; font-size:2rem; line-height:var(--lh-tight); }
+.case-meta{ display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; color:var(--muted); font-size:1.4rem; margin:0; }
+.case-meta li{ list-style:none; }
+.case-body{ padding:1rem; display:grid; gap:1rem; }
+.case-grid{ display:grid; gap:.6rem; grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media (max-width:64rem){ .case-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:42rem){ .case-grid{ grid-template-columns:1fr; } }
+.case-grid img{ display:block; width:100%; height:auto; border-radius:.6rem; background:var(--surface-3); }
+.case-desc{ color:var(--ink); }
+.case-section-title{ font-size:1.6rem; margin:.4rem 0; }
+
+/* Кнопки в модалке: зелёные с белым текстом */
+.modal .btn{ color:#fff; background:var(--brand); border-color:var(--brand-2); }
+.modal .btn:hover{ transform:translateY(-.1rem); box-shadow:0 .3rem 1rem rgba(20,40,15,.12); }
+.modal .btn:focus-visible{ outline:none; box-shadow:var(--ring); }
+
+/* Жёсткая гарантия видимости/скрытия для пагинации */
+#portfolioGrid{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:1.8rem !important;
+  column-count:initial !important; column-gap:initial !important;
+  align-items:stretch;
+}
+#portfolioGrid > .work-card{
+  position:static !important; top:auto !important; float:none !important;
+  margin:0 !important; width:auto !important; max-width:none !important;
+  break-inside:avoid !important; opacity:1 !important; transform:none !important; visibility:visible !important;
+}
+#portfolioGrid > .work-card[hidden]{ display:none !important; }
+#portfolioGrid > .work-card:not([hidden]){ display:block !important; }
+
+/* utility */
+.visually-hidden {
+  position:absolute !important;
+  width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* анимация появления карточки (если нужно) */
+.work-card { opacity: 0; transform: translateY(0.6rem); transition: opacity .28s ease, transform .28s ease; }
+.work-card.revealed { opacity: 1; transform: translateY(0); }
+
+/* Портфолио */
+.portfolio{padding:3.2rem 0;background:var(--bg,#fff)}
+.portfolio__header{margin-bottom:1.2rem}
+.portfolio__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.work-card{border:.1rem solid var(--line,#e5e7eb);border-radius:1.2rem;background:#fff;box-shadow:var(--shadow);overflow:hidden;transform:translateY(.4rem);opacity:0;transition:transform .35s ease,opacity .35s ease}
+.work-card.revealed{transform:none;opacity:1}
+.work-card__media{display:block;line-height:0}
+.work-card__media img{width:100%;height:auto;display:block}
+.work-card__body{padding:1rem}
+.work-card__title{margin:.2rem 0 .6rem;font:600 1.6rem/1.3 var(--font,system-ui)}
+.work-card__meta{margin:0 0 1rem;padding:0;list-style:none;display:flex;gap:1.2rem;flex-wrap:wrap;color:var(--muted)}
+.link-btn{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;border-bottom:.1rem solid transparent}
+.link-btn:hover{border-bottom-color:currentColor}
+@media (max-width:72rem){.portfolio__grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:40rem){.portfolio__grid{grid-template-columns:1fr}}
+html[data-theme="dark"] .work-card{background:oklch(.23 .02 145);border-color:#233046}

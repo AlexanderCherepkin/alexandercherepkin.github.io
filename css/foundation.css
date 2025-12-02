@@ -1,0 +1,148 @@
+/* =========================
+   Foundation (base + tokens)
+   ========================= */
+
+/* База */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html { block-size: 100%; }
+body {
+  min-block-size: 100%;
+  margin: 0;
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  line-height: 1.5;
+  color: var(--color-text, #111);
+  background: var(--color-bg, #fff);
+  scrollbar-gutter: stable both-edges;
+}
+
+/* Токены (rem) */
+:root {
+  /* брейки */
+  --bp-sm: 36rem;   /* ~576 */
+  --bp-md: 48rem;   /* ~768 */
+  --bp-lg: 64rem;   /* ~1024 */
+  --bp-xl: 80rem;   /* ~1280 */
+
+  /* отступы */
+  --space-0: 0;
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+
+  /* флюидная типографика */
+  --font-0: clamp(1rem, 0.95rem + 0.5vw, 1.125rem);      /* базовый */
+  --font-1: clamp(1.125rem, 1rem + 1vw, 1.5rem);         /* h6/h5 */
+  --font-2: clamp(1.25rem, 1.05rem + 1.5vw, 1.875rem);   /* h4 */
+  --font-3: clamp(1.5rem, 1.1rem + 2.2vw, 2.25rem);      /* h3 */
+  --font-4: clamp(1.75rem, 1.2rem + 3vw, 2.75rem);       /* h2 */
+  --font-5: clamp(2rem, 1.3rem + 4vw, 3.5rem);           /* h1 */
+
+  /* контейнеры */
+  --container-max: 80rem;
+  --container-pad: 1rem;
+}
+
+html { font-size: 100%; }
+body { font-size: var(--font-0); }
+
+/* Контейнер и сетка */
+.container {
+  width: min(100%, var(--container-max));
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  container-type: inline-size;           /* для container queries */
+  container-name: layout;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* Авто-сетка карточек (mobile-first) */
+.grid--cards { grid-template-columns: 1fr; }
+@media (min-width: var(--bp-sm)) { .grid--cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: var(--bp-md)) { .grid--cards { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: var(--bp-lg)) { .grid--cards { grid-template-columns: repeat(4, 1fr); } }
+
+/* Тексты */
+h1 { font-size: var(--font-5); line-height: 1.15; margin: 0 0 var(--space-4); }
+h2 { font-size: var(--font-4); line-height: 1.2;  margin: var(--space-6) 0 var(--space-4); }
+h3 { font-size: var(--font-3); line-height: 1.25; margin: var(--space-5) 0 var(--space-3); }
+
+/* Кнопки и интерактив (доступность) */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 8rem;
+  min-block-size: 2.75rem;              /* ≈44px, но в rem */
+  padding-inline: 1rem;
+  border-radius: 0.75rem;
+  border: 0;
+  cursor: pointer;
+}
+:focus-visible { outline: 0.2rem solid currentColor; outline-offset: 0.2rem; }
+
+/* Медиа */
+img, svg, video { display: block; max-inline-size: 100%; block-size: auto; }
+/* УДАЛЁНО: img { aspect-ratio: attr(width) / attr(height); } — невалидно; место под изображение держим через width/height в HTML */
+
+/* Лейаут */
+.site { inline-size: 100%; }
+.section { padding-block: var(--space-6); }
+
+/* Герой на полный экран (современная единица для мобилок) */
+.hero {
+  min-block-size: 100svh;
+  display: grid;
+  align-items: center;
+}
+
+/* Container Queries */
+.card { padding: var(--space-3); border-radius: 1rem; background: #fff; }
+@container layout (min-width: 40rem) {
+  .card { display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--space-4); }
+}
+
+/* Контент: таблицы/видео */
+.table-wrap { overflow-x: auto; }
+.responsive-media { aspect-ratio: 16 / 9; inline-size: 100%; }
+
+/* Предпочтения пользователя */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Якоря не уезжают под фикс-шапку */
+html { scroll-padding-top: var(--header-h, 4rem); }
+:target { scroll-margin-top: var(--header-h, 4rem); }
+
+/* =========================
+   Feature-detect fallbacks
+   (классы приходит из <head> скрипта)
+   ========================= */
+
+/* 1) svh → vh фоллбек */
+.no-svh .hero { min-block-size: 100vh; }
+
+/* 2) нет container-queries → используем медиа */
+.no-cq .card { display: block; }
+.no-cq .grid--cards { grid-template-columns: 1fr; }
+@media (min-width: 40rem) { .no-cq .grid--cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 64rem) { .no-cq .grid--cards { grid-template-columns: repeat(3, 1fr); } }
+
+/* 3) нет content-visibility → возвращаем обычное поведение */
+.no-cv .section,
+.no-cv .services { content-visibility: visible; contain-intrinsic-size: auto; }
+
+/* 4) iOS точечные правки для кнопок/табов */
+.btn, .tabs__tab { -webkit-appearance: none; appearance: none; touch-action: manipulation; }
+
+/* 5) нет scrollbar-gutter — минимальная компенсация внутр. отступом */
+.no-sbg .container { padding-inline: max(var(--container-pad), 1rem); }

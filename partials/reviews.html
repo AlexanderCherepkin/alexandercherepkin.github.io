@@ -1,0 +1,262 @@
+<section class="reviews" id="reviews" aria-labelledby="reviewsTitle" data-analytics-scope="reviews">
+  <div class="container">
+    <header class="reviews__head">
+      <h2 class="reviews__title" id="reviewsTitle">Отзывы клиентов</h2>
+      <p class="reviews__lead">Реальные отзывы с Яндекс.Карт и ВКонтакте — модерируем и не редактируем смысл.</p>
+
+      <div class="reviews__summary" role="group" aria-label="Сводный рейтинг">
+        <div class="reviews__score" aria-label="Средняя оценка 4.9 из 5 по 127 отзывам">
+          <span class="reviews__score-num" aria-hidden="true">4.9</span>
+          <span class="reviews__score-stars" aria-hidden="true">★★★★★</span>
+          <span class="reviews__score-meta">из 5 · 127&nbsp;отзывов</span>
+        </div>
+        <ul class="reviews__badges" role="list" aria-label="Источники отзывов">
+          <li class="reviews__badge">
+            <svg width="1.2rem" height="1.2rem" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>
+            Яндекс.Карты
+          </li>
+          <li class="reviews__badge">
+            <svg width="1.2rem" height="1.2rem" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12s4.5 10 10 10 10-4.5 10-10Z" fill="currentColor"/></svg>
+            ВКонтакте
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Карусель: 2 на десктопе / 1 на мобилке -->
+    <div class="reviews__viewport" aria-live="polite" aria-atomic="true" aria-roledescription="carousel">
+      <ul class="reviews__track" id="reviewsTrack" role="list">
+
+        <!-- 1. Яндекс — скриншот -->
+        <li class="reviews__slide" id="slide-1" role="listitem" aria-label="Слайд 1 из 10">
+          <figure class="review">
+            <picture>
+              <source srcset="/webp/yandex-01.avif" type="image/avif">
+              <img class="review__img" src="/webp/yandex-01.webp" alt="Отзыв клиента на Яндекс.Картах: ремонт двушки под ключ" loading="lazy" decoding="async" width="640" height="360">
+            </picture>
+            <figcaption class="review__caption">
+              <span class="review__meta">Яндекс.Карты</span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5">★★★★★</span>
+            </figcaption>
+          </figure>
+        </li>
+
+        <!-- 2. Яндекс — скриншот -->
+        <li class="reviews__slide" id="slide-2" role="listitem" aria-label="Слайд 2 из 10">
+          <figure class="review">
+            <picture>
+              <source srcset="/webp/yandex-02.avif" type="image/avif">
+              <img class="review__img" src="/webp/yandex-02.webp" alt="Отзыв клиента на Яндекс.Картах: аккуратная укладка плитки и сроки" loading="lazy" decoding="async" width="640" height="360">
+            </picture>
+            <figcaption class="review__caption">
+              <span class="review__meta">Яндекс.Карты</span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5">★★★★★</span>
+            </figcaption>
+          </figure>
+        </li>
+
+        <!-- 3. ВК — скриншот -->
+        <li class="reviews__slide" id="slide-3" role="listitem" aria-label="Слайд 3 из 10">
+          <figure class="review">
+            <picture>
+              <source srcset="/webp/vk-01.avif" type="image/avif">
+              <img class="review__img" src="/webp/vk-01.webp" alt="Отзыв во ВКонтакте: дизайн-проект и реализация" loading="lazy" decoding="async" width="640" height="360">
+            </picture>
+            <figcaption class="review__caption">
+              <span class="review__meta">ВКонтакте</span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5">★★★★★</span>
+            </figcaption>
+          </figure>
+        </li>
+
+        <!-- 4. ВК — скриншот -->
+        <li class="reviews__slide" id="slide-4" role="listitem" aria-label="Слайд 4 из 10">
+          <figure class="review">
+            <picture>
+              <source srcset="/webp/vk-02.avif" type="image/avif">
+              <img class="review__img" src="/webp/vk-02.webp" alt="Отзыв во ВКонтакте: электромонтаж и свет" loading="lazy" decoding="async" width="640" height="360">
+            </picture>
+            <figcaption class="review__caption">
+              <span class="review__meta">ВКонтакте</span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5">★★★★★</span>
+            </figcaption>
+          </figure>
+        </li>
+
+        <!-- 5. Текстовая карточка -->
+        <li class="reviews__slide" id="slide-5" role="listitem" aria-label="Слайд 5 из 10">
+          <figure class="review review--text" itemprop="review" itemscope itemtype="https://schema.org/Review">
+            <blockquote class="review__text" itemprop="reviewBody">
+              Сделали полный ремонт двушки в новостройке — от замеров и сметы до финальной сдачи с гарантией.
+              Черновые и инженерия: стяжка по маякам, разводка электрики от щита с автоматами/УЗО, санузел «под ключ» (гидроизоляция, разводка воды и канализации, плитка, установка сантехники).
+              Чистовые: подготовка стен и потолков, покраска/обои, напольные покрытия, монтаж дверей, плинтусов и освещения. Порядок на объекте поддерживали ежедневно.
+              Смету не раздували: фиксировали бюджет, изменения — только по согласованию. Каждую неделю — фото-отчёт. Сроки выдержали. Помогли с подбором и доставкой материалов.
+            </blockquote>
+            <figcaption class="review__caption">
+              <span class="review__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                <span itemprop="name">Ирина&nbsp;К.</span>
+              </span>
+              <span class="review__meta">
+                Яндекс.Карты · <time datetime="2024-09-12" itemprop="datePublished">12.09.2024</time>
+              </span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                <meta itemprop="ratingValue" content="5">★★★★★
+              </span>
+            </figcaption>
+            <a class="review__link" href="https://yandex.ru/maps/" target="_blank" rel="noopener ugc nofollow">Открыть оригинал</a>
+          </figure>
+        </li>
+
+        <!-- 6 -->
+        <li class="reviews__slide" id="slide-6" role="listitem" aria-label="Слайд 6 из 10">
+          <figure class="review review--text" itemprop="review" itemscope itemtype="https://schema.org/Review">
+            <blockquote class="review__text" itemprop="reviewBody">
+              Заказали капитальный ремонт в квартире родителей — остались довольны.
+              Бригада работала аккуратно: подъезд и лифт не пачкали, укрывали поверхности, выносили мусор без следов. К соседям — с уважением, шумные работы в разумные часы.
+              Прораб всегда на связи: быстро отвечал, согласовывал решения по ходу, спорные моменты закрывали на месте без «накруток» и внезапных доплат. Все изменения фиксировали письменно — прозрачная смета, оплата по этапам.
+              В итоге получили ровные стены, аккуратные стыки и чистый итог без беготни с нашей стороны. Ребятам доверять можно: организованно, чисто, по делу и без попыток «продать лишнее».
+            </blockquote>
+            <figcaption class="review__caption">
+              <span class="review__author" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Дмитрий&nbsp;Р.</span></span>
+              <span class="review__meta">Яндекс.Карты · <time datetime="2025-07-03" itemprop="datePublished">03.07.2025</time></span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"><meta itemprop="ratingValue" content="5">★★★★★</span>
+            </figcaption>
+            <a class="review__link" href="https://yandex.ru/maps/" target="_blank" rel="noopener ugc nofollow">Открыть оригинал</a>
+          </figure>
+        </li>
+
+        <!-- 7 -->
+        <li class="reviews__slide" id="slide-7" role="listitem" aria-label="Слайд 7 из 10">
+          <figure class="review review--text" itemprop="review" itemscope itemtype="https://schema.org/Review">
+            <blockquote class="review__text" itemprop="reviewBody">
+              Ванная под ключ: новая разводка холодной/горячей воды и канализации, обмазочная гидроизоляция с лентами по примыканиям, плитка по уровню — швы ровные, углы аккуратные.
+              Сделали продуманную раскладку: спрятали подрезки, совпали рисунок и швы, использовали СВП для идеальной плоскости. Подсказали, где сэкономить без потери качества — предложили альтернативные коллекции плитки и фурнитуру, сохранив ключевые позиции. Проверили уклоны, герметичность и работу всех узлов.
+              Сдали на день раньше графика, навели порядок — можно пользоваться сразу.
+            </blockquote>
+            <figcaption class="review__caption">
+              <span class="review__author" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Анна&nbsp;Ш.</span></span>
+              <span class="review__meta">ВКонтакте · <time datetime="2025-10-18" itemprop="datePublished">18.10.2025</time></span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"><meta itemprop="ratingValue" content="5">★★★★★</span>
+            </figcaption>
+            <a class="review__link" href="https://vk.com/" target="_blank" rel="noopener ugc nofollow">Открыть оригинал</a>
+          </figure>
+        </li>
+
+        <!-- 8 -->
+        <li class="reviews__slide" id="slide-8" role="listitem" aria-label="Слайд 8 из 10">
+          <figure class="review review--text" itemprop="review" itemscope itemtype="https://schema.org/Review">
+            <blockquote class="review__text" itemprop="reviewBody">
+              Электрика «с нуля» в частном доме: собрали щит, разложили группы, поставили автоматы и УЗО, сделали внутреннее освещение и уличные линии.
+              Всё по ПУЭ: рассчитали нагрузки и сечения, развели кабель аккуратно и по трассам, подписали каждую линию, приложили схему на двери щита — искать ничего не придётся.
+              Проверка и пусконаладка: прозвонили контуры, протестировали УЗО, прошли тепловизором — скрытых перегревов и косяков нет.
+            </blockquote>
+            <figcaption class="review__caption">
+              <span class="review__author" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Сергей&nbsp;М.</span></span>
+              <span class="review__meta">Яндекс.Карты · <time datetime="2025-08-29" itemprop="datePublished">29.08.2025</time></span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"><meta itemprop="ratingValue" content="5">★★★★★</span>
+            </figcaption>
+            <a class="review__link" href="https://yandex.ru/maps/" target="_blank" rel="noopener ugc nofollow">Открыть оригинал</a>
+          </figure>
+        </li>
+
+        <!-- 9 -->
+        <li class="reviews__slide" id="slide-9" role="listitem" aria-label="Слайд 9 из 10">
+          <figure class="review review--text" itemprop="review" itemscope itemtype="https://schema.org/Review">
+            <blockquote class="review__text" itemprop="reviewBody">
+              Кухня-гостиная по дизайн-проекту: работали строго по чертежам и спецификациям, ключевые узлы согласовывали до монтажа.
+              Гипсокартон: каркасы собрали по лазеру, швы армировали, примыкания ровные. Световые линии — в алюминиевых профилях, плоскость без «ступенек», блоки питания в доступной нише, диммирование и сценарии света настроены.
+              Финиш: подготовка стен под покраску (шпаклёвка, стеклохолст, шлифовка), ровная покраска в заданный цвет. Двери установили в размер, фурнитуру настроили, зазоры и стыки аккуратные.
+              Отдельное спасибо за бережную доставку материалов и порядок на объекте: подъезд и лифт защитили, мусор и упаковку вывозили, ежедневно поддерживали чистоту.
+            </blockquote>
+            <figcaption class="review__caption">
+              <span class="review__author" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Кристина&nbsp;В.</span></span>
+              <span class="review__meta">ВКонтакте · <time datetime="2025-01-22" itemprop="datePublished">22.01.2025</time></span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"><meta itemprop="ratingValue" content="5">★★★★★</span>
+            </figcaption>
+            <a class="review__link" href="https://vk.com/" target="_blank" rel="noopener ugc nofollow">Открыть оригинал</a>
+          </figure>
+        </li>
+
+        <!-- 10 -->
+        <li class="reviews__slide" id="slide-10" role="listitem" aria-label="Слайд 10 из 10">
+          <figure class="review review--text" itemprop="review" itemscope itemtype="https://schema.org/Review">
+            <blockquote class="review__text" itemprop="reviewBody">
+              Сделали косметический ремонт «под сдачу» — быстро, аккуратно и без лишних трат. Сосредоточились на том, что реально влияет на вид и цену аренды.
+              Освежили отделку: покраска/обои, точечное выравнивание, подправили стыки и плинтуса — чисто и ровно. Работали строго по утверждённой смете, без скрытых доплат и «накруток».
+              График согласовали с соседями: шумные этапы выполняли только в оговорённые часы. Сдали в срок и с порядком — можно сразу фотографировать и размещать объявление.
+            </blockquote>
+            <figcaption class="review__caption">
+              <span class="review__author" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Павел&nbsp;Т.</span></span>
+              <span class="review__meta">Яндекс.Карты · <time datetime="2025-10-05" itemprop="datePublished">05.10.2025</time></span>
+              <span class="review__stars" role="img" aria-label="Оценка 5 из 5" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"><meta itemprop="ratingValue" content="5">★★★★★</span>
+            </figcaption>
+            <a class="review__link" href="https://yandex.ru/maps/" target="_blank" rel="noopener ugc nofollow">Открыть оригинал</a>
+          </figure>
+        </li>
+
+      </ul>
+
+      <!-- Стрелки -->
+      <div class="reviews__nav" role="group" aria-label="Навигация по отзывам">
+        <button class="reviews__btn" type="button" aria-label="Предыдущие отзывы" data-reviews-prev aria-controls="reviewsTrack">‹</button>
+        <button class="reviews__btn" type="button" aria-label="Следующие отзывы" data-reviews-next aria-controls="reviewsTrack">›</button>
+      </div>
+
+      <!-- Точки: hit-area ≥ 2.75rem -->
+      <div class="reviews__dots" role="tablist" aria-label="Слайды отзывов">
+        <button class="reviews__dot is-active" role="tab" aria-selected="true" aria-controls="slide-1" type="button" tabindex="0"><span class="sr-only">Слайд 1</span></button>
+        <button class="reviews__dot" role="tab" aria-selected="false" aria-controls="slide-2" type="button" tabindex="-1"><span class="sr-only">Слайд 2</span></button>
+        <button class="reviews__dot" role="tab" aria-selected="false" aria-controls="slide-3" type="button" tabindex="-1"><span class="sr-only">Слайд 3</span></button>
+        <button class="reviews__dot" role="tab" aria-selected="false" aria-controls="slide-4" type="button" tabindex="-1"><span class="sr-only">Слайд 4</span></button>
+        <button class="reviews__dot" role="tab" aria-selected="false" aria-controls="slide-5" type="button" tabindex="-1"><span class="sr-only">Слайд 5</span></button>
+        <button class="reviews__dot" role="tab" aria-selected="false" aria-controls="slide-6" type="button" tabindex="-1"><span class="sr-only">Слайд 6</span></button>
+        <button class="reviews__dot" role="tab" aria-selected="false" aria-controls="slide-7" type="button" tabindex="-1"><span class="sr-only">Слайд 7</span></button>
+        <button class="reviews__dot" role="tab" aria-selected="false" aria-controls="slide-8" type="button" tabindex="-1"><span class="sr-only">Слайд 8</span></button>
+        <button class="reviews__dot" role="tab" aria-selected="false" aria-controls="slide-9" type="button" tabindex="-1"><span class="sr-only">Слайд 9</span></button>
+        <button class="reviews__dot" role="tab" aria-selected="false" aria-controls="slide-10" type="button" tabindex="-1"><span class="sr-only">Слайд 10</span></button>
+      </div>
+    </div>
+
+    <div class="reviews__links">
+      <a class="btn btn--ghost link-btn" href="https://yandex.ru/maps/" target="_blank" rel="noopener ugc nofollow" data-analytics="reviews:yandex_all">Все отзывы на Яндекс.Картах</a>
+      <a class="btn link-btn" href="https://vk.com/" target="_blank" rel="noopener ugc nofollow" data-analytics="reviews:vk_all">Отзывы во ВКонтакте</a>
+      <a class="btn btn--ghost" href="https://yandex.ru/maps/" target="_blank" rel="noopener ugc nofollow" data-analytics="reviews:write_yandex">Оставить отзыв</a>
+    </div>
+  </div>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"HomeAndConstructionBusiness",
+    "@id":"https://profremont.local-ai-hub.website/#business",
+    "aggregateRating":{"@type":"AggregateRating","ratingValue":4.9,"reviewCount":127},
+    "review":[
+      {
+        "@type":"Review",
+        "author":{"@type":"Person","name":"Ирина К."},
+        "datePublished":"2024-09-12",
+        "name":"Отзыв на Яндекс.Картах",
+        "reviewBody":"Полный ремонт двушки: смета без накруток, отчёты каждую неделю, сроки соблюдены.",
+        "reviewRating":{"@type":"Rating","ratingValue":5,"bestRating":5}
+      },
+      {
+        "@type":"Review",
+        "author":{"@type":"Person","name":"Дмитрий Р."},
+        "datePublished":"2025-07-03",
+        "name":"Отзыв на Яндекс.Картах",
+        "reviewBody":"Капитальный ремонт у родителей. Аккуратно, без шумных нарушений, по смете.",
+        "reviewRating":{"@type":"Rating","ratingValue":5,"bestRating":5}
+      },
+      {
+        "@type":"Review",
+        "author":{"@type":"Person","name":"Анна Ш."},
+        "datePublished":"2025-10-18",
+        "name":"Отзыв во ВКонтакте",
+        "reviewBody":"Ванная под ключ, гидроизоляция и плитка по уровню. Сдали раньше срока.",
+        "reviewRating":{"@type":"Rating","ratingValue":5,"bestRating":5}
+      }
+    ]
+  }
+  </script>
+</section>

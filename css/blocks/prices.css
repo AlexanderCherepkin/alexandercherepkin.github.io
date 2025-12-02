@@ -1,0 +1,235 @@
+/* === Prices (ПрофРемонт) — акцентная секция с фоном и рамкой === */
+:root{
+  --brand-600:#166534;
+  --brand-700:#14532d;
+  --ring:rgba(22,101,52,.25);
+  --bg-elev:#ffffff;
+  --text:#0a0a0a;
+  --muted:#6b7280;
+}
+
+/* База/утилита */
+html{ scrollbar-gutter:stable both-edges; }
+
+/* =========================================================
+   Секция + контейнер
+   ========================================================= */
+.prices{ position:relative; padding:3.2rem 0; background:var(--bg,#fff); }
+.prices .container{ margin:0 auto; padding:0; max-width:120rem; }
+
+/* =========================================================
+   Декоративный фон
+   ========================================================= */
+.prices__bg{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(60rem 30rem at 90% -10%, color-mix(in oklab, var(--brand,#16a34a) 6%, #fff) 0%, transparent 60%);
+}
+/* Лёгкая сетка поверх фона */
+.prices__bg::after{
+  content:""; position:absolute; inset:0; opacity:.4;
+  background-image:
+    linear-gradient(to right, rgba(2,6,23,.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(2,6,23,.06) 1px, transparent 1px);
+  background-size:2.4rem 2.4rem;
+}
+
+/* =========================================================
+   Рамка секции
+   ========================================================= */
+.section-frame{
+  padding:2.4rem;
+  border:.12rem solid color-mix(in oklab, var(--brand,#16a34a) 20%, var(--line,#e5e7eb));
+  border-radius:1.6rem;
+  background:color-mix(in oklab, #fff 96%, var(--brand,#16a34a) 4%);
+  box-shadow:0 .8rem 2.4rem rgba(2,6,23,.08), inset 0 .1rem 0 rgba(255,255,255,.7);
+}
+
+/* =========================================================
+   Заголовки секции
+   ========================================================= */
+.prices__head{ position:relative; margin-bottom:1.2rem; text-align:center; }
+.prices__eyebrow{
+  display:inline-block; margin-bottom:.8rem; padding:.4rem .8rem;
+  border:.1rem solid color-mix(in oklab, var(--brand,#16a34a) 30%, #e5e7eb);
+  border-radius:2rem;
+  background:color-mix(in oklab, var(--brand,#16a34a) 12%, #fff);
+  color:color-mix(in oklab, var(--brand,#16a34a) 75%, #0f172a);
+  font-size:1.2rem; letter-spacing:.08em; text-transform:uppercase;
+}
+.prices__title{ margin:0 0 .4rem; color:var(--ink,#0f172a); font-size:var(--fs-h2,2.4rem); }
+.prices__lead{ margin:0; color:var(--muted,#6b7280); }
+
+/* =========================================================
+   Сетка
+   ========================================================= */
+.prices__grid{ position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+@media (max-width:72rem){ .prices__grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:40rem){ .prices__grid{ grid-template-columns:1fr; } }
+
+/* =========================================================
+   Карточки
+   ========================================================= */
+.prices__card{
+  position:relative; display:flex; flex-direction:column;
+  min-height:100%; overflow:clip; padding:1.2rem;
+  border:.1rem solid var(--line,#e5e7eb);
+  border-radius:1.2rem; background:#fff;
+  box-shadow:var(--shadow, 0 .8rem 2.4rem rgba(2,6,23,.08));
+}
+.prices__stripe{
+  position:absolute; inset:0 .0 0 auto; width:.4rem; border-radius:.4rem;
+  background:color-mix(in oklab, var(--brand,#16a34a) 35%, #cbd5e1);
+}
+.prices__plan{ margin:0 0 .6rem; font:600 1.6rem/1.3 var(--font,system-ui); }
+.prices__price{ margin:0 0 1rem; font:700 2rem/1 var(--font,system-ui); color:var(--ink); }
+.prices__from{ margin-right:.4rem; color:var(--muted,#6b7280); font-weight:500; }
+.prices__unit{ color:var(--muted,#6b7280); font-size:1.4rem; font-weight:600; }
+.prices__list{ margin:0 0 1.2rem; padding-left:1.6rem; color:var(--muted); }
+.prices__list li{ list-style:disc; margin:.5rem 0; }
+
+/* CTA внутри карточки */
+.prices__cta{ margin-top:auto; display:flex; gap:.8rem; flex-wrap:wrap; }
+
+/* Выделенная */
+.prices__card--featured{ border-color:var(--brand,#16a34a); box-shadow:0 .8rem 2.4rem rgba(22,163,74,.18); }
+.prices__badge{
+  position:absolute; top:1rem; right:1rem;
+  background:var(--brand,#16a34a); color:#fff;
+  border-radius:.6rem; padding:.2rem .6rem;
+  font:600 1.2rem/1 var(--font,system-ui);
+}
+
+/* Дополнительные карточки */
+/* Дополнительные карточки - ОБНОВЛЕННАЯ ВЕРСИЯ */
+.prices__card--extra {
+  display: none; /* Изначально скрыты полностью */
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0.98); /* Лёгкий scale вместо translateY */
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.prices__card--extra:not([hidden]) {
+  display: flex; /* Показываем когда убран hidden */
+}
+
+.prices__card--extra.is-shown {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Принудительное скрытие */
+.prices__card--extra[hidden] {
+  display: none !important;
+}
+
+/* Если обёртка осталась — делаем её «прозрачной» для гридов */
+#prices-extra{ display:contents; }
+#prices-extra[hidden]{ display:none; }
+
+/* =========================================================
+   Нижние ссылки
+   ========================================================= */
+.prices__links{ margin-top:1.2rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:center; }
+.link{ text-decoration:none; font-size:1.4rem; }
+.link--more{ border-bottom:.1rem dashed currentColor; color:var(--brand,#16a34a); }
+.link--order{ border:none; border-bottom:.1rem dashed currentColor; padding:0; color:var(--brand,#16a34a); background:none; cursor:pointer; }
+
+/* =========================================================
+   Кнопки (универсальные) + иконка трубки
+   ========================================================= */
+.btn{
+  --pad-y:.9rem; --pad-x:1.6rem; --gap:.8rem; --radius:999rem;
+  display:inline-flex; align-items:center; justify-content:center; gap:var(--gap);
+  padding:var(--pad-y) var(--pad-x);
+  border:.1rem solid transparent; border-radius:var(--radius);
+  background:var(--brand-600); color:#fff; font-weight:700; line-height:1; text-decoration:none; cursor:pointer;
+  transition:background-color .2s ease, box-shadow .2s ease, transform .1s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:hover{ background:var(--brand-700); transform:translateY(-.05rem); }
+.btn:active{ transform:translateY(0); }
+.btn:focus{ outline:none; }
+.btn:focus-visible{ box-shadow:0 0 0 .2rem var(--ring); }
+.btn[disabled], .btn.is-disabled{ opacity:.6; pointer-events:none; }
+
+.btn--primary{ color:#fff; background:var(--brand,#16a34a); }
+.btn--primary:hover{ transform:translateY(-.1rem); box-shadow:0 .4rem 1.2rem rgba(22,163,74,.25); }
+.btn--ghost{ border:.1rem solid var(--brand,#16a34a); color:var(--brand,#16a34a); background:transparent; }
+.btn--ghost:hover{ background:color-mix(in oklab, var(--brand,#16a34a) 10%, #fff); }
+
+.btn__text{ font-size:1.5rem; letter-spacing:.02rem; white-space:nowrap; }
+.btn__icon{
+  width:1.4rem; height:1.4rem; flex:0 0 auto;
+  transform-origin:50% 10%; animation:ring 3.2s ease-in-out infinite both;
+}
+.btn:hover .btn__icon{ animation-duration:1.6s; }
+
+.services__price, span {
+    margin-bottom: 0.2rem;
+}
+
+@media (prefers-reduced-motion:reduce){ .btn__icon{ animation:none; } }
+@keyframes ring{
+  0%{transform:rotate(0)} 2%{transform:rotate(18deg)} 4%{transform:rotate(-16deg)}
+  6%{transform:rotate(14deg)} 8%{transform:rotate(-12deg)} 10%{transform:rotate(10deg)}
+  12%{transform:rotate(-8deg)} 14%{transform:rotate(6deg)} 16%{transform:rotate(0)} 100%{transform:rotate(0)}
+}
+
+/* =========================================================
+   Модалка + форма
+   ========================================================= */
+.modal[hidden]{ display:none; }
+.modal{ position:fixed; inset:0; z-index:1000; }
+.modal__backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease; }
+.modal__dialog{
+  position:relative; margin:12svh auto;
+  background:var(--bg-elev); color:var(--text);
+  border-radius:1.2rem; box-shadow:0 1.2rem 3.2rem rgba(0,0,0,.16);
+  padding:1.6rem; opacity:0; transform:translateY(1rem);
+  transition:opacity .2s ease, transform .2s ease;
+}
+.modal.is-open .modal__backdrop{ opacity:1; }
+.modal.is-open .modal__dialog{ opacity:1; transform:none; }
+
+.modal__header{ margin-bottom:1.2rem; }
+.modal__title{ font-size:1.4rem; line-height:1.2; margin:0 0 .4rem; }
+.modal__lead{ margin:0; color:var(--muted); font-size:.95rem; }
+
+.form__row{ display:grid; gap:.4rem; margin-bottom:1rem; }
+.form__label{ font-size:.95rem; }
+.form__control{
+  width:100%; padding:.8rem 1rem; border:.1rem solid #e5e7eb; border-radius:.8rem;
+  font-size:1rem; background:#fff;
+}
+.form__control:focus{ outline:none; border-color:var(--brand-600); box-shadow:0 0 0 .2rem var(--ring); }
+.form__agree{ display:flex; align-items:flex-start; gap:.6rem; font-size:.9rem; color:var(--muted); margin:.4rem 0 1.2rem; }
+.form__checkbox{ transform:translateY(.15rem); }
+
+/* Тёмная тема формы */
+[data-theme="dark"]{ --bg-elev:#0c0f10; --text:#f3f4f6; --muted:#9ca3af; }
+[data-theme="dark"] .form__control{ background:#0a0a0a; border-color:#1f2937; color:var(--text); }
+
+/* Утилита: скролл-лок */
+body.scroll-lock{ overflow:hidden; }
+
+/* =========================================================
+   Тёмная тема (секция/карточки/ссылки)
+   ========================================================= */
+html[data-theme="dark"] .section-frame{
+  border-color:oklch(.32 .03 145);
+  background:oklch(.19 .03 145);
+  box-shadow:0 .8rem 2.4rem rgba(0,0,0,.35), inset 0 .1rem 0 rgba(255,255,255,.04);
+}
+html[data-theme="dark"] .prices{ background:oklch(.19 .03 145); }
+html[data-theme="dark"] .prices__card{ background:oklch(.23 .02 145); border-color:#233046; }
+html[data-theme="dark"] .link--more,
+html[data-theme="dark"] .link--order{ color:oklch(.75 .14 145); }
+[data-theme="dark"] .btn{ box-shadow:none; }
+
+/* чтобы ul не менял верстку сетки */
+.prices__grid { list-style: none; margin: 0; padding: 0; }
+.prices__item { display: contents; } /* сохраняет текущую сетку карточек */
+

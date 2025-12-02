@@ -1,0 +1,281 @@
+/* Mobile styles (max-width: 779px) */
+
+/* Hara-секция (hero section) */
+@media (max-width: 779px) {
+  /* Преимущества в колонку */
+  .hero__benefits,
+  .hero__benefits--more {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+    padding: 0 1rem;
+  }
+
+  /* Картинка перед преимуществами */
+  .hero__media {
+    order: -1;
+    margin-bottom: 24px;
+  }
+
+  .hero__media img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Убираем горизонтальное расположение преимуществ */
+  .hero__benefit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero__benefit-icon {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .hero__benefit-text {
+      width: 375px;
+      max-width: 100%; 
+      text-align: center;
+  }
+
+  /* Кнопка "Ещё преимущества" */
+  .hero__benefits-more-wrap {
+    margin-top: 16px;
+  }
+
+  /* Контент секции hero */
+  .hero__content {
+    padding: 0;
+  }
+
+  .hero__title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .hero__subtitle {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    padding: 1rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* Mobile styles (max-width: 779px) - исправление табов и панелей */
+@media (max-width: 779px) {
+  /* Полностью отключаем sticky и скролл табов */
+  .tabs__list-wrap {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+    overflow: visible !important;
+    background: transparent;
+    border-bottom: none;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  /* Табы в одну строку с переносом */
+  .tabs__list {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    justify-content: flex-start !important;
+    padding: 12px 0 !important;
+    min-width: auto !important;
+    grid-auto-flow: unset !important;
+    overflow: visible !important;
+    scrollbar-width: none !important;
+  }
+
+  .tabs__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs__tab {
+    flex: 1 1 calc(50% - 4px) !important; /* 2 таба в строке */
+    min-width: 120px !important;
+    max-width: none !important;
+    padding: 10px 12px !important;
+    font-size: 1.2rem !important;
+    white-space: nowrap !important;
+    scroll-snap-align: unset !important;
+  }
+
+  /* Панели услуг */
+  .tabs__panels {
+    padding: 0 !important;
+  }
+
+  .tabs__panel {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    scroll-margin-top: 0 !important;
+  }
+
+  .tabs__panel.is-active {
+    display: block !important;
+  }
+
+  /* Сетка услуг - строго колонка */
+  .services__grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    grid-template-columns: unset !important;
+  }
+
+  /* Картинка на весь экран */
+  .services__img {
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 16px !important;
+    border-radius: 0 !important;
+  }
+
+  /* Контент под картинкой */
+  .services__content {
+    padding: 0 16px 24px !important;
+    width: 100% !important;
+  }
+
+  /* Остальные элементы */
+  .services__cta {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .btn {
+    width: 100% !important;
+  }
+}
+
+
+
+
+
+
+
+
+/* ================================
+   Портфолио: FLEX вместо GRID
+   1 колонка < 48rem  (~768px)
+   2 колонки ≥ 48rem и < 80rem (~1280px)
+   3 колонки ≥ 80rem          (десктоп)
+   ВСТАВИТЬ В КОНЕЦ МОБИЛЬНОГО CSS
+   ================================ */
+
+/* Контейнер портфолио: включаем flex и перебиваем grid+!important */
+.portfolio .portfolio__grid#portfolioGrid {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 1.8rem;
+}
+
+/* Базово: одна карточка на всю ширину */
+.portfolio .portfolio__grid#portfolioGrid > .work-card:not([hidden]) {
+  flex: 0 0 100%;
+}
+
+/* >= 48rem (~768px): две карточки в ряд */
+@media (min-width: 48rem) {
+  .portfolio .portfolio__grid#portfolioGrid > .work-card:not([hidden]) {
+    /* 2 колонки с учётом gap: (100% - 1.8rem)/2 */
+    flex: 0 0 calc((100% - 1.8rem) / 2);
+  }
+}
+
+/* >= 80rem (~1280px): три карточки в ряд */
+@media (min-width: 80rem) {
+  .portfolio .portfolio__grid#portfolioGrid > .work-card:not([hidden]) {
+    /* 3 колонки с учётом двух промежутков gap: (100% - 2*1.8rem)/3 */
+    flex: 0 0 calc((100% - (2 * 1.8rem)) / 3);
+  }
+}
+
+/* === УБИРАЕМ МАРКЕРЫ В СПИСКАХ ЦЕН ПОЛНОСТЬЮ === */
+.prices__list {
+  margin: 0 0 1.2rem;
+  padding-left: 0;       /* без отступа слева */
+  list-style: none;      /* отключаем маркеры */
+}
+
+.prices__list li {
+  margin: 0.5rem 0;
+  padding-left: 0;
+  list-style: none;      /* на всякий случай и для li */
+}
+
+/* Глушим возможные кастомные маркеры */
+.prices__list li::marker {
+  content: '' !important;
+}
+
+.prices__list li::before {
+  content: none !important;
+}
+
+h3.prices__plan {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h2.prices__title {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+h2.reviews__title {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+h2#contacts-title {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.contacts-info {
+    padding: 0 1rem;
+}
+
+/* Мобильные: кнопки "Позвонить / WhatsApp / Email" уже и без горизонтального скролла */
+@media (max-width: 40rem) {
+  #contacts a.btn[href^="tel:"],
+  #contacts a.btn[href*="wa.me"],
+  #contacts a.btn[href^="mailto:"] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 50%;          /* примерно в 2 раза уже, чем на всю ширину карточки */
+    max-width: 18rem;    /* доп. ограничение по ширине */
+    min-width: 0;
+    margin-inline: auto; /* центрируем в карточке */
+
+    box-sizing: border-box;
+    padding: 0.7rem 1.2rem; /* чуть меньше паддинги */
+    font-size: 1.3rem;      /* можно уменьшить шрифт, чтобы смотрелось аккуратно */
+  }
+}
